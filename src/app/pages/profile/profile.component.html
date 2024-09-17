@@ -1,0 +1,162 @@
+<div class="grid">
+    <div class="col-12 xl:col-8">
+        <div class="card p-0">
+            <div
+                class="h-15rem"
+                [ngStyle]="{
+                    borderTopLeftRadius: '1rem',
+                    borderTopRightRadius: '1rem',
+                    backgroundImage: 'radial-gradient(circle farthest-side at 0 100%, #ff5349, #ff5349 0%, #ff534900 70%), radial-gradient(circle farthest-side at 100% 100%, #fc451a, #fc451a08 49%), radial-gradient(circle farthest-side at 50% 100%, #ff5349, #ff534900 48%)'}">
+            </div>
+
+            <div class="p-5">
+                <div class="flex justify-content-between align-items-center mb-2">
+                    <div class="flex align-items-center gap-3">
+                        <p-avatar 
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" 
+                            styleClass="mr-2" 
+                            size="xlarge" 
+                            shape="circle"
+                        />
+                        <h3 class="font-bold text-5xl">James E</h3>
+                    </div>
+    
+                    <div>
+                         <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+                        <p-menu #menu [popup]="true" [model]="items" (click)="showModal()"></p-menu>
+                    </div>
+                </div>
+    
+                <p-tabView>
+                    <p-tabPanel header="Collections">
+                        @for(collection of collections; track collection.id) {
+                            <div>
+                                <h3 class="text-base mb-2">{{ collection.name }}</h3>
+                                <p class="font-light text-base">{{ collection.description }}</p>
+                            </div>
+                            <p-divider />
+                        }
+                    </p-tabPanel>
+                    <p-tabPanel header="About">
+                        <p>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+                        </p>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 xl:col-4">
+        <div class="card">
+            <div class="flex align-items-center justify-content-between mb-4">
+                <h5>People You May Know</h5>
+            </div>
+
+            <ul class="p0 mx-0 mt-0 mb-4 list-none">
+
+            </ul>
+
+            <ul class="p-0 mx-0 mt-0 mb-4 list-none">
+                <li class="flex align-items-center py-3 border-bottom-1 surface-border">
+                    <div class="w-3rem h-3rem flex align-items-center justify-content-center mr-3 flex-shrink-0">
+                        <p-avatar 
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg" 
+                            size="large"
+                            shape="circle"
+                        />
+                    </div>
+                    <span class="flex flex-column line-height-3">
+                        <span class="font-bold fs-accent text-lg">James Esg</span>
+                        <span class="text-sm">&commat;james.esg</span>
+                    </span>
+                </li>
+
+                <li class="flex align-items-center py-3 border-bottom-1 surface-border">
+                    <div class="w-3rem h-3rem flex align-items-center justify-content-center mr-3 flex-shrink-0">
+                        <p-avatar 
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg" 
+                            size="large"
+                            shape="circle"
+                        />
+                    </div>
+                    <span class="flex flex-column line-height-3">
+                        <span class="font-bold fs-accent text-lg">James Esg</span>
+                        <span class="text-sm">&commat;james.esg</span>
+                    </span>
+                </li>
+                
+                <li class="flex align-items-center py-3 border-bottom-1 surface-border">
+                    <div class="w-3rem h-3rem flex align-items-center justify-content-center mr-3 flex-shrink-0">
+                        <p-avatar 
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg" 
+                            size="large"
+                            shape="circle"
+                        />
+                    </div>
+                    <span class="flex flex-column line-height-3">
+                        <span class="font-bold fs-accent text-lg">James Esg</span>
+                        <span class="text-sm">&commat;james.esg</span>
+                    </span>
+                </li>
+
+                <li class="flex align-items-center py-3 border-bottom-1 surface-border">
+                    <div class="w-3rem h-3rem flex align-items-center justify-content-center mr-3 flex-shrink-0">
+                        <p-avatar 
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg" 
+                            size="large"
+                            shape="circle"
+                        />
+                    </div>
+                    <span class="flex flex-column line-height-3">
+                        <span class="font-bold fs-accent text-lg">James Esg</span>
+                        <span class="text-sm">&commat;james.esg</span>
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<app-modal
+    (hide)="isModalVisible = false"
+    [isVisible]="isModalVisible"
+    [title]="'Edit Profile'"
+    [subtitle]="'Update your information.'"
+>
+    <form action="">
+        <div class="flex flex-column gap-3 mb-5">
+            <label for="" class="font-semibold w-6rem">Photo</label>
+            <div class="flex gap-3 align-items-center">
+                <p-avatar 
+                    image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" 
+                    styleClass="mr-2" 
+                    size="xlarge" 
+                    shape="circle"
+                />
+
+                <p-button label="Update" [outlined]="true" size="small" severity="info" />
+                <p-button label="Remove" [outlined]="true" size="small" severity="danger" />
+            </div>
+        </div>
+
+        <div class="flex flex-column gap-3 mb-4">
+            <label for="username" class="font-semibold w-6rem">Name</label>
+            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-3 mb-5">
+            <label for="email" class="font-semibold w-6rem">Short bio</label>
+            <textarea 
+                rows="5"
+                cols="45"
+                pInputTextarea
+            >
+            </textarea>
+        </div>
+    </form>
+    <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
+        <p-button label="Save" (onClick)="isModalVisible = false" />
+    </div>
+</app-modal>

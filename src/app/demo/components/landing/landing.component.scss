@@ -1,0 +1,32 @@
+@import '../../../../assets/layout/styles/layout/variables';
+
+#header, #nav {
+    background-color: rgb(255, 83, 73);
+    color: #fff !important;
+}
+
+#hero {
+    background-color: rgb(255, 83, 73);
+    background-image: url(https://static-cse.canva.com/_next/static/assets/wave_w2881xh801_98aaf3a37b4d733bdb3bc7754c25ad3608c520c5ebb9b1079f2d0c2f78b07ab8.png);
+    background-position: bottom;
+    background-repeat: none;
+}
+
+div {
+    font-family: $font;
+}
+
+.text-redorange {
+    color: rgb(255, 83, 73) !important;
+}
+
+.px-18 {
+    padding: 0 5rem;
+}
+
+@media screen and (max-width: 768px) {
+    #hero {
+        height: 800px;
+    }
+}
+

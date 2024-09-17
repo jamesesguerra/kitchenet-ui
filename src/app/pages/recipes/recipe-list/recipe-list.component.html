@@ -1,0 +1,74 @@
+<div class="grid">
+    <div class="col-12 xl:col-12">
+        <div class="max-w-55rem mx-auto">
+            <p-toolbar>
+                <div class="p-toolbar-group-center">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText placeholder="Find a recipe" />
+                    </span>
+                </div>
+                <div class="p-toolbar-group-start">
+                    <p-dropdown 
+                        class="mr-2"
+                        [options]="typeOptions" 
+                        [(ngModel)]="typeFilter" 
+                        optionLabel="name" 
+    p                   placeholder="Type" />
+
+                    <p-dropdown 
+                        class="mr-2"
+                        [options]="sortOptions" 
+                        [(ngModel)]="sortOption" 
+                        optionLabel="name" 
+    p                   placeholder="Sort" />
+
+                    <p-button icon="pi pi-plus" label="New" routerLink="add" />
+                </div>
+            </p-toolbar>
+            
+            <div class="grid px-1">
+                <div class="xl:col-4 mt-5">
+                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
+                        <ng-template pTemplate="header">
+                            <img src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div class="xl:col-4 mt-5">
+                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div class="xl:col-4 mt-5">
+                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div class="xl:col-4 mt-5">
+                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div class="xl:col-4 mt-5">
+                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+</div>

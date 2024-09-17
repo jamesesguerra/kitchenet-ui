@@ -1,0 +1,48 @@
+.max-w-55rem {
+    max-width: 55rem;
+}
+
+ul, ol {
+    padding-inline-start: 0 !important;
+    list-style-position: inside;
+}
+
+.bg-gray {
+    background-color: #fafafa;
+}
+
+.border-gray {
+    border: 1px solid #f0f0f0;
+}
+
+table {
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+.description-row {
+    border: 1px solid #f0f0f0;
+
+    & > td.description-label {
+        background-color: #fafafa;
+        padding: 16px 24px;
+        border-right: 1px solid #f0f0f0;
+        color: rgba(0, 0, 0, 0.85);
+        font-size: 14px;
+        line-height: 1.5715;
+        text-align: start;
+    }
+
+    & > td.description-content {
+        padding: 16px 24px;
+        border-right: 1px solid #f0f0f0;
+        color: rgba(0, 0, 0, 0.85);
+        font-size: 14px;
+        line-height: 1.5715;
+        text-align: start;
+    }
+}
+
+#review-form {
+    background-color: #f2f2f2;
+}

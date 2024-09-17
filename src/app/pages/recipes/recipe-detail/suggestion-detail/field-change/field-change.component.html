@@ -1,0 +1,9 @@
+<p-panel [header]="fieldName" [toggleable]="true">
+    <app-editor
+        [editorName]="fieldName.replace(' ', '')"
+        [isReadOnly]="true"
+        [editorHeight]="'auto'"
+        [initialContent]="'haha'"
+        [content]="computeDiff()"
+    />
+</p-panel>

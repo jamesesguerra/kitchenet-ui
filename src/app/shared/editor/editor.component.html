@@ -1,0 +1,16 @@
+<div>
+    <div id="toolbar"></div>
+    <div
+        [id]="editorName"
+        class="editor"
+        [style.height]="editorHeight"
+        [style.border]="isReadOnly ? 'none' : '1px solid #d1d5db;'"
+    >
+        @if (editorName == 'ingredients') {
+            <ul><li data-list="unchecked"></li></ul>
+        } @else {
+            <div [innerHTML]="initialContent"></div>
+        }
+    </div>
+    <!-- <button class="mt-4" (click)="OnClick()">Click me</button> -->
+</div>

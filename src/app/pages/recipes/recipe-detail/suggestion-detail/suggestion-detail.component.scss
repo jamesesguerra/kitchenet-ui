@@ -1,0 +1,21 @@
+.max-w-55rem {
+    max-width: 55rem;
+}
+
+.entry-container {
+    display: flex;
+    padding: 16px 0;
+
+    & > div.entry-avatar {
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 12px;
+    }
+
+    & > div.entry-content {
+        position: relative;
+        flex: 1 1 auto;
+        min-width: 1px;
+        word-wrap: break-word;
+    }
+}

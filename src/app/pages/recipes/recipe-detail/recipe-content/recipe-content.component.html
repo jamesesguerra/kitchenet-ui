@@ -1,0 +1,132 @@
+<div class="my-2 max-w-full h-450px">
+    <img
+        src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" 
+        alt="Image" 
+        class="max-w-full max-h-full" />
+</div>
+
+<main class="my-4">
+    <div class="flex justify-content-between align-items-baseline">
+        <h1 class="text-4xl">Creamy Garlic Chicken</h1>
+        <div>
+            <i class="pi pi-clock" style="color: black"></i>
+            <span>
+                <span class="font-bold ml-2">PREP:</span>
+                30 mins
+            </span>
+
+            <span>
+                <span class="font-bold ml-2">COOK:</span>
+                15 mins
+            </span>
+        </div>
+    </div>
+
+    <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" />
+
+    <p class="py-5">Every now and then you come across one of those recipes that just leaves you speechless. Well, today I’m introducing you to one of those recipes. This Creamy Garlic Chicken is so delicious, so flavorful, and so easy to make for a quick weeknight meal! It starts with tender, pan-seared chicken breasts that are then covered with a creamy, garlic-infused sauce. The moment my family tried this recipe, they instantly loved it! It honestly took everyone’s breath away. If you love simple recipes that are packed with flavor and made with a luscious cream sauce, then make sure to add this one to your weekly rotation!</p>
+</main>
+
+<section class="my-4">
+    <h2 class="text-3xl">Ingredients</h2>
+    <ul>
+        <li>2 boneless, skinless chicken breasts</li>
+    </ul>
+</section>
+
+<section class="my-4 pt-3">
+    <h2 class="text-3xl">Instructions</h2>
+    <ol>
+        <li class="pb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quis eos molestiae in natus laboriosam non saepe dolorem laudantium dolore.</li>
+        <li class="pb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quis eos molestiae in natus laboriosam non saepe dolorem laudantium dolore.</li>
+        <li class="pb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quis eos molestiae in natus laboriosam non saepe dolorem laudantium dolore.</li>
+        <li class="pb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quis eos molestiae in natus laboriosam non saepe dolorem laudantium dolore.</li>
+        <li class="pb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quis eos molestiae in natus laboriosam non saepe dolorem laudantium dolore.</li>
+    </ol>
+</section>
+
+<section class="my-4">
+    <h2 class="text-xl pb-3">Nutrition</h2>
+
+    <!-- <div class="w-full">
+        <table class="w-full">
+            <tbody>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+
+    <div class="w-full">
+        <table class="w-full">
+            <tbody>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+                <tr class="description-row">
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                    <td class="description-label">Serving</td>
+                    <td class="description-content">Serving</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+   
+<p-divider class="w-full bg-surface-200"></p-divider>
+
+<section id="review-form" class="mt-7 p-4">
+    <h3 class="text-2xl">Leave a review</h3>
+    <form action="">
+        <div class="flex flex-column gap-3">
+            <p-rating [(ngModel)]="value" [cancel]="false" />
+        </div>
+
+        <div class="flex flex-column gap-2 my-4">
+            <label for="" class="font-bold">Review *</label>
+            <textarea 
+                rows="4"
+                cols="30" 
+                pInputTextarea 
+            >
+            </textarea>
+        </div>
+        <p-button label="Post Review" icon="pi pi-comment" />
+    </form>
+</section>
+
+<section class="my-7">
+    <h3 class="text-2xl">Reviews</h3>
+    <app-comment />
+    <app-comment />
+
+    <app-comment />
+
+</section>

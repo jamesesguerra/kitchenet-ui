@@ -1,0 +1,18 @@
+@import '../../../../assets/layout/styles/layout/variables';
+
+::ng-deep .p-card-title {
+    font-weight: normal;
+    font-family: $font;
+    font-size: 12px;
+}
+
+::ng-deep .p-card-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: $font;
+    color: #000;
+}
+
+.max-w-55rem {
+    max-width: 55rem;
+}

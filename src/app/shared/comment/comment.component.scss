@@ -1,0 +1,38 @@
+.comment-container {
+    display: flex;
+    padding: 16px 0;
+
+    & > div.comment-avatar {
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 12px;
+    }
+
+    & > div.comment-content {
+        position: relative;
+        flex: 1 1 auto;
+        min-width: 1px;
+        word-wrap: break-word;
+
+        & > div.comment-author {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin-bottom: 4px;
+
+            & > span.author-name {
+                padding-right: 8px;
+                font-size: 12px;
+                line-height: 18px;
+                color: rgba(0, 0, 0, 0.45);
+            }
+
+            & > span.comment-date {
+                padding-right: 8px;
+                font-size: 12px;
+                color: #ccc;
+                line-height: 18px;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.field {
+    border: 1px solid rgb(209, 213, 219);
+}
+
+:host ::ng-deep .p-panel {
+    margin: 20px 0;
+}
+
+::ng-deep .p-tabview .p-tabview-panels {
+    padding: 0 !important;
+}
+
+::ng-deep .p-panel-content {
+    padding: 0 5px !important;
+}

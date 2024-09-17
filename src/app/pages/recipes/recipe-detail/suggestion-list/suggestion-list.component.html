@@ -1,0 +1,25 @@
+<div class="flex mb-4 gap-2">
+    <div class="flex-grow-1">
+        <input type="text" pInputText class="min-w-full" />
+    </div>
+
+    <div class="flex">
+        <button 
+            pButton 
+            pRipple 
+            label="New suggestion"
+            routerLink="suggest"
+        >
+        </button>
+    </div>
+</div>
+
+<div>
+    @for(suggestion of suggestions; track suggestion.id) {
+        <div class="px-1">
+            <a class="text-base" [routerLink]="'suggestions/3'">{{ suggestion.title }}</a>
+            <p class="font-light text-base mt-2">opened last week by james</p>
+        </div>
+        <p-divider />
+    }
+</div>

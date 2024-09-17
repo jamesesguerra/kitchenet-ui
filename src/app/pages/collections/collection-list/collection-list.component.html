@@ -1,0 +1,87 @@
+<div class="grid">
+    <div class="col-12 xl:col-12">
+        <div class="max-w-55rem mx-auto">
+            <p-toolbar>
+                <div class="p-toolbar-group-center">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText placeholder="Find a collection" class="" />
+                    </span>
+                </div>
+                <div class="p-toolbar-group-start">
+                    <p-dropdown 
+                        class="mr-2"
+                        [options]="typeOptions" 
+                        [(ngModel)]="typeFilter" 
+                        optionLabel="name" 
+    p                   placeholder="Type" />
+
+                    <p-dropdown 
+                        class="mr-2"
+                        [options]="sortOptions" 
+                        [(ngModel)]="sortOption" 
+                        optionLabel="name" 
+    p                   placeholder="Sort" />
+
+                    <p-button icon="pi pi-plus" (click)="showModal()" />
+                </div>
+            </p-toolbar>
+
+            @for(collection of collections; track collection.id) {
+                <div class="mt-5 px-1">
+                    <h3 class="text-base mb-2">{{ collection.name }}</h3>
+                    <p class="font-light text-base">{{ collection.description }}</p>
+                </div>
+                <p-divider />
+            }
+        </div>
+    </div>
+</div>
+
+<app-modal
+    (hide)="isModalVisible = false"
+    [isVisible]="isModalVisible"
+    [title]="'Create a new collection'"
+    [subtitle]="'Create a collection to store your recipes'"
+>
+    <form action="">
+        <div class="flex flex-column gap-3 mb-4">
+            <label for="username" class="font-semibold w-6rem">Name</label>
+            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-3 mb-5">
+            <label for="email" class="font-semibold w-6rem">Description</label>
+            <textarea 
+                rows="2"
+                cols="45"
+                pInputTextarea
+            >
+            </textarea>
+        </div>
+
+        <div class="flex flex-column gap-3">
+                <div *ngFor="let category of categories" class="field-checkbox gap-1">
+                    <p-radioButton 
+                        [inputId]="category.key" 
+                        name="category" 
+                        [value]="category"
+                        [(ngModel)]="selectedCategory" />
+                    <label [for]="category.key" class="ml-2 flex align-items-center gap-2">
+                        <i class="pi" [class]="category.icon" style="font-size: 1.8rem"></i>
+
+                        <div>
+                            <span class="font-bold">{{ category.name }}</span>
+                            <p class="text-sm">{{ category.description }}</p>
+                        </div>
+                    </label>
+                </div>
+        </div>
+    </form>
+
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="false" />
+
+    <div class="flex justify-content-end gap-2 mt-4">
+        <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
+        <p-button label="Save" (onClick)="isModalVisible = false" />
+    </div>
+</app-modal>
