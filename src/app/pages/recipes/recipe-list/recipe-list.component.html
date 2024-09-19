@@ -1,14 +1,14 @@
 <div class="grid">
     <div class="col-12 xl:col-12">
         <div class="max-w-55rem mx-auto">
-            <p-toolbar>
-                <div class="p-toolbar-group-center">
-                    <span class="p-input-icon-left">
+            <div class="toolbar grid">
+                <div class="flex-grow-1">
+                    <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Find a recipe" />
+                        <input pInputText placeholder="Find a recipe" class="w-full" />
                     </span>
                 </div>
-                <div class="p-toolbar-group-start">
+                <div>
                     <p-dropdown 
                         class="mr-2"
                         [options]="typeOptions" 
@@ -23,9 +23,9 @@
                         optionLabel="name" 
     p                   placeholder="Sort" />
 
-                    <p-button icon="pi pi-plus" label="New" routerLink="add" />
+                    <p-button icon="pi pi-plus" routerLink="add" />
                 </div>
-            </p-toolbar>
+            </div>
             
             <div class="grid px-1">
                 <div class="xl:col-4 mt-5">
