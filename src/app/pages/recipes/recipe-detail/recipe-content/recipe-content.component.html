@@ -6,19 +6,23 @@
 </div>
 
 <main class="my-4">
-    <div class="flex justify-content-between align-items-baseline">
+    <div class="flex flex-wrap column-gap-4 justify-content-between align-items-baseline">
         <h1 class="text-4xl">Creamy Garlic Chicken</h1>
-        <div>
-            <i class="pi pi-clock" style="color: black"></i>
-            <span>
-                <span class="font-bold ml-2">PREP:</span>
-                30 mins
-            </span>
+        <div class="flex gap-2">
+            <div>
+                <i class="pi pi-clock" style="color: black"></i>
+                <span>
+                    <span class="font-bold ml-2">PREP:</span>
+                    30 mins
+                </span>
+            </div>
 
-            <span>
-                <span class="font-bold ml-2">COOK:</span>
-                15 mins
-            </span>
+            <div class="pb-3">
+                <span>
+                    <span class="font-bold ml-2">COOK:</span>
+                    15 mins
+                </span>
+            </div>
         </div>
     </div>
 
@@ -48,55 +52,58 @@
 <section class="my-4">
     <h2 class="text-xl pb-3">Nutrition</h2>
 
-    <!-- <div class="w-full">
-        <table class="w-full">
-            <tbody>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
+    @if (screenSize === 'sm') {
 
-    <div class="w-full">
-        <table class="w-full">
-            <tbody>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-                <tr class="description-row">
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                    <td class="description-label">Serving</td>
-                    <td class="description-content">Serving</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="w-full">
+            <table class="w-full">
+                <tbody>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    } @else {
+        <div class="w-full">
+            <table class="w-full">
+                <tbody>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                    <tr class="description-row">
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                        <td class="description-label">Serving</td>
+                        <td class="description-content">Serving</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
 
 </section>
    
