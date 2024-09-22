@@ -1,16 +1,21 @@
 <div class="max-w-55rem mx-auto">
-    <div>
-        <h1 class="font-bold text-4xl">Make a suggestion</h1>
-        <p>
-            Recipes are Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
-            saepe, praesentium iste libero.
-        </p>
-        <p-divider class="w-full bg-surface-200"></p-divider>
+    <div class="flex">
+        <a href="" class="flex align-items-center gap-1" routerLink="../">
+            <i class="pi pi-angle-left " style="font-size: 1rem; color: #ff5349"></i>
+            <span class="mb-1 pt-1" style="font-size: 1rem; color: #ff5349">Back to recipe</span>
+        </a>
     </div>
+
+    <h1 class="font-bold text-4xl">Make a suggestion</h1>
+    <p>
+        Recipes are Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
+        saepe, praesentium iste libero.
+    </p>
+    <p-divider class="w-full bg-surface-200"></p-divider>
 
     <form>
         <div class="grid mt-2">
-            <div class="col-4 flex flex-column gap-2">
+            <div class="col-12 flex flex-column gap-2">
                 <label class="font-bold">Recipe Name</label>
                 <input type="text" pInputText />
             </div>
@@ -28,8 +33,8 @@
 
         <p-divider class="w-full bg-surface-200"></p-divider>
 
-         <div class="grid mt-2">
-            <div class="col-2 flex flex-column gap-2">
+        <div class="grid mt-2">
+            <div class="col-4 md:col-2 flex flex-column gap-2">
                 <label class="font-bold">Servings</label>
                 <p-inputNumber 
                     inputId="minmax" 
@@ -38,14 +43,14 @@
                     [max]="100" /> 
             </div>
 
-            <div class="col-2 flex flex-column gap-2">
+            <div class="col-4 md:col-2 flex flex-column gap-2">
                 <label class="font-bold">Prep Time</label>
                 <p-inputNumber 
                     inputId="mins"
                     suffix=" mins" /> 
             </div>
 
-            <div class="col-2 flex flex-column gap-2">
+            <div class="col-4 md:col-2 flex flex-column gap-2">
                 <label class="font-bold">Cook Time</label>
                 <p-inputNumber 
                     inputId="mins"
@@ -81,7 +86,7 @@
                 <span class="font-bold">Nutritional Information</span>
             </div>
 
-            <div class="col-3">
+            <div class="col-4 md:col-3">
                 <div class="flex flex-column gap-2">
                     <label>Calories</label>
                     <p-inputNumber 
@@ -90,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-4 md:col-2">
                 <div class="flex flex-column gap-2">
                     <label>Protein</label>
                     <p-inputNumber 
@@ -99,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-4 md:col-2">
                 <div class="flex flex-column gap-2">
                     <label>Fat</label>
                     <p-inputNumber 
@@ -108,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-4 md:col-2">
                 <div class="flex flex-column gap-2">
                     <label>Fiber</label>
                     <p-inputNumber 
@@ -117,7 +122,7 @@
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-5 md:col-2">
                 <div class="flex flex-column gap-2">
                     <label>Carbohydrates</label>
                     <p-inputNumber 
