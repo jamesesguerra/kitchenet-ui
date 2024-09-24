@@ -1943,14 +1943,14 @@
     border-radius: 6px;
   }
   .p-button:not(:disabled):hover {
-    background: #4F46E5;
+    background: #ff251a;
     color: #ffffff;
-    border-color: #4F46E5;
+    border-color: #ff251a;
   }
   .p-button:not(:disabled):active {
-    background: #4338CA;
+    background: #ff251a;
     color: #ffffff;
-    border-color: #4338CA;
+    border-color: #ff251a;
   }
   .p-button.p-button-outlined {
     background-color: transparent;
@@ -2008,7 +2008,7 @@
   .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #C7D2FE;
+    box-shadow: 0 0 0 0.2rem #ff9e99;
   }
   .p-button .p-button-label {
     transition-duration: 0.2s;
@@ -6255,7 +6255,7 @@
   }
 
   .p-button:focus {
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b1b3f8, 0 1px 2px 0 black;
+    /* box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b1b3f8, 0 1px 2px 0 black; */
   }
   .p-button.p-button-secondary:enabled:focus {
     /* box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b0b9c6, 0 1px 2px 0 black; */
