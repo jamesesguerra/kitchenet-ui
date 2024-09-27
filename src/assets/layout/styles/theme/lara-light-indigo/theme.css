@@ -2,6 +2,7 @@
   font-family: "Inter var", sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   font-variation-settings: normal;
+  --primary-theme: #ff5349;
   --font-family: "Inter var", sans-serif;
   --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   --surface-a: #ffffff;
@@ -943,13 +944,13 @@
     border-radius: 6px;
   }
   .p-dropdown:not(.p-disabled):hover {
-    border-color: #6366F1;
+    /* border-color: var(--primary-theme); */
   }
   .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #C7D2FE;
-    border-color: #6366F1;
+    /* box-shadow: 0 0 0 0.2rem #C7D2FE; */
+    /* border-color: #000; */
   }
   .p-dropdown.p-dropdown-clearable .p-dropdown-label {
     padding-right: 1.75rem;
@@ -1017,15 +1018,16 @@
     border-radius: 0;
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-    color: #4338CA;
+    font-weight: bolder;
     background: #EEF2FF;
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
-    background: #E0E7FF;
+    background: #e4e8f0;
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
     color: #4b5563;
-    background: #e5e7eb;
+    background: #e4e8f0;
+    font-weight: bolder;
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
     color: #4b5563;
@@ -1036,7 +1038,7 @@
     padding: 0.75rem 1.25rem;
     color: #374151;
     background: #ffffff;
-    font-weight: 700;
+    font-weight: bolder;
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
     padding: 0.75rem 1.25rem;
@@ -1218,13 +1220,13 @@
     border-radius: 6px;
   }
   .p-inputtext:enabled:hover {
-    border-color: #ff5349;
+    border-color: var(--primary-theme);
   }
   .p-inputtext:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.2rem #ff9e99;
-    border-color: #ff5349;
+    border-color: var(--primary-theme);
   }
   .p-inputtext.ng-dirty.ng-invalid {
     border-color: #e24c4c;
@@ -1935,8 +1937,8 @@
 
   .p-button {
     color: #ffffff;
-    background: #ff5349;
-    border: 1px solid #ff5349;
+    background: var(--primary-theme) ;
+    border: 1px solid var(--primary-theme);
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
