@@ -1,5 +1,9 @@
 @import '../../../../assets/layout/styles/layout/variables';
 
+img {
+    min-height: 180px !important;
+}
+
 ::ng-deep .p-card-title {
     font-weight: normal;
     font-family: $font;
@@ -11,6 +15,10 @@
     font-weight: 400;
     font-family: $font;
     color: #000;
+}
+
+::ng-deep .p-card.p-component {
+    height: 100%;
 }
 
 .max-w-55rem {

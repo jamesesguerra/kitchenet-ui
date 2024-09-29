@@ -7,6 +7,7 @@ import { Collection } from 'src/app/models/collection.model';
   styleUrl: './recipe-list.component.scss'
 })
 export class RecipeListComponent {
+  isImageLoaded = false;
   isModalVisible = false;
   collections!: Collection[];
   typeFilter = 'Type';
@@ -27,4 +28,9 @@ export class RecipeListComponent {
     { name: 'Public', key: 'PB', icon: 'pi-unlock', description: 'Anyone on the internet can see this collection' },
     { name: 'Private', key: 'PV', icon: 'pi-lock', description: 'Only you can see this collection' }
   ];
+
+  onImageLoad() {
+    this.isImageLoaded = true;
+    console.log("here")
+  }
 }
