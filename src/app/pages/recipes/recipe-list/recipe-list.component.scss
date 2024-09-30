@@ -19,6 +19,8 @@ img {
 
 ::ng-deep .p-card.p-component {
     height: 100%;
+    display: block;
+    min-height: 335px;
 }
 
 .max-w-55rem {
