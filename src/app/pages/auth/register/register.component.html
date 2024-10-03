@@ -8,9 +8,9 @@
         <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
             <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
                 <div class="text-center mb-5">
-                    <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
-            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="../register">Create one today!</a>
+                    <div class="text-900 text-3xl font-medium mb-3">Welcome!</div>
+                    <span class="text-600 font-medium line-height-3">Already signed up?</span>
+                    <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="../login">Go to login</a>
                 </div>
 
                 <div>
@@ -25,7 +25,7 @@
                             <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
                             <label for="rememberme1">Remember me</label>
                         </div>
-                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)"></a>
                     </div>
                     <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" [routerLink]="['/']"></button>
                 </div>

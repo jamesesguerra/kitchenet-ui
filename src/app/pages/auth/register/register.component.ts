@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss'
 })
-export class LoginComponent {
+export class RegisterComponent {
 
     valCheck: string[] = ['remember'];
 
