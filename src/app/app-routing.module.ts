@@ -15,6 +15,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'recipes', loadChildren: () => import('./pages/recipes/recipes.module').then(m => m.RecipesModule )},
                 ]
             },
+            { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule)},
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
             { path: 'notfound', component: NotfoundComponent },
