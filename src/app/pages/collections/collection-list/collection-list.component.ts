@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Message } from 'primeng/api';
+import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { CollectionService } from 'src/app/services/collection.service';
 
@@ -32,15 +33,18 @@ export class CollectionListComponent {
 
   messages: Message[] = [{ severity: 'info', detail: 'You are creating a public collection' }];
 
-  constructor(private collectionService: CollectionService) {
+  constructor(private collectionService: CollectionService, private toastService: ToastService) {
     this.collectionService.getCollections().then(collections => {
       this.collections = collections;
     });
   }
 
   showModal() {
-    console.log('here ' + this.isModalVisible);
     this.isModalVisible = true;
   }
 
+  saveCollection() {
+    this.isModalVisible = false;
+    this.toastService.showSuccess("Success!", "New collection has been saved");
+  }
 }

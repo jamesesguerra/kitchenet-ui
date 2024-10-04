@@ -31,6 +31,5 @@ export class RecipeListComponent {
 
   onImageLoad() {
     this.isImageLoaded = true;
-    console.log("here")
   }
 }
