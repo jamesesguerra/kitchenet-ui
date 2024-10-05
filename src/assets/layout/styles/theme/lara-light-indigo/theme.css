@@ -2092,7 +2092,7 @@
 .p-splitbutton.p-button-secondary > .p-button {
     color: #ffffff;
     background: #64748b;
-    /* border: 1px solid #64748b; */
+    border: 1px solid #64748b;
   }
   .p-button.p-button-secondary:not(:disabled):hover,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):hover,
