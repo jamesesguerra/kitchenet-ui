@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from 'src/app/layout/service/toast.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -14,11 +15,17 @@ export class AddRecipeComponent implements OnInit {
     { name: "Dinner Recipes", code: "DR" },
   ]
 
+  constructor(private toastService: ToastService) { }
+
   ngOnInit(): void {
      
   }
 
   onUpload(e: any) {
     // TODO: do something
+  }
+
+  createRecipe() {
+    this.toastService.showSuccess("Success!", "New recipe has been created");
   }
 }
