@@ -29,12 +29,20 @@
     
                 <p-tabView>
                     <p-tabPanel header="Collections">
-                        @for(collection of collections; track collection.id) {
-                            <div>
-                                <h3 class="text-base mb-2">{{ collection.name }}</h3>
-                                <p class="font-light text-base">{{ collection.description }}</p>
+                        @if (collections.length > 0) {
+                            @for(collection of collections; track collection.id) {
+                                <div>
+                                    <h3 class="text-base mb-2">{{ collection.name }}</h3>
+                                    <p class="font-light text-base">{{ collection.description }}</p>
+                                </div>
+                                <p-divider />
+                            }
+                        } @else {
+                            <div class="empty-container flex justify-content-center align-items-center">
+                                <span>
+                                    User hasn't created any collections yet.
+                                </span>
                             </div>
-                            <p-divider />
                         }
                     </p-tabPanel>
                     <p-tabPanel header="About">
