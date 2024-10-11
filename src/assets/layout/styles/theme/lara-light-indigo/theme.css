@@ -4526,6 +4526,13 @@
     border-bottom-color: #4b5563;
   }
 
+  .p-fileupload-choose.p-button {
+    border: 1px solid var(--gray-700);
+    background-color: var(--gray-700);
+  }
+  .p-fileupload-choose.p-button:focus {
+    box-shadow: 0 0 0 0.2rem var(--gray-300);
+  }
   .p-fileupload .p-fileupload-buttonbar {
     background: #f9fafb;
     padding: 1.25rem;
@@ -4567,16 +4574,15 @@
   }
 
   .p-fileupload-choose:not(.p-disabled):hover {
-    background: #ff251a;
+    background: var(--gray-800);
     color: #ffffff;
-    border-color: #ff251a;
+    border-color: var(--gray-300);
   }
   .p-fileupload-choose:not(.p-disabled):active {
-    background: #ff251a;
+    background: var(--gray-800);
     color: #ffffff;
-    border-color: #ff251a;
+    border-color: var(--gray-300);
   }
-
   .p-breadcrumb {
     background: #ffffff;
     /* border: 1px solid #e5e7eb; */
