@@ -11,6 +11,7 @@ import { CollectionService } from 'src/app/services/collection.service';
 })
 export class CollectionListComponent {
   isModalVisible = false;
+  showMessage = false;
   collections!: Collection[];
   typeFilter = 'Type';
   sortOption = ''
@@ -40,7 +41,13 @@ export class CollectionListComponent {
   }
 
   showModal() {
+    this.showMessage = true;
     this.isModalVisible = true;
+  }
+
+  hideModal() {
+    this.showMessage = false;
+    this.isModalVisible = false;
   }
 
   saveCollection() {

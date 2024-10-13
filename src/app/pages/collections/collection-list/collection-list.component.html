@@ -40,7 +40,7 @@
 </div>
 
 <app-modal
-    (hide)="isModalVisible = false"
+    (hide)="hideModal()"
     [isVisible]="isModalVisible"
     [title]="'Create a new collection'"
     [subtitle]="'Create a collection to store your recipes'"
@@ -79,7 +79,9 @@
         </div>
     </form>
 
-    <p-messages [(value)]="messages" [enableService]="false" [closable]="false" />
+    @if (showMessage) {
+        <p-messages [(value)]="messages" [enableService]="false" [closable]="false" />
+    }
 
     <div class="flex justify-content-end gap-2 mt-4">
         <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
