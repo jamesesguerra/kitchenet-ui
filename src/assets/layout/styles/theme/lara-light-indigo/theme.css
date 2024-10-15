@@ -949,8 +949,6 @@
   .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    /* box-shadow: 0 0 0 0.2rem #C7D2FE; */
-    /* border-color: #000; */
   }
   .p-dropdown.p-dropdown-clearable .p-dropdown-label {
     padding-right: 1.75rem;
@@ -4585,7 +4583,6 @@
   }
   .p-breadcrumb {
     background: #ffffff;
-    /* border: 1px solid #e5e7eb; */
     border-radius: 6px;
     padding: 1rem;
   }
