@@ -1985,7 +1985,7 @@
     border-color: transparent;
   }
   .p-button.p-button-text:not(:disabled):hover {
-    background: rgba(99, 102, 241, 0.04);
+    background: #ff6e66;
     color: #6366F1;
     border-color: transparent;
   }
