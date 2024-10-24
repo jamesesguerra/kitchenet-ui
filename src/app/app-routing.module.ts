@@ -9,7 +9,8 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+                    { path: '', redirectTo: '/home', pathMatch: 'full' },
+                    { path: 'home', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule )},
                     { path: 'collections', loadChildren: () => import('./pages/collections/collections.module').then(m => m.CollectionsModule )},
                     { path: 'recipes', loadChildren: () => import('./pages/recipes/recipes.module').then(m => m.RecipesModule )},
