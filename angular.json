@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "sakai-ng": {
+        "kitchenette": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/sakai-ng",
+                        "outputPath": "dist/kitchenette",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": [
@@ -48,7 +48,13 @@
                                     "maximumError": "4kb"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "outputHashing": "all",
+                            "fileReplacements": [
+                                {
+                                  "replace": "src/environments/environment.ts",
+                                  "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
                         },
                         "development": {
                             "buildOptimizer": false,
@@ -65,10 +71,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "sakai-ng:build:production"
+                            "buildTarget": "kitchenette:build:production"
                         },
                         "development": {
-                            "buildTarget": "sakai-ng:build:development"
+                            "buildTarget": "kitchenette:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -76,7 +82,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "buildTarget": "sakai-ng:build"
+                        "buildTarget": "kitchenette:build"
                     }
                 },
                 "test": {
