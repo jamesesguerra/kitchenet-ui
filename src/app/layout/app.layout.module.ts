@@ -48,7 +48,7 @@ import { MessageService } from 'primeng/api';
         ToastModule,
         AppConfigModule
     ],
-    exports: [AppLayoutComponent],
+    exports: [AppLayoutComponent, AppTopBarComponent],
     providers: [MessageService]
 })
 export class AppLayoutModule { }

@@ -19,7 +19,8 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule)},
             { path: 'register', loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterModule)},
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
-            { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
+            { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },
+            { path: 'callback', loadChildren: () => import('./pages/auth/callback/callback.module').then(m => m.CallbackModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
