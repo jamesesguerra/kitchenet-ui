@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
+import { AuthGuard } from '@auth0/auth0-angular';
 
 @NgModule({
     imports: [
@@ -10,10 +11,10 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 path: '', component: AppLayoutComponent,
                 children: [
                     { path: '', redirectTo: '/home', pathMatch: 'full' },
-                    { path: 'home', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule )},
-                    { path: 'collections', loadChildren: () => import('./pages/collections/collections.module').then(m => m.CollectionsModule )},
-                    { path: 'recipes', loadChildren: () => import('./pages/recipes/recipes.module').then(m => m.RecipesModule )},
+                    { path: 'home', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuard] },
+                    { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule ), canActivate: [AuthGuard] },
+                    { path: 'collections', loadChildren: () => import('./pages/collections/collections.module').then(m => m.CollectionsModule ), canActivate: [AuthGuard]},
+                    { path: 'recipes', loadChildren: () => import('./pages/recipes/recipes.module').then(m => m.RecipesModule ), canActivate: [AuthGuard]},
                 ]
             },
             { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule)},
