@@ -13,12 +13,12 @@
                 <div class="flex justify-content-between align-items-center mb-2">
                     <div class="flex align-items-center gap-3">
                         <p-avatar 
-                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" 
+                            [image]="user.picture" 
                             styleClass="mr-2" 
                             size="xlarge" 
                             shape="circle"
                         />
-                        <h3 class="font-bold text-5xl">James E</h3>
+                        <h3 class="font-bold text-5xl">{{ user.nickname }}</h3>
                     </div>
     
                     <div>

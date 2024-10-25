@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { MenuItem } from 'primeng/api';
 import { Collection } from 'src/app/models/collection.model';
+import { User } from 'src/app/models/user.model';
 import { CollectionService } from 'src/app/services/collection.service';
 
 @Component({
@@ -8,19 +10,24 @@ import { CollectionService } from 'src/app/services/collection.service';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent { 
-  items!: MenuItem[];
+export class ProfileComponent implements OnInit { 
+  user: User;
+  items: MenuItem[] = [
+    { label: 'Edit Profile', icon: 'pi pi-fw pi-pencil' }
+  ];;
   collections!: Collection[];
   isModalVisible = false;
 
-  constructor(private collectionService: CollectionService) {
-    this.items = [
-      { label: 'Edit Profile', icon: 'pi pi-fw pi-pencil' }
-    ];
-
+  constructor(private collectionService: CollectionService, private auth: AuthService) {
     this.collectionService.getCollections().then(collections => {
       this.collections = collections;
     });
+  }
+
+  ngOnInit() {
+    this.auth.user$.subscribe(user => {
+      this.user = user;
+    })
   }
 
   showModal() {
