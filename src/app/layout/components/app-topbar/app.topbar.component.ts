@@ -21,7 +21,7 @@ export class AppTopBarComponent {
     handleLogout() {
         this.auth.logout({
             logoutParams: {
-              returnTo: `${this.doc.location.origin}/landing`,
+              returnTo: `${this.doc.location.origin}/`,
             },
         });
     }
