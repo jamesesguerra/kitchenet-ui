@@ -24,11 +24,6 @@ export class RecipeListComponent {
     { name: "Rating", code: "PV" },
   ];
 
-  categories: any[] = [
-    { name: 'Public', key: 'PB', icon: 'pi-unlock', description: 'Anyone on the internet can see this collection' },
-    { name: 'Private', key: 'PV', icon: 'pi-lock', description: 'Only you can see this collection' }
-  ];
-
   onImageLoad() {
     this.isImageLoaded = true;
   }

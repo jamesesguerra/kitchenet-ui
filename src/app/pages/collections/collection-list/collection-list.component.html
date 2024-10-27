@@ -30,7 +30,7 @@
 
             @for(collection of collections; track collection.id) {
                 <div class="mt-5 px-1">
-                    <h3 class="text-base mb-2">{{ collection.name }}</h3>
+                    <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
                     <p class="font-light text-base">{{ collection.description }}</p>
                 </div>
                 <p-divider />

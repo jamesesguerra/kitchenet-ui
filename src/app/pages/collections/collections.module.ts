@@ -21,6 +21,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessagesModule } from 'primeng/messages';
+import { CardModule } from 'primeng/card';
+import { CollectionDetailComponent } from './collection-detail/collection-detail.component';
 
 @NgModule({
     imports: [
@@ -43,8 +45,9 @@ import { MessagesModule } from 'primeng/messages';
         InputTextareaModule,
         RadioButtonModule,
         MessagesModule,
-        CollectionsRoutingModule
+        CollectionsRoutingModule,
+        CardModule
     ],
-    declarations: [CollectionListComponent]
+    declarations: [CollectionListComponent, CollectionDetailComponent]
 })
 export class CollectionsModule { }
