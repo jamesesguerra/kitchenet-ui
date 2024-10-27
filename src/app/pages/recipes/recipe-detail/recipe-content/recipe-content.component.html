@@ -7,8 +7,12 @@
 
 <main class="my-4">
     <div class="flex flex-wrap column-gap-4 justify-content-between align-items-baseline">
-        <h1 class="text-4xl">Creamy Garlic Chicken</h1>
-        <div class="flex gap-2">
+        <div>
+            <h1 class="text-4xl font-bold mb-0">Creamy Garlic Chicken</h1>
+            <p class="mb-1">by <a href="">james.esg</a></p>
+            <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" />
+        </div>
+        <div class="flex gap-2 mt-3 md:mt-0">
             <div>
                 <i class="pi pi-clock" style="color: black"></i>
                 <span>
@@ -26,7 +30,7 @@
         </div>
     </div>
 
-    <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" />
+   
 
     <p class="py-5">Every now and then you come across one of those recipes that just leaves you speechless. Well, today I’m introducing you to one of those recipes. This Creamy Garlic Chicken is so delicious, so flavorful, and so easy to make for a quick weeknight meal! It starts with tender, pan-seared chicken breasts that are then covered with a creamy, garlic-infused sauce. The moment my family tried this recipe, they instantly loved it! It honestly took everyone’s breath away. If you love simple recipes that are packed with flavor and made with a luscious cream sauce, then make sure to add this one to your weekly rotation!</p>
 </main>
@@ -53,7 +57,6 @@
     <h2 class="text-xl pb-3">Nutrition</h2>
 
     @if (screenSize === 'sm') {
-
         <div class="w-full">
             <table class="w-full">
                 <tbody>
