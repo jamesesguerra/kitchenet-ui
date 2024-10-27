@@ -28,6 +28,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { FieldChangeComponent } from './recipe-detail/suggestion-detail/field-change/field-change.component';
 import { PanelModule } from 'primeng/panel';
 import { SkeletonModule } from 'primeng/skeleton';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     AvatarModule,
     PanelModule,
     SkeletonModule,
+    FieldsetModule,
     SharedModule
   ]
 })
