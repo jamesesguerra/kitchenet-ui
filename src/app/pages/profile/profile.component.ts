@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { Collection } from 'src/app/models/collection.model';
 import { User } from 'src/app/models/user.model';
 import { CollectionService } from 'src/app/services/collection.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,14 +19,14 @@ export class ProfileComponent implements OnInit {
   collections!: Collection[];
   isModalVisible = false;
 
-  constructor(private collectionService: CollectionService, private auth: AuthService) {
+  constructor(private collectionService: CollectionService, private userService: UserService) {
     this.collectionService.getCollections().then(collections => {
       this.collections = collections;
     });
   }
 
   ngOnInit() {
-    this.auth.user$.subscribe(user => {
+    this.userService.currentUser.subscribe(user => {
       this.user = user;
     })
   }
