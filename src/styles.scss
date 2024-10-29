@@ -15,10 +15,32 @@ $gutter: 1rem; //for primeflex grid system
 /* variables */
 @import '../src/assets/layout/styles/layout/variables';
 
-::ng-deep body {
-    font-family: -apple-system, BlinkMacSystemFont, $font, 'Helvetica Neue', Arial,
+.p-dialog,
+.p-confirm-dialog,
+.p-sidebar,
+.p-inputtext,
+.p-dropdown,
+.p-dropdown-items,
+.p-message-wrapper,
+.p-menuitem-content,
+.p-tabview-nav,
+.p-tabview-panel,
+.p-toast-message,
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji' !important;
+}
+
+.p-button,
+.p-inputtext,
+.p-dropdown-item,
+.p-element,
+.p-tabview-title,
+.p-toast-detail,
+.p-message-detail
+.p-inputtextarea {
+    font-family: inherit !important; // Inherit font from the parent
 }
 
 
