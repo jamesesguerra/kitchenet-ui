@@ -16,17 +16,14 @@ export class ProfileComponent implements OnInit {
   items: MenuItem[] = [
     { label: 'Edit Profile', icon: 'pi pi-fw pi-pencil' }
   ];;
-  collections!: Collection[];
+  collections: Collection[] = [];
   isModalVisible = false;
 
   constructor(private collectionService: CollectionService, private userService: UserService) {
-    this.collectionService.getCollections().then(collections => {
-      this.collections = collections;
-    });
   }
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(user => {
+    this.userService.user.subscribe(user => {
       this.user = user;
     })
   }
