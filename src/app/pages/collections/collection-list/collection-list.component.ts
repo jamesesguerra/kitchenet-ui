@@ -14,6 +14,8 @@ export class CollectionListComponent implements OnInit {
   isAddModalVisible = false;
   showMessage = false;
   collections: Collection[];
+  filteredCollections: Collection[];
+  searchTerm: string = '';
   typeFilter = 'Type';
   sortOption = ''
 
@@ -57,7 +59,10 @@ export class CollectionListComponent implements OnInit {
     private collectionService: CollectionService,
     private toastService: ToastService,
     private confirmationService: ConfirmationService) {
-      this.collectionService.getCollections().subscribe(result => this.collections = result);
+      this.collectionService.getCollections().subscribe(result => {
+        this.collections = result
+        this.filteredCollections = result;
+      });
   }
 
   ngOnInit(): void {
@@ -67,6 +72,12 @@ export class CollectionListComponent implements OnInit {
           : { severity: 'info', detail: 'You are creating a private collection' };
         this.messages = [message];
       })
+  }
+
+  filterCollections() {
+    this.filteredCollections = this.collections.filter(collection => 
+      collection.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   showModal() {

@@ -5,7 +5,13 @@
                 <div class="flex-grow-1">
                     <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Find a collection" class="w-full" />
+                        <input
+                            pInputText
+                            placeholder="Find a collection"
+                            class="w-full"
+                            [(ngModel)]="searchTerm"
+                            (input)="filterCollections()"
+                        />
                     </span>
                 </div>
                 
@@ -28,7 +34,7 @@
                 </div>
             </div>
 
-            @for(collection of collections; track collection.id) {
+            @for(collection of filteredCollections; track collection.id) {
                 <div class="mt-5 px-1 flex justify-content-between">
                     <div>
                         <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
@@ -57,6 +63,13 @@
                 </div>
                 <p-divider />
             }
+
+            @if (filteredCollections.length === 0) {
+                <div class="flex justify-content-center mt-5">
+                    <p>No collections to show</p>
+                </div>
+            }
+
         </div>
     </div>
 </div>
