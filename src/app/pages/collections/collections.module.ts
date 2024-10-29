@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
@@ -46,7 +46,8 @@ import { CollectionDetailComponent } from './collection-detail/collection-detail
         RadioButtonModule,
         MessagesModule,
         CollectionsRoutingModule,
-        CardModule
+        CardModule,
+        ReactiveFormsModule
     ],
     declarations: [CollectionListComponent, CollectionDetailComponent]
 })

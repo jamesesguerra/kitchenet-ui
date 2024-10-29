@@ -1,8 +1,8 @@
-enum CollectionVisibility { Public = 0, Private = 1 };
-
 export interface Collection {
     id: number;
+    userId: string;
     name: string;
     description: string;
-    visibility: CollectionVisibility;
+    isVisible: boolean;
+    createdAt: string;
 }

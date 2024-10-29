@@ -3,6 +3,7 @@
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   font-variation-settings: normal;
   --primary-theme: #ff5349;
+  --error: #e24c4c;
   --font-family: "Inter var", sans-serif;
   --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   --surface-a: #ffffff;
@@ -1236,6 +1237,9 @@
   .p-inputtext.p-inputtext-lg {
     font-size: 1.25rem;
     padding: 0.9375rem 0.9375rem;
+  }
+  small.ng-dirty.ng-invalid {
+    color: var(--error);
   }
 
   .p-float-label > label {

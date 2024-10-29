@@ -7,11 +7,19 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-    currentUser = new BehaviorSubject<User>(null);
+    user = new BehaviorSubject<User>(null);
 
-    constructor(private auth: AuthService) {
+    constructor(private auth: AuthService) { }
+
+    initUser() {
         this.auth.user$.subscribe(user => {
-            this.currentUser.next(user);
+            this.user.next(user);
         })
     }
+
+    getUserId() {
+        const user = this.user.getValue();
+        return user ? user.sub : null;
+    }
+
 }

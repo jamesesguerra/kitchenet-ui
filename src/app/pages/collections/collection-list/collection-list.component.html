@@ -45,23 +45,28 @@
     [title]="'Create a new collection'"
     [subtitle]="'Create a collection to store your recipes'"
 >
-    <form action="">
-        <div class="flex flex-column gap-3 mb-4">
-            <label for="username" class="font-semibold w-6rem">Name</label>
-            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+    <form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-column gap-2 mb-4">
+            <label for="name" class="font-semibold w-6rem">Name</label>
+            <input pInputText id="name" class="flex-auto" autocomplete="off" formControlName="name" />
+            @if (collectionForm.controls.name.invalid && collectionForm.controls.name.dirty) {
+                <small id="username-help" class="ng-dirty ng-invalid">
+                    Name is required.
+                </small>
+            }
         </div>
-        <div class="flex flex-column gap-3 mb-5">
-            <label for="email" class="font-semibold w-6rem">Description</label>
-            <textarea rows="2" cols="45" pInputTextarea></textarea>
+        <div class="flex flex-column gap-2 mb-5">
+            <label for="description" class="font-semibold w-6rem">Description</label>
+            <textarea id="description" rows="2" cols="45" pInputTextarea formControlName="description"></textarea>
         </div>
 
         <div class="flex flex-column gap-3">
                 <div *ngFor="let category of categories" class="field-checkbox gap-1">
                     <p-radioButton 
                         [inputId]="category.key" 
-                        name="category" 
-                        [value]="category"
-                        [(ngModel)]="selectedCategory" />
+                        name="isVisible" 
+                        [value]="category.isVisible"
+                        formControlName="isVisible" />
                     <label [for]="category.key" class="ml-2 flex align-items-center gap-2">
                         <i class="pi" [class]="category.icon" style="font-size: 1.8rem"></i>
 
@@ -72,14 +77,19 @@
                     </label>
                 </div>
         </div>
+        
+        @if (showMessage) {
+            <p-messages
+                [(value)]="messages"
+                [enableService]="false"
+                [closable]="false" 
+            />
+        }
+    
+        <div class="flex justify-content-end gap-2 mt-4">
+            <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
+            <p-button label="Save" type="submit" [disabled]="collectionForm.invalid" />
+        </div>
     </form>
 
-    @if (showMessage) {
-        <p-messages [(value)]="messages" [enableService]="false" [closable]="false" />
-    }
-
-    <div class="flex justify-content-end gap-2 mt-4">
-        <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
-        <p-button label="Save" (onClick)="saveCollection()" />
-    </div>
 </app-modal>
