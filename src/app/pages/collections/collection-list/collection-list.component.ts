@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/api';
+import { ConfirmationService, Message } from 'primeng/api';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { CollectionService } from 'src/app/services/collection.service';
@@ -11,7 +11,7 @@ import { CollectionService } from 'src/app/services/collection.service';
   styleUrl: './collection-list.component.scss'
 })
 export class CollectionListComponent implements OnInit {
-  isModalVisible = false;
+  isAddModalVisible = false;
   showMessage = false;
   collections: Collection[];
   typeFilter = 'Type';
@@ -54,7 +54,9 @@ export class CollectionListComponent implements OnInit {
   })
 
   constructor(
-    private collectionService: CollectionService, private toastService: ToastService) {
+    private collectionService: CollectionService,
+    private toastService: ToastService,
+    private confirmationService: ConfirmationService) {
       this.collectionService.getCollections().subscribe(result => this.collections = result);
   }
 
@@ -69,22 +71,22 @@ export class CollectionListComponent implements OnInit {
 
   showModal() {
     this.showMessage = true;
-    this.isModalVisible = true;
+    this.isAddModalVisible = true;
   }
 
-  hideModal() {
+  hideAddModal() {
     this.showMessage = false;
-    this.isModalVisible = false;
+    this.isAddModalVisible = false;
     this.collectionForm.reset({ isVisible: true });
   }
 
   saveCollection() {
-    this.isModalVisible = false;
+    this.isAddModalVisible = false;
     this.toastService.showSuccess("Success!", "New collection has been saved");
   }
 
   onSubmit() {
-    this.isModalVisible = false;
+    this.isAddModalVisible = false;
 
     const collection = this.collectionForm.value as Collection;
     this.collectionService.addCollection(collection).subscribe({
@@ -92,11 +94,37 @@ export class CollectionListComponent implements OnInit {
         this.toastService.showSuccess("Success!", "Your new collection has been saved");
         this.collections = [...this.collections, response];
       },
-      error: (error) => {
-        this.toastService.showError("Error", error);
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
       }
     })
 
     this.collectionForm.reset({ isVisible: true });
+  }
+
+  confirmDelete(collectionId: number) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this collection?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"p-button-text p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+      defaultFocus: "none",
+
+      accept: () => {
+          this.collections = this.collections.filter(c => c.id !== collectionId);
+          this.collectionService.deleteCollection(collectionId).subscribe({
+            next: () => {
+              this.toastService.showInfo('Confirmed', 'Record deleted');
+            },
+            error: ({ error }) => {
+              this.toastService.showError("Error", error.title);
+            }
+          });
+      }
+    });
   }
 }

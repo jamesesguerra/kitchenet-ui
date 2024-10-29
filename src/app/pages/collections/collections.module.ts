@@ -23,6 +23,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { CollectionDetailComponent } from './collection-detail/collection-detail.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -47,8 +49,10 @@ import { CollectionDetailComponent } from './collection-detail/collection-detail
         MessagesModule,
         CollectionsRoutingModule,
         CardModule,
+        ConfirmDialogModule,
         ReactiveFormsModule
     ],
-    declarations: [CollectionListComponent, CollectionDetailComponent]
+    declarations: [CollectionListComponent, CollectionDetailComponent],
+    providers: [ConfirmationService]
 })
 export class CollectionsModule { }

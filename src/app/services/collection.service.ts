@@ -22,4 +22,8 @@ export class CollectionService {
     collection.userId = this.currentUserId;
     return this.http.post<Collection>(`${this.apiUrl}`, collection);
   }
+
+  deleteCollection(collectionId) {
+    return this.http.delete(`${this.apiUrl}/${collectionId}`);
+  }
 }

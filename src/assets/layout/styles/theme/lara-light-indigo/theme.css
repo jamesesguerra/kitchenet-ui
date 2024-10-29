@@ -1985,7 +1985,7 @@
   }
   .p-button.p-button-text {
     background-color: transparent;
-    color: #6366F1;
+    color: #374151;
     border-color: transparent;
   }
   .p-button.p-button-text:not(:disabled):hover {

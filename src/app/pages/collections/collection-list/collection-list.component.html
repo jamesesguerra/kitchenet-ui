@@ -29,9 +29,31 @@
             </div>
 
             @for(collection of collections; track collection.id) {
-                <div class="mt-5 px-1">
-                    <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
-                    <p class="font-light text-base">{{ collection.description }}</p>
+                <div class="mt-5 px-1 flex justify-content-between">
+                    <div>
+                        <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
+                        <p class="font-light text-base">{{ collection.description }}</p>
+                    </div>
+
+                    <div>
+                        <p-button
+                            pRipple
+                            icon="pi pi-pencil"
+                            class="p-button-rounded mr-2"
+                            severity="secondary"
+                            [rounded]="true"
+                            [outlined]="true"
+                        ></p-button>
+                        <p-button
+                            pRipple
+                            icon="pi pi-trash"
+                            class="p-button-rounded mr-2"
+                            severity="danger"
+                            [rounded]="true"
+                            [outlined]="true"
+                            (click)="confirmDelete(collection.id)"
+                        ></p-button>
+                    </div>
                 </div>
                 <p-divider />
             }
@@ -39,9 +61,11 @@
     </div>
 </div>
 
+<p-confirmDialog />
+
 <app-modal
-    (hide)="hideModal()"
-    [isVisible]="isModalVisible"
+    (hide)="hideAddModal()"
+    [isVisible]="isAddModalVisible"
     [title]="'Create a new collection'"
     [subtitle]="'Create a collection to store your recipes'"
 >
@@ -87,7 +111,7 @@
         }
     
         <div class="flex justify-content-end gap-2 mt-4">
-            <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
+            <p-button label="Cancel" severity="secondary" (onClick)="isAddModalVisible = false" />
             <p-button label="Save" type="submit" [disabled]="collectionForm.invalid" />
         </div>
     </form>

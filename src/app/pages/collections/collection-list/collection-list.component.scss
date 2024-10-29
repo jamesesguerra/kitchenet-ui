@@ -10,3 +10,8 @@
     border: 1px solid #e5e7eb;
     margin: 0px !important;
 }
+
+::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+    width: 2rem !important;
+    height: 2rem !important;
+}
