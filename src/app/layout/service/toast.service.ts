@@ -21,4 +21,8 @@ export class ToastService {
   showWarning(summary: string, detail: string) {
     this.toast.next({ severity: "warn", summary, detail });
   }
+
+  showInfo(summary: string, detail: string) {
+    this.toast.next({ severity: "info", summary, detail });
+  }
 }
