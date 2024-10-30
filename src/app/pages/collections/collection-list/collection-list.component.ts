@@ -14,8 +14,8 @@ import { CollectionService } from 'src/app/services/collection.service';
 export class CollectionListComponent implements OnInit {
   isAddModalVisible = false;
   showMessage = false;
-  collections: Collection[];
-  filteredCollections: Collection[];
+  collections: Collection[] = [];
+  filteredCollections: Collection[] = [];
   searchTerm: string = '';
   typeFilter = 'Type';
   sortOption = ''
