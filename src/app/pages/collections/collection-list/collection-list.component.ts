@@ -119,7 +119,7 @@ export class CollectionListComponent implements OnInit {
     this.collectionService.addCollection(collection).subscribe({
       next: (response) => {
         this.toastService.showSuccess("Success!", "Your new collection has been saved");
-        this.collections = [...this.collections, response];
+        this.filteredCollections = [...this.filteredCollections, response];
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
@@ -142,7 +142,7 @@ export class CollectionListComponent implements OnInit {
       defaultFocus: "none",
 
       accept: () => {
-          this.collections = this.collections.filter(c => c.id !== collectionId);
+          this.filteredCollections = this.filteredCollections.filter(c => c.id !== collectionId);
           this.collectionService.deleteCollection(collectionId).subscribe({
             next: () => {
               this.toastService.showInfo('Confirmed', 'Record deleted');
