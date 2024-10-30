@@ -64,6 +64,14 @@
                 <p-divider />
             }
 
+            <div *ngIf="(isLoading$ | async)" class="flex justify-content-center align-items-center">
+                <p-progressSpinner 
+                    styleClass="w-5rem h-5rem" 
+                    strokeWidth="7" 
+                    fill="var(--surface-ground)" 
+                    animationDuration="1s" />
+            </div>
+
             @if (filteredCollections.length === 0) {
                 <div class="flex justify-content-center mt-5">
                     <p>No collections to show</p>

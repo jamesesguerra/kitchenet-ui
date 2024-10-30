@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, Message } from 'primeng/api';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { CollectionService } from 'src/app/services/collection.service';
@@ -18,6 +19,9 @@ export class CollectionListComponent implements OnInit {
   searchTerm: string = '';
   typeFilter = 'Type';
   sortOption = ''
+
+  private isLoadingSubject: BehaviorSubject<boolean>;
+  isLoading$: Observable<boolean>;
 
   typeOptions = [
     { name: "Public", code: "PB" },
@@ -59,19 +63,31 @@ export class CollectionListComponent implements OnInit {
     private collectionService: CollectionService,
     private toastService: ToastService,
     private confirmationService: ConfirmationService) {
-      this.collectionService.getCollections().subscribe(result => {
-        this.collections = result
-        this.filteredCollections = result;
-      });
+      this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+      this.isLoading$ = this.isLoadingSubject.asObservable();
   }
 
   ngOnInit(): void {
-      this.collectionForm.get("isVisible")?.valueChanges.subscribe(value => {
-        const message = value
-          ? { severity: 'warn', detail: 'You are creating a public collection' }
-          : { severity: 'info', detail: 'You are creating a private collection' };
-        this.messages = [message];
-      })
+    this.isLoadingSubject.next(true);
+
+    this.collectionService.getCollections().subscribe({
+      next: (result) => {
+        this.collections = result;
+        this.filteredCollections = result;
+        this.isLoadingSubject.next(false);
+      },
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
+        this.isLoadingSubject.next(false);
+      }
+    });
+
+    this.collectionForm.get("isVisible")?.valueChanges.subscribe(value => {
+      const message = value
+        ? { severity: 'warn', detail: 'You are creating a public collection' }
+        : { severity: 'info', detail: 'You are creating a private collection' };
+      this.messages = [message];
+    })
   }
 
   filterCollections() {
