@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Collection } from '../models/collection.model';
 import { UserService } from './user.service';
+import { environment as env } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
-  private apiUrl = "http://localhost:5280/api/collections";
+  private apiUrl = `${env.baseApiUrl}/api/collections`;
   currentUserId: string;
 
   constructor(private http: HttpClient, private userService: UserService) {

@@ -8,4 +8,5 @@ export const environment = {
     },
     errorPath: '/callback',
   },
+  baseApiUrl: 'https://kitchenette-server.onrender.com'
 };
