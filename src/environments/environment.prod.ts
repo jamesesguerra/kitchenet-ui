@@ -4,7 +4,7 @@ export const environment = {
     domain: 'dev-qz3wlm2o81hgtfzp.us.auth0.com',
     clientId: '8y0CzWN4MoP7BAmqPrnvm8teIjQOUpwW',
     authorizationParams: {
-      redirect_uri: 'https://kitchenetteapp.netlify.app',
+      redirect_uri: 'https://kitchenetteapp.netlify.app/callback',
     },
     errorPath: '/callback',
   },
