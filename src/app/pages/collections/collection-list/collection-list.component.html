@@ -35,7 +35,7 @@
             </div>
 
             @for(collection of filteredCollections; track collection.id) {
-                <div class="mt-5 px-1 flex justify-content-between">
+                <div class="mt-5 px-1 flex justify-content-between" #collections>
                     <div>
                         <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
                         <p class="font-light text-base">{{ collection.description }}</p>
@@ -64,13 +64,12 @@
                 <p-divider />
             }
 
-            <div *ngIf="(isLoading$ | async)" class="flex justify-content-center align-items-center">
+            <!-- <div class="flex justify-content-center align-items-center">
                 <p-progressSpinner 
                     styleClass="w-5rem h-5rem" 
                     strokeWidth="7" 
-                    fill="var(--surface-ground)" 
                     animationDuration="1s" />
-            </div>
+            </div> -->
 
             @if (filteredCollections.length === 0) {
                 <div class="flex justify-content-center mt-5">

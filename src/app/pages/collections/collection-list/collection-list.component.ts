@@ -63,22 +63,22 @@ export class CollectionListComponent implements OnInit {
     private collectionService: CollectionService,
     private toastService: ToastService,
     private confirmationService: ConfirmationService) {
-      this.isLoadingSubject = new BehaviorSubject<boolean>(false);
-      this.isLoading$ = this.isLoadingSubject.asObservable();
+      // this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+      // this.isLoading$ = this.isLoadingSubject.asObservable();
   }
 
   ngOnInit(): void {
-    this.isLoadingSubject.next(true);
+    // this.isLoadingSubject.next(true);
 
     this.collectionService.getCollections().subscribe({
       next: (result) => {
         this.collections = result;
         this.filteredCollections = result;
-        this.isLoadingSubject.next(false);
+        // this.isLoadingSubject.next(false);
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
-        this.isLoadingSubject.next(false);
+        // this.isLoadingSubject.next(false);
       }
     });
 
