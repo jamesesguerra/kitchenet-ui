@@ -64,14 +64,14 @@
                 <p-divider />
             }
 
-            <div *ngIf="isLoading$ | async" class="flex justify-content-center align-items-center">
+            <div *ngIf="isLoading$ | async" class="flex justify-content-center align-items-center mt-8">
                 <p-progressSpinner 
-                    styleClass="w-5rem h-5rem" 
+                    styleClass="w-4rem h-4rem" 
                     strokeWidth="7" 
                     animationDuration="1s" />
             </div>
 
-            @if (filteredCollections.length === 0) {
+            @if (filteredCollections.length === 0 && !(isLoading$ | async)) {
                 <div class="flex justify-content-center mt-5">
                     <p>No collections to show</p>
                 </div>

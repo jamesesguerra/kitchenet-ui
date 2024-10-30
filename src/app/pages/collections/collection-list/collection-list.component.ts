@@ -74,7 +74,7 @@ export class CollectionListComponent implements OnInit {
       next: (result) => {
         this.collections = result;
         this.filteredCollections = result;
-        this.isLoadingSubject.next(false);
+        // this.isLoadingSubject.next(false);
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
