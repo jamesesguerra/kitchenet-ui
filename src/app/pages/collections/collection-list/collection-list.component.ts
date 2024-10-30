@@ -142,9 +142,9 @@ export class CollectionListComponent implements OnInit {
       defaultFocus: "none",
 
       accept: () => {
-          this.filteredCollections = this.filteredCollections.filter(c => c.id !== collectionId);
-          this.collectionService.deleteCollection(collectionId).subscribe({
-            next: () => {
+        this.collectionService.deleteCollection(collectionId).subscribe({
+          next: () => {
+              this.filteredCollections = this.filteredCollections.filter(c => c.id !== collectionId);
               this.toastService.showInfo('Confirmed', 'Record deleted');
             },
             error: ({ error }) => {
