@@ -2,7 +2,8 @@
     max-width: 50rem;
 }
 
-::ng-deep input {
+
+::ng-deep input, ::ng-deep .p-dropdown.p-component.p-inputwrapper {
     width: 100% !important;
 }
 

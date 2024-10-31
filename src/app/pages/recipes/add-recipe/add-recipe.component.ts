@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/layout/service/toast.service';
+import { Collection } from 'src/app/models/collection.model';
+import { CollectionService } from 'src/app/services/collection.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -9,13 +11,15 @@ import { ToastService } from 'src/app/layout/service/toast.service';
 export class AddRecipeComponent implements OnInit {
   value1 = 20;
 
-  collections = [
-    { name: "Breakfast Recipes", code: "BR" },
-    { name: "Lunch Recipes", code: "LR" },
-    { name: "Dinner Recipes", code: "DR" },
-  ]
+  collections: Collection[];
 
-  constructor(private toastService: ToastService) { }
+  constructor(private toastService: ToastService, private collectionService: CollectionService) {
+    this.collectionService.getCollections().subscribe({
+      next: (collections) => {
+        this.collections = collections;
+      }
+    })
+  }
 
   ngOnInit(): void {
      
