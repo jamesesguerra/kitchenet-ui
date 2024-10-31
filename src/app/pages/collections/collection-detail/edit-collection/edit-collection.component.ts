@@ -51,7 +51,9 @@ export class EditCollectionComponent implements OnInit {
   }
 
   onCancel() {
-    this.items = this.allRecipes;
+    setTimeout(() => {
+      this.items = this.allRecipes;
+    }, 500);
     this.cancel.emit();
   }
 }
