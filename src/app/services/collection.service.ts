@@ -32,4 +32,8 @@ export class CollectionService {
   getCollectionByIdWithRecipes(collectionId) {
     return this.http.get<CollectionDto>(`${this.apiUrl}/${collectionId}/recipes`);
   }
+
+  updateCollection(id: number, name: string, description: string) {
+    return this.http.patch(`${this.apiUrl}/${id}`, { name, description });
+  }
 }

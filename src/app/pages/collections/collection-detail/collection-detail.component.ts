@@ -13,6 +13,7 @@ import { CollectionService } from 'src/app/services/collection.service';
 })
 export class CollectionDetailComponent implements OnInit {
   collection: CollectionDto;
+  isEditModalVisible = false;
   addItems: MenuItem[] = [
     { label: 'Add Recipe' }
   ];
@@ -25,7 +26,13 @@ export class CollectionDetailComponent implements OnInit {
         this.router.navigate(['/recipes', 'add']);
       }
     },
-    { label: 'Edit Collection', icon: 'pi pi-pencil' },
+    {
+      label: 'Edit Collection',
+      icon: 'pi pi-pencil',
+      command: () => {
+        this.isEditModalVisible = true;
+      }
+    },
     {
       label: 'Delete Collection',
       icon: 'pi pi-trash',
@@ -96,5 +103,14 @@ export class CollectionDetailComponent implements OnInit {
           });
       }
     });
+  }
+
+  onEditModalSave(collection: CollectionDto) {
+    this.collection = collection;
+    this.hideEditModal();
+  }
+
+  hideEditModal() {
+    this.isEditModalVisible = false;
   }
 }

@@ -27,6 +27,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
+import { EditCollectionComponent } from './collection-detail/edit-collection/edit-collection.component';
+import { ScrollerModule } from 'primeng/scroller';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 @NgModule({
     imports: [
@@ -55,9 +58,15 @@ import { SkeletonModule } from 'primeng/skeleton';
         ReactiveFormsModule,
         ProgressSpinnerModule,
         SkeletonModule,
-        MenuModule
+        MenuModule,
+        ScrollerModule,
+        TieredMenuModule
     ],
-    declarations: [CollectionListComponent, CollectionDetailComponent],
+    declarations: [
+        CollectionListComponent,
+        CollectionDetailComponent,
+        EditCollectionComponent
+    ],
     providers: [ConfirmationService]
 })
 export class CollectionsModule { }

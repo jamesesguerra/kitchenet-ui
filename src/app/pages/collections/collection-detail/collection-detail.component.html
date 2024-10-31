@@ -8,7 +8,7 @@
         } @else {
             <div>
                 <h1 class="text-4xl mb-1 font">{{ collection.name }}</h1>
-                <p class="">A collection of lunch recipes by <a href="">james.esg</a></p>
+                <p>{{ collection.description }}</p>
             </div>
         }
 
@@ -57,3 +57,14 @@
 </div>
 
 <p-confirmDialog />
+
+<app-modal [isVisible]="isEditModalVisible" (hide)="hideEditModal()" [title]="'Edit Collection'">
+    @if (!(isLoading$ | async)) {
+        <app-edit-collection
+            [items]="collection.recipes"
+            [collection]="collection"
+            (cancel)="hideEditModal()"
+            (save)="onEditModalSave($event)"
+        />
+    }
+</app-modal>

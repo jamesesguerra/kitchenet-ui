@@ -1,0 +1,44 @@
+<form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="name" class="font-semibold w-6rem">Name</label>
+        <input pInputText id="name" class="flex-auto" autocomplete="off" formControlName="name" />
+        @if (collectionForm.controls['name'].invalid && collectionForm.controls['name'].dirty) {
+            <small id="username-help" class="ng-dirty ng-invalid">
+                Name is required.
+            </small>
+        }
+    </div>
+    <div class="flex flex-column gap-2 mb-5">
+        <label for="description" class="font-semibold w-6rem">Description</label>
+        <textarea id="description" rows="2" cols="45" pInputTextarea formControlName="description"></textarea>
+    </div>
+
+    <div class="w-full">
+        <label class="font-semibold w-6rem mb-2 block">Recipes</label>
+        <p-scroller 
+        [items]="items" 
+        [itemSize]="50" 
+        scrollHeight="200px" 
+        styleClass="border-1 surface-border" 
+        >
+            <ng-template pTemplate="item" let-item let-options="options">
+                <div
+                    class="flex align-items-center p-2 justify-content-between"
+                    [ngClass]="{ 'surface-ground': options.odd }"
+                    style="height: 50px;"
+                >
+                    <span>{{ item.name }}</span>
+
+                    <div>
+                        <button #btn pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain" (click)="deleteRecipe(item.id)"></button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-scroller>
+
+        <div class="flex justify-content-end gap-2 mt-4">
+            <p-button label="Cancel" severity="secondary" [text]="true" (click)="onCancel()" />
+            <p-button label="Save" type="submit" [disabled]="collectionForm.invalid" />
+        </div>
+    </div>
+</form>
