@@ -50,11 +50,13 @@
 
             @for(recipe of collection.recipes; track recipe.id) {
                 <div class="col-12 px-0 md:px-3 md:col-4 mt-10">
-                    <p-card [header]="recipe.name" [subheader]="recipe.description">
-                        <ng-template pTemplate="header">
-                            <img [src]="recipe.coverPicture" />
-                        </ng-template>
-                    </p-card>
+                    <a [routerLink]="['/recipes/', recipe.id]">
+                        <p-card [header]="recipe.name" [subheader]="recipe.description">
+                            <ng-template pTemplate="header">
+                                <img [src]="recipe.coverPicture" />
+                            </ng-template>
+                        </p-card>
+                    </a>
                 </div>
             }
         }
