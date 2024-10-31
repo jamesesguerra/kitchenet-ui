@@ -28,6 +28,7 @@
                         class="mr-2"
                         [options]="sortOptions" 
                         [(ngModel)]="sortOption" 
+                        (onChange)="filterCollections()"
                         optionLabel="name" 
                         placeholder="Sort" />
 

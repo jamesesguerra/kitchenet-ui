@@ -18,7 +18,7 @@ export class CollectionListComponent implements OnInit {
   filteredCollections: Collection[] = [];
   searchTerm: string = '';
   visibilityFilter: { name: string, code: number };
-  sortOption = ''
+  sortOption: { name: string, code: number };
 
   private isLoadingSubject: BehaviorSubject<boolean>;
   isLoading$: Observable<boolean>;
@@ -30,8 +30,8 @@ export class CollectionListComponent implements OnInit {
   ];
 
   sortOptions = [
-    { name: "Date", code: "PB" },
-    { name: "Name", code: "PV" }
+    { name: "Date", code: 0 },
+    { name: "Name", code: 1 }
   ];
 
   categories: any[] = [
@@ -64,6 +64,8 @@ export class CollectionListComponent implements OnInit {
     private toastService: ToastService) {
       this.isLoadingSubject = new BehaviorSubject<boolean>(false);
       this.isLoading$ = this.isLoadingSubject.asObservable();
+      this.visibilityFilter = this.visibilityOptions[0];
+      this.sortOption = this.sortOptions[0];
   }
 
   ngOnInit(): void {
@@ -99,6 +101,8 @@ export class CollectionListComponent implements OnInit {
       if (this.visibilityFilter.code == 1) return collection.isVisible == true;
       return collection;
     })
+
+    if (this.sortOption.code) this.filteredCollections.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   showModal() {
