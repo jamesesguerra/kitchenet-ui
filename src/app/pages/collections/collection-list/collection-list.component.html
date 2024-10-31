@@ -38,7 +38,13 @@
             @for(collection of filteredCollections; track collection.id) {
                 <div class="mt-5 px-1" #collections>
                     <div>
-                        <a class="text-base mb-2" [routerLink]="collection.id">{{ collection.name }}</a>
+                        <div class="flex align-items-baseline">
+                            <a class="text-base mb-2" [routerLink]="collection.id">{{ collection.name }}</a>
+                            
+                            @if (!collection.isVisible) {
+                                <i class="pi pi-lock ml-2" style="font-size: 0.8rem"></i>
+                            }
+                        </div>
                         <p class="font-light text-base">{{ collection.description }}</p>
                     </div>
                 </div>

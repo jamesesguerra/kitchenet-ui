@@ -7,7 +7,12 @@
             </div>
         } @else {
             <div>
-                <h1 class="text-4xl mb-1 font">{{ collection.name }}</h1>
+                <div class="flex align-items-baseline">
+                    <h1 class="text-2xl mb-1 font">{{ collection.name }}</h1>
+                    @if (!collection.isVisible) {
+                        <i class="pi pi-lock ml-2" style="font-size: 0.8rem"></i>
+                    }
+                </div>
                 <p>{{ collection.description }}</p>
             </div>
         }
