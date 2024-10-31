@@ -17,21 +17,21 @@ export class CollectionListComponent implements OnInit {
   collections: Collection[] = [];
   filteredCollections: Collection[] = [];
   searchTerm: string = '';
-  typeFilter = 'Type';
+  visibilityFilter: { name: string, code: number };
   sortOption = ''
 
   private isLoadingSubject: BehaviorSubject<boolean>;
   isLoading$: Observable<boolean>;
 
-  typeOptions = [
-    { name: "Public", code: "PB" },
-    { name: "Private", code: "PV" },
+  visibilityOptions = [
+    { name: "All", code: 2 },
+    { name: "Public", code: 1 },
+    { name: "Private", code: 0 },
   ];
 
   sortOptions = [
     { name: "Date", code: "PB" },
-    { name: "Name", code: "PV" },
-    { name: "Rating", code: "PV" },
+    { name: "Name", code: "PV" }
   ];
 
   categories: any[] = [
@@ -93,6 +93,12 @@ export class CollectionListComponent implements OnInit {
     this.filteredCollections = this.collections.filter(collection => 
       collection.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+
+    this.filteredCollections = this.filteredCollections.filter(collection => {
+      if (!this.visibilityFilter.code) return collection.isVisible == true;
+      if (this.visibilityFilter.code == 1) return collection.isVisible == false;
+      return collection;
+    })
   }
 
   showModal() {

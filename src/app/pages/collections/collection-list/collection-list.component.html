@@ -18,8 +18,9 @@
                 <div>
                     <p-dropdown 
                         class="mr-2"
-                        [options]="typeOptions" 
-                        [(ngModel)]="typeFilter" 
+                        [options]="visibilityOptions" 
+                        [(ngModel)]="visibilityFilter"
+                        (onChange)="filterCollections()"
                         optionLabel="name" 
                         placeholder="Type" />
 
