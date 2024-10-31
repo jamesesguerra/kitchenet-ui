@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
 import { CollectionDto } from 'src/app/dtos/collection.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
@@ -18,28 +17,31 @@ export class EditCollectionComponent implements OnInit {
   @Output() save = new EventEmitter<CollectionDto>();
   @Output() cancel = new EventEmitter();
 
+  allRecipes: Recipe[];
   collectionForm!: FormGroup;
 
   constructor(private collectionService: CollectionService,
     private toastService: ToastService) { }
-
-  deleteRecipe(id: number) {
-    this.items = this.items.filter(i => i.id !== id);
-  }
-
+    
   ngOnInit(): void {
     this.collectionForm = new FormGroup({
       name: new FormControl(this.collection.name, { validators: [Validators.required] }),
       description: new FormControl(this.collection.description)
     })
+
+    this.allRecipes = this.items;
   }
 
+  deleteRecipe(id: number) {
+    this.items = this.items.filter(i => i.id !== id);
+  }
+    
   onSubmit() {
     const { name, description } = this.collectionForm.value as Collection;
 
     this.collectionService.updateCollection(this.collection.id, name, description).subscribe({
       next: () => {
-        this.toastService.showSuccess("Success!", "Collection has been updated");
+        this.toastService.showSuccess("Success!", "Your collection has been updated");
         this.save.emit({ name, description, recipes: this.items })
       },
       error: ({ error }) => {
@@ -49,6 +51,7 @@ export class EditCollectionComponent implements OnInit {
   }
 
   onCancel() {
+    this.items = this.allRecipes;
     this.cancel.emit();
   }
 }

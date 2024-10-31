@@ -82,7 +82,7 @@ export class CollectionDetailComponent implements OnInit {
   confirmDelete() {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Are you sure you want to delete this collection?',
+      message: 'Are you sure you want to delete this collection and its recipes?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass:"p-button-danger p-button-text",
