@@ -1,11 +1,26 @@
 <div class="max-w-65rem mx-auto">
     <div class="pb-4">
-        <span>Lunch Recipes / <span class="font-bold">{{ recipe.name }}</span> </span>
+        @if (isLoading$ | async) {
+            <p-skeleton height="1rem" width="15rem" styleClass="mb-2" />
+        } @else {
+            <span>Lunch Recipes / <span class="font-bold">{{ recipe.name }}</span> </span>
+        }
     </div>
 
     <p-tabView>
         <p-tabPanel header="Recipe">
-            <app-recipe-content [recipe]="recipe" />
+            @if (isLoading$ | async) {
+                <p-skeleton height="30rem" styleClass="mb-4" />
+                <p-skeleton height="2rem" width="18rem" styleClass="mb-2" />
+                <p-skeleton height="1.5rem" width="10rem" styleClass="mb-8" />
+                <p-skeleton height="1.5rem" width="8rem" styleClass="mb-4" />
+                <p-skeleton height="1rem" styleClass="mb-1" />
+                <p-skeleton height="1rem" styleClass="mb-1" />
+                <p-skeleton height="1rem" styleClass="mb-1" />
+                <p-skeleton height="1rem" styleClass="mb-1" />
+            } @else {
+                <app-recipe-content [recipe]="recipe" />
+            }
         </p-tabPanel>
         <p-tabPanel header="Suggestions">
             <app-suggestion-list />

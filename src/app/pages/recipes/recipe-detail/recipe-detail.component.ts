@@ -30,6 +30,7 @@ export class RecipeDetailComponent implements OnInit {
         this.isLoadingSubject.next(true);
         this.recipeService.getRecipeById(recipeId).subscribe({
           next: (recipe) => {
+            this.isLoadingSubject.next(false);
             this.recipe = recipe;
           }
         })
