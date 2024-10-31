@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
+import { Recipe } from 'src/app/models/recipe.model';
 
 @Component({
   selector: 'app-recipe-content',
@@ -10,6 +11,10 @@ import { fromEvent, Subscription } from 'rxjs';
   }
 })
 export class RecipeContentComponent implements OnInit, OnDestroy {
+  @Input({ required: true }) recipe!: Recipe;
+  ingredients = '';
+  instructions = '';
+
   resizeSubscription!: Subscription;
   screenSize: 'sm' | 'md' = window.innerWidth < 645 ? 'sm' : 'md';
   rating = 5;
@@ -25,6 +30,11 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
 
       this.screenSize = width < 645 ? 'sm' : 'md';
     });
+
+    this.ingredients = JSON.parse(this.recipe.ingredients).htmlContent;
+    this.instructions = JSON.parse(this.recipe.instructions).htmlContent;
+
+    console.log(this.ingredients);
   }
 
   ngOnDestroy(): void {

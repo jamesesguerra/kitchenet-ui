@@ -13,5 +13,6 @@ export interface Recipe {
     protein: number;
     fat: number;
     carbohydrates: number;
+    fiber: number;
     createdAt?: Date;
 }

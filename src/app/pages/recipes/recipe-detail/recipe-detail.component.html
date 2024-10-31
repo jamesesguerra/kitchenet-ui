@@ -1,11 +1,11 @@
 <div class="max-w-65rem mx-auto">
     <div class="pb-4">
-        <span>Lunch Recipes / <span class="font-bold"> Creamy Garlic Chicken </span> </span>
+        <span>Lunch Recipes / <span class="font-bold">{{ recipe.name }}</span> </span>
     </div>
 
     <p-tabView>
         <p-tabPanel header="Recipe">
-            <app-recipe-content />
+            <app-recipe-content [recipe]="recipe" />
         </p-tabPanel>
         <p-tabPanel header="Suggestions">
             <app-suggestion-list />

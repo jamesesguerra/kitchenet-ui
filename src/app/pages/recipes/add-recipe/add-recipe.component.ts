@@ -85,6 +85,7 @@ export class AddRecipeComponent implements OnInit {
       servings: formValues.servings,
       calories: formValues.calories,
       protein: formValues.protein,
+      fiber: formValues.fiber,
       fat: formValues.fat,
       carbohydrates: formValues.carbohydrates,
     }
