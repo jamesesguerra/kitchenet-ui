@@ -7,7 +7,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -63,6 +63,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     PanelModule,
     SkeletonModule,
     FieldsetModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
