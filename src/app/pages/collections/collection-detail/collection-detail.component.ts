@@ -18,7 +18,13 @@ export class CollectionDetailComponent implements OnInit {
   ];
 
   menuItems: MenuItem[] = [
-    { label: 'Add Recipe', icon: 'pi pi-plus' },
+    { 
+      label: 'Add Recipe',
+      icon: 'pi pi-plus',
+      command: () => {
+        this.router.navigate(['/recipes', 'add']);
+      }
+    },
     { label: 'Edit Collection', icon: 'pi pi-pencil' },
     {
       label: 'Delete Collection',

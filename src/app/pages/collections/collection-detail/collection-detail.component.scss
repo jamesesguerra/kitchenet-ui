@@ -16,11 +16,10 @@ img {
 ::ng-deep .p-card-title {
     font-weight: normal;
     font-family: $font;
-    // font-size: 12px;
+    color: #111827;
 }
 
 ::ng-deep .p-card-subtitle {
-    // font-size: 20px;
     font-size: 12px;
     font-family: $font;
     color: #000;
