@@ -23,7 +23,7 @@ export class CollectionDetailComponent implements OnInit {
       label: 'Add Recipe',
       icon: 'pi pi-plus',
       command: () => {
-        this.router.navigate(['/recipes', 'add']);
+        this.router.navigate(['/recipes', 'add'], { queryParams: { collectionId: this.collection.id }});
       }
     },
     {
