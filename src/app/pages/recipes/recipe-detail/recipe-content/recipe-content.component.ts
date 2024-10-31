@@ -33,8 +33,6 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
 
     this.ingredients = JSON.parse(this.recipe.ingredients).htmlContent;
     this.instructions = JSON.parse(this.recipe.instructions).htmlContent;
-
-    console.log(this.ingredients);
   }
 
   ngOnDestroy(): void {
