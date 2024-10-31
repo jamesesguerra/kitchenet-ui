@@ -2,6 +2,7 @@
 
 img {
     min-height: 180px !important;
+    max-height: 180px !important;
 }
 
 ::ng-deep .p-card-title {
@@ -21,10 +22,6 @@ img {
     height: 100%;
     display: block;
     min-height: 335px;
-}
-
-.max-w-55rem {
-    max-width: 55rem;
 }
 
 .toolbar {

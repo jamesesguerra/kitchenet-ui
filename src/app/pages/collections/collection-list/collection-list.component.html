@@ -1,6 +1,6 @@
 <div class="grid">
     <div class="col-12 xl:col-12">
-        <div class="max-w-55rem mx-auto">
+        <div class="max-w-65rem mx-auto">
             <div class="toolbar grid">
                 <div class="flex-grow-1">
                     <span class="p-input-icon-left w-full">
@@ -35,30 +35,10 @@
             </div>
 
             @for(collection of filteredCollections; track collection.id) {
-                <div class="mt-5 px-1 flex justify-content-between" #collections>
+                <div class="mt-5 px-1" #collections>
                     <div>
-                        <a class="text-base mb-2" [routerLink]="'3'">{{ collection.name }}</a>
+                        <a class="text-base mb-2" [routerLink]="collection.id">{{ collection.name }}</a>
                         <p class="font-light text-base">{{ collection.description }}</p>
-                    </div>
-
-                    <div>
-                        <p-button
-                            pRipple
-                            icon="pi pi-pencil"
-                            class="p-button-rounded mr-2"
-                            severity="secondary"
-                            [rounded]="true"
-                            [outlined]="true"
-                        ></p-button>
-                        <p-button
-                            pRipple
-                            icon="pi pi-trash"
-                            class="p-button-rounded mr-2"
-                            severity="danger"
-                            [rounded]="true"
-                            [outlined]="true"
-                            (click)="confirmDelete(collection.id)"
-                        ></p-button>
                     </div>
                 </div>
                 <p-divider />
@@ -80,8 +60,6 @@
         </div>
     </div>
 </div>
-
-<p-confirmDialog />
 
 <app-modal
     (hide)="hideAddModal()"

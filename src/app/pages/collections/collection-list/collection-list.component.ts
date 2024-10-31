@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ConfirmationService, Message } from 'primeng/api';
+import { Message } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
@@ -61,8 +61,7 @@ export class CollectionListComponent implements OnInit {
 
   constructor(
     private collectionService: CollectionService,
-    private toastService: ToastService,
-    private confirmationService: ConfirmationService) {
+    private toastService: ToastService) {
       this.isLoadingSubject = new BehaviorSubject<boolean>(false);
       this.isLoading$ = this.isLoadingSubject.asObservable();
   }
@@ -127,31 +126,5 @@ export class CollectionListComponent implements OnInit {
     })
 
     this.collectionForm.reset({ isVisible: true });
-  }
-
-  confirmDelete(collectionId: number) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to delete this collection?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
-      defaultFocus: "none",
-
-      accept: () => {
-        this.collectionService.deleteCollection(collectionId).subscribe({
-          next: () => {
-              this.filteredCollections = this.filteredCollections.filter(c => c.id !== collectionId);
-              this.toastService.showInfo('Confirmed', 'Record deleted');
-            },
-            error: ({ error }) => {
-              this.toastService.showError("Error", error.title);
-            }
-          });
-      }
-    });
   }
 }

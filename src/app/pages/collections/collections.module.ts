@@ -26,6 +26,7 @@ import { CollectionDetailComponent } from './collection-detail/collection-detail
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
     imports: [
@@ -52,7 +53,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         CardModule,
         ConfirmDialogModule,
         ReactiveFormsModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        SkeletonModule,
+        MenuModule
     ],
     declarations: [CollectionListComponent, CollectionDetailComponent],
     providers: [ConfirmationService]

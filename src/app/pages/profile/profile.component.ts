@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   items: MenuItem[] = [
     { label: 'Edit Profile', icon: 'pi pi-fw pi-pencil' }
-  ];;
+  ];
   collections: Collection[] = [];
   isModalVisible = false;
 

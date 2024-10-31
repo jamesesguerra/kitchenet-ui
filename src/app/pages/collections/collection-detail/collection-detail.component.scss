@@ -1,26 +1,27 @@
-.max-w-55rem {
-    max-width: 55rem;
+@import '../../../../assets/layout/styles/layout/variables';
+
+.max-w-65rem {
+    max-width: 65rem;
 }
 
 .h-450px {
     height: 450px;
 }
 
-@import '../../../../assets/layout/styles/layout/variables';
-
 img {
     min-height: 180px !important;
+    max-height: 180px !important;
 }
 
 ::ng-deep .p-card-title {
     font-weight: normal;
     font-family: $font;
-    font-size: 12px;
+    // font-size: 12px;
 }
 
 ::ng-deep .p-card-subtitle {
-    font-size: 20px;
-    font-weight: 400;
+    // font-size: 20px;
+    font-size: 12px;
     font-family: $font;
     color: #000;
 }
@@ -29,4 +30,13 @@ img {
     height: 100%;
     display: block;
     min-height: 335px;
+}
+
+::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.grid {
+    margin: 0;
 }
