@@ -95,8 +95,8 @@ export class CollectionListComponent implements OnInit {
     );
 
     this.filteredCollections = this.filteredCollections.filter(collection => {
-      if (!this.visibilityFilter.code) return collection.isVisible == true;
-      if (this.visibilityFilter.code == 1) return collection.isVisible == false;
+      if (!this.visibilityFilter.code) return collection.isVisible == false;
+      if (this.visibilityFilter.code == 1) return collection.isVisible == true;
       return collection;
     })
   }
