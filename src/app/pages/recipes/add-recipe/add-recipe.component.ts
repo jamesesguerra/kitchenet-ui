@@ -1,7 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Delta } from 'quill/core';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -76,7 +75,6 @@ export class AddRecipeComponent implements OnInit {
     const editorValues = this.getEditorValues();
 
     const recipe: Recipe = {
-      id: formValues.id,
       name: formValues.name,
       description: formValues.description,
       coverPicture: formValues.coverPicture,

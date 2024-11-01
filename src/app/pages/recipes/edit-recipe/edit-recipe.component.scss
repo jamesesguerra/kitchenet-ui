@@ -1,0 +1,12 @@
+::ng-deep input, ::ng-deep .p-dropdown.p-component.p-inputwrapper {
+    width: 100% !important;
+}
+
+::ng-deep .p-button-rounded {
+    height: 100% !important;
+}
+
+.borderless:focus {
+    border: none !important;
+    box-shadow: none !important;
+}

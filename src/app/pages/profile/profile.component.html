@@ -159,7 +159,7 @@
         </div>
     </form>
     <div class="flex justify-content-end gap-2">
-        <p-button label="Cancel" severity="secondary" (onClick)="isModalVisible = false" />
+        <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="isModalVisible = false" />
         <p-button label="Save" (onClick)="isModalVisible = false" />
     </div>
 </app-modal>

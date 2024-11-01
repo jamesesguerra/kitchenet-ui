@@ -1,0 +1,221 @@
+<div class="max-w-65rem mx-auto">
+    <h1 class="text-3xl">Edit your recipe</h1>
+    <p>
+        Recipes are Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
+        saepe, praesentium iste libero, voluptas aspernatur placeat totam quos.
+        Exercitationem delectus ullam ab, incidunt, neque fugiat!
+    </p>
+    <p-divider class="w-full bg-surface-200"></p-divider>
+
+    @if (!(isLoading$ | async)) {
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="grid mt-2">
+                <div class="col-12 md:col-4 flex flex-column gap-2">
+                    <label class="font-semibold">Collection</label>
+                    <p-dropdown 
+                        formControlName="collection"
+                        [options]="collections" 
+                        optionLabel="name" 
+                        placeholder="Select a collection"
+                        [showClear]="true"
+                    />
+                    @if (recipeForm.controls['collection'].invalid && recipeForm.controls['collection'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Collection is required.
+                        </small>
+                    }
+                </div>
+
+                <div class="col-12 md:col-8 flex flex-column gap-2">
+                    <label class="font-semibold">Name</label>
+                    <input type="text" pInputText formControlName="name" />
+                    @if (recipeForm.controls['name'].invalid && recipeForm.controls['name'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Name is required.
+                        </small>
+                    }
+                </div>
+            </div>
+
+            <div class="grid mt-2">
+                <div class="col-12 flex flex-column gap-2">
+                    <label class="font-semibold">Description</label>
+                    <textarea
+                        id="description"
+                        rows="5"
+                        cols="45"
+                        pInputTextarea
+                        formControlName="description"
+                    ></textarea>
+                    @if (recipeForm.controls['description'].invalid && recipeForm.controls['description'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Description is required.
+                        </small>
+                    }
+                </div>
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="grid mt-2">
+                <div class="col-4 md:col-2 flex flex-column gap-2">
+                    <label class="font-semibold">Servings</label>
+                    <p-inputNumber 
+                        formControlName="servings"
+                        inputId="minmax" 
+                        mode="decimal" 
+                        [min]="0" 
+                        [max]="100" /> 
+                    @if (recipeForm.controls['servings'].invalid && recipeForm.controls['servings'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Servings is required.
+                        </small>
+                    }
+                </div>
+
+                <div class="col-4 md:col-2 flex flex-column gap-2">
+                    <label class="font-semibold">Prep Time</label>
+                    <p-inputNumber 
+                        formControlName="prepTime"
+                        inputId="mins"
+                        suffix=" mins" /> 
+                    @if (recipeForm.controls['prepTime'].invalid && recipeForm.controls['prepTime'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Prep Time is required.
+                        </small>
+                    }
+                </div>
+
+                <div class="col-4 md:col-2 flex flex-column gap-2">
+                    <label class="font-semibold">Cook Time</label>
+                    <p-inputNumber 
+                        formControlName="cookTime"
+                        inputId="mins"
+                        suffix=" mins" /> 
+                    @if (recipeForm.controls['cookTime'].invalid && recipeForm.controls['cookTime'].dirty) {
+                        <small id="username-help" class="ng-dirty ng-invalid">
+                            Cook Time is required.
+                        </small>
+                    }
+                </div>
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="my-5 flex flex-column gap-2">
+                <label class="font-semibold">Ingredients</label>
+                    <app-editor
+                        [editorName]="'ingredientsEdit'"
+                        [placeholder]="'Write some ingredients...'"
+                        [initialContent]="ingredients"
+                        [editorHeight]="'auto'"
+                    />
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="my-5 flex flex-column gap-2">
+                <label class="font-semibold">Instructions</label>
+                    <app-editor
+                        [editorName]="'instructionsEdit'"
+                        [placeholder]="'Write some instructions...'"
+                        [initialContent]="instructions"
+                        [editorHeight]="'auto'"
+                    />
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="grid mt-2">
+                <div class="col-12 pb-0">
+                    <span class="font-semibold">Nutritional Information</span>
+                </div>
+
+                <div class="col-4 md:col-3">
+                    <div class="flex flex-column gap-2">
+                        <label>Calories</label>
+                        <p-inputNumber 
+                            formControlName="calories"
+                            inputId="kcal"
+                            suffix=" kcal" /> 
+                    </div>
+                </div>
+
+                <div class="col-4 md:col-2">
+                    <div class="flex flex-column gap-2">
+                        <label>Protein</label>
+                        <p-inputNumber 
+                            formControlName="protein"
+                            inputId="g"
+                            suffix=" g" /> 
+                    </div>
+                </div>
+
+                <div class="col-4 md:col-2">
+                    <div class="flex flex-column gap-2">
+                        <label>Fat</label>
+                        <p-inputNumber 
+                            formControlName="fat"
+                            inputId="g"
+                            suffix=" g" /> 
+                    </div>
+                </div>
+
+                <div class="col-4 md:col-2">
+                    <div class="flex flex-column gap-2">
+                        <label>Fiber</label>
+                        <p-inputNumber 
+                            formControlName="fiber"
+                            inputId="g"
+                            suffix=" g" /> 
+                    </div>
+                </div>
+
+                <div class="col-5 md:col-2">
+                    <div class="flex flex-column gap-2">
+                        <label>Carbohydrates</label>
+                        <p-inputNumber 
+                            formControlName="carbohydrates"
+                            inputId="g"
+                            suffix=" g" /> 
+                    </div>
+                </div>
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="flex flex-column gap-2">
+                <!-- <span class="font-bold mb-2">Upload a cover image</span> -->
+                <!-- <p-fileUpload 
+                    mode="basic" 
+                    chooseLabel="Choose" 
+                    chooseIcon="pi pi-upload"
+                    name="demo[]" 
+                    url="https://www.primefaces.org/cdn/api/upload.php" 
+                    accept="image/*" 
+                    maxFileSize="1000000" 
+                    (onUpload)="onUpload($event)" /> -->
+                <span class="font-semibold mb-2">Add a cover image</span>
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="coverPicture"
+                    placeholder="Paste image URL here (e.g., https://example.com/image.jpg)"
+                />
+            </div>
+
+            <p-divider class="w-full bg-surface-200"></p-divider>
+
+            <div class="flex justify-content-end mb-8">
+                <p-button label="Save Changes" type="submit" [disabled]="recipeForm.invalid" />
+            </div>
+        </form>
+    } @else {
+        <div class="flex justify-content-center align-items-center mt-8">
+            <p-progressSpinner 
+                    styleClass="w-4rem h-4rem" 
+                    strokeWidth="7" 
+                    animationDuration="1s" />
+        </div>
+    }
+</div>

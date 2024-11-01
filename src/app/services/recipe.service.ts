@@ -22,4 +22,8 @@ export class RecipeService {
   getRecipeById(id: number) {
     return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
   }
+
+  updateRecipe(id: number, recipe: Recipe) {
+    return this.http.put(`${this.apiUrl}/${id}`, recipe);
+  }
 }

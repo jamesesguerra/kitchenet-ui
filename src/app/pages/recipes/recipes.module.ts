@@ -29,12 +29,15 @@ import { FieldChangeComponent } from './recipe-detail/suggestion-detail/field-ch
 import { PanelModule } from 'primeng/panel';
 import { SkeletonModule } from 'primeng/skeleton';
 import { FieldsetModule } from 'primeng/fieldset';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
     RecipeListComponent,
     RecipeDetailComponent,
     AddRecipeComponent,
+    EditRecipeComponent,
     RecipeContentComponent,
     SuggestionDetailComponent,
     SuggestionListComponent,
@@ -64,7 +67,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     SkeletonModule,
     FieldsetModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ProgressSpinnerModule
   ]
 })
 export class RecipesModule { }

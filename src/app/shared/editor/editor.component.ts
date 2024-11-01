@@ -32,6 +32,10 @@ export class EditorComponent implements AfterViewInit, OnChanges {
       if (changes['content'] && this.quill != undefined) {
         this.quill.setContents(changes["content"].currentValue);
       }
+
+      if (changes['initialContent'] && this.quill != undefined) {
+        this.quill.clipboard.dangerouslyPasteHTML(this.initialContent);
+      }
   }
 
   ngAfterViewInit(): void {
