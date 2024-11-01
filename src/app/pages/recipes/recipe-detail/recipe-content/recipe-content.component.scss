@@ -44,6 +44,10 @@ table {
     padding-left: 0 !important;
 }
 
-:host ::ng-deep .ql-snow .ql-editor h2 {
+:host ::ng-deep .ql-snow .ql-editor h1,
+:host ::ng-deep .ql-snow .ql-editor h2,
+:host ::ng-deep .ql-snow .ql-editor h3,
+:host ::ng-deep .ql-snow .ql-editor h4,
+:host ::ng-deep .ql-snow .ql-editor p {
     margin-left: -16px;
 }
