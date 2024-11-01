@@ -39,7 +39,9 @@
                                     <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
                                         <div>
                                             <span class="font-medium text-secondary text-xs font-lighter text-400">{{ item.collection | uppercase }}</span>
-                                            <div class="text-lg font-bolder text-900 mt-2">{{ item.name }}</div>
+                                            <div class="text-lg font-bolder text-900 mt-2">
+                                                <a [routerLink]="item.id">{{ item.name }}</a>
+                                            </div>
                                             <p class="text-sm mt-1 md:max-w-25rem">{{ item.description | truncate:100 }}</p>
                                         </div>
                                     </div>
