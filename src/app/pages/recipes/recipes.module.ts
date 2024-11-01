@@ -31,6 +31,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { FieldsetModule } from 'primeng/fieldset';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     FieldsetModule,
     ReactiveFormsModule,
     SharedModule,
-    ProgressSpinnerModule
-  ]
+    ProgressSpinnerModule,
+    ConfirmDialogModule
+  ],
+  providers: [ConfirmationService]
 })
 export class RecipesModule { }

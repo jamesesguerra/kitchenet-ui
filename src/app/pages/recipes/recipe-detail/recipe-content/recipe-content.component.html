@@ -10,7 +10,15 @@
         <div>
             <div class="flex align-items-baseline gap-2">
                 <h1 class="text-3xl mb-0">{{ recipe.name }}</h1>
-                <button pButton type="button" icon="pi pi-pencil" class="p-button-text p-button-plain p-2 px-1" label="Edit" routerLink="edit"></button>
+
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-pencil"
+                    class="p-button-text p-button-plain p-2 px-1"
+                    label="Edit"
+                    routerLink="edit">
+                </button>
             </div>
             <p class="mb-2">by <a href="">james.esg</a></p>
             <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" class="mt-2" />

@@ -26,4 +26,9 @@ export class RecipeService {
   updateRecipe(id: number, recipe: Recipe) {
     return this.http.put(`${this.apiUrl}/${id}`, recipe);
   }
+
+  deleteRecipeByIds(ids: number[]) {
+    const params = ids.join(',');
+    return this.http.delete(`${this.apiUrl}?ids=${params}`);
+  }
 }

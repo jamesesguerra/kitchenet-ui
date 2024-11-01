@@ -20,8 +20,7 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
   rating = 5;
   value = 0;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.resizeSubscription = fromEvent(window, 'resize')
@@ -40,5 +39,4 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
       this.resizeSubscription.unsubscribe();
     }
   }
-
 }
