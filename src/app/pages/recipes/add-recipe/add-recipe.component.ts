@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -18,14 +18,15 @@ export class AddRecipeComponent implements OnInit {
 
   value1 = 20;
   recipeForm: FormGroup;
-
   collections: Collection[];
-  selectedCollection: Collection;
+
+  backLink = ['../'];
 
   constructor(
     private toastService: ToastService,
     private collectionService: CollectionService,
     private recipeService: RecipeService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
     this.collectionService.getCollections().subscribe({
@@ -55,7 +56,26 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     
+    this.collectionService.getCollections().subscribe({
+      next: (collections) => {
+        this.collections = collections;
+
+        this.activatedRoute.queryParamMap.subscribe(params => {
+          const collectionIdParam = params.get('collectionId');
+          const collectionId = collectionIdParam ? +collectionIdParam : null;
+          const collectionPreset = this.collections.find(c => c.id === collectionId);
+
+          if (collectionId && collectionPreset) {
+            this.backLink = ['/collections', collectionId.toString()];
+            this.recipeForm.get('collection').setValue(collectionPreset);
+          }
+        });
+      },
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
+      }
+    })
+
   }
 
   getEditorValues(): string[] {
