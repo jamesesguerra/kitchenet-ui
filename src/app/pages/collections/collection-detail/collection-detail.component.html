@@ -53,7 +53,9 @@
                     <a [routerLink]="['/recipes/', recipe.id]">
                         <p-card [header]="recipe.name" [subheader]="recipe.description | truncate:110">
                             <ng-template pTemplate="header">
-                                <img [src]="recipe.coverPicture" />
+                                <div class="image-container">
+                                    <img class="responsive-image" [src]="recipe.coverPicture" />
+                                </div>
                             </ng-template>
                         </p-card>
                     </a>
