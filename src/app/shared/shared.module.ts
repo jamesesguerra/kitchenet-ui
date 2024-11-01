@@ -10,6 +10,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ModalComponent } from './modal/modal.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditorComponent } from './editor/editor.component';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @NgModule({
     imports: [
@@ -24,12 +25,14 @@ import { EditorComponent } from './editor/editor.component';
     declarations: [
         ModalComponent,
         CommentComponent,
-        EditorComponent
+        EditorComponent,
+        TruncatePipe
     ],
     exports: [
         ModalComponent,
         CommentComponent,
-        EditorComponent
+        EditorComponent,
+        TruncatePipe
     ]
 })
 export class SharedModule {}

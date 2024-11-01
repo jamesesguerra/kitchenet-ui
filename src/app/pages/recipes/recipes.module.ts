@@ -34,7 +34,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
-import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,7 @@ import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
     SuggestionDetailComponent,
     SuggestionListComponent,
     AddSuggestionComponent,
-    FieldChangeComponent,
-    TruncatePipe
+    FieldChangeComponent
   ],
   imports: [
     CommonModule,

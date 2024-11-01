@@ -30,7 +30,6 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { EditCollectionComponent } from './collection-detail/edit-collection/edit-collection.component';
 import { ScrollerModule } from 'primeng/scroller';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
 
 @NgModule({
     imports: [
@@ -67,7 +66,6 @@ import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
         CollectionListComponent,
         CollectionDetailComponent,
         EditCollectionComponent,
-        TruncatePipe
     ],
     providers: [ConfirmationService]
 })

@@ -51,7 +51,7 @@
             @for(recipe of collection.recipes; track recipe.id) {
                 <div class="col-12 px-0 md:px-3 md:col-4 mt-10">
                     <a [routerLink]="['/recipes/', recipe.id]">
-                        <p-card [header]="recipe.name" [subheader]="recipe.description | truncate:110">
+                        <p-card [header]="recipe.name | truncate:45" [subheader]="recipe.description | truncate:110">
                             <ng-template pTemplate="header">
                                 <div class="image-container">
                                     <img class="responsive-image" [src]="recipe.coverPicture" />
