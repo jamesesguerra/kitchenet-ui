@@ -50,7 +50,7 @@ export class RecipeListComponent {
             this.filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
         } else if (this.sortOption.name === 'Date') {
             this.filteredRecipes.sort((a, b) => {
-                return a.createdAt.getTime() - b.createdAt.getTime();
+                return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
             });
         }
     }
