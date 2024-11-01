@@ -33,6 +33,8 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DataViewModule } from 'primeng/dataview';
+import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     SuggestionDetailComponent,
     SuggestionListComponent,
     AddSuggestionComponent,
-    FieldChangeComponent
+    FieldChangeComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -71,7 +74,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ReactiveFormsModule,
     SharedModule,
     ProgressSpinnerModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataViewModule
   ],
   providers: [ConfirmationService]
 })

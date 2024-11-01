@@ -16,7 +16,7 @@ export class CollectionListComponent implements OnInit {
   showMessage = false;
   collections: Collection[] = [];
   filteredCollections: Collection[] = [];
-  searchTerm: string = '';
+  searchTerm = '';
   visibilityFilter: { name: string, code: number };
   sortOption: { name: string, code: number };
 

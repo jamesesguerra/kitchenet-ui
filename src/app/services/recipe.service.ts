@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { Recipe } from '../models/recipe.model';
+import { RecipeSummaryDto } from '../dtos/recipe-summary.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class RecipeService {
 
   getRecipeById(id: number) {
     return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
+  }
+
+  getRecipeSummariesByUserId() {
+    return this.http.get<RecipeSummaryDto[]>(`${this.apiUrl}?userId=${this.currentUserId}`);
   }
 
   updateRecipe(id: number, recipe: Recipe) {

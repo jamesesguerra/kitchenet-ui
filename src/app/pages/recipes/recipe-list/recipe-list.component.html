@@ -5,69 +5,58 @@
                 <div class="flex-grow-1">
                     <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Find a recipe" class="w-full" />
+                        <input
+                            pInputText
+                            placeholder="Find a recipe"
+                            class="w-full"
+                            [(ngModel)]="searchTerm"
+                            (input)="filterCollections()"
+                        />
                     </span>
                 </div>
                 <div>
                     <p-dropdown 
                         class="mr-2"
-                        [options]="typeOptions" 
-                        [(ngModel)]="typeFilter" 
-                        optionLabel="name" 
-    p                   placeholder="Type" />
-
-                    <p-dropdown 
-                        class="mr-2"
                         [options]="sortOptions" 
                         [(ngModel)]="sortOption" 
                         optionLabel="name" 
-    p                   placeholder="Sort" />
+                        (onChange)="filterCollections()"
+                        placeholder="Sort" />
 
-                    <p-button icon="pi pi-plus" routerLink="add" />
+                    <p-button icon="pi pi-plus" routerLink="add" label="Add" />
                 </div>
             </div>
             
-            <div class="grid mx-0 lg:-mx-3 px-0">
-                <div class="md:col-4 mt-5">
-                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chicken">
-                        <ng-template pTemplate="header">
-                            <img src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" (load)="onImageLoad()" />
-                        </ng-template>
-                    </p-card>
-                </div>
-
-                <div class="md:col-4 mt-5">
-                    <p-card header="LUNCH RECIPES" subheader="Fresh Tomato Soup">
-                        <ng-template pTemplate="header">
-                            <img alt="Card" src="https://www.allrecipes.com/thmb/tPyH_Dg5X1qaPteTwQj6-S4Jo2Q=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/39544-Garden-Fresh-Tomato-Soup-DDMFS-4x3-b8e94cf7ab8e42f4b79042fc0df55546.jpg" />
-                        </ng-template>
-                    </p-card>
-                </div>
-
-                <div class="md:col-4 mt-5">
-                    <p-card header="LUNCH RECIPES" subheader="Reuben Sandwich">
-                        <ng-template pTemplate="header">
-                            <img alt="Card" src="https://www.allrecipes.com/thmb/sKoeSuJsr2A47e-q0P5bVqGDTzg=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/47717-reuben-sandwich-ddmfs-hero-3x4-0624-88eae0b6357843b593b4f03f7debc7e1.jpg" />
-                        </ng-template>
-                    </p-card>
-                </div>
-
-                <div class="md:col-4 mt-5">
-                    <p-card header="LUNCH RECIPES" subheader="Meatless Grain Bowl">
-                        <ng-template pTemplate="header">
-                            <img alt="Card" src="https://www.allrecipes.com/thmb/4dstYm37UlL1vngeRlpKOv7gFDc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8584633_Grain-Bowl_Shelia-Johnson_4x3-145618cfb0554b09af42380ab13d93f5.jpg" />
-                        </ng-template>
-                    </p-card>
-                </div>
-
-                <div class="md:col-4 mt-5">
-                    <p-card header="LUNCH RECIPES" subheader="Creamy Garlic Chin">
-                        <ng-template pTemplate="header">
-                            <img alt="Card" src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Creamy-Garlic-Chicken-Side.jpg" />
-                        </ng-template>
-                    </p-card>
-                </div>
-            </div>
+            <p-dataView #dv [value]="filteredRecipes" [rows]="10" [paginator]="true">
+                    <ng-template pTemplate="list" let-recipes>
+                    <div class="grid grid-nogutter">
+                        <div class="col-12" *ngFor="let item of recipes; let first = first" class="col-12">
+                            <div class="flex flex-column md:flex-row align-items-start py-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                                <div class="md:w-10rem relative">
+                                    <img class="block xl:block mx-auto border-round w-full" [src]="item.coverPicture" [alt]="item.name" />
+                                </div>
+                                <div class="flex flex-column md:flex-row justify-content-between align-items-start flex-1 gap-3">
+                                    <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                                        <div>
+                                            <span class="font-medium text-secondary text-xs font-lighter text-400">{{ item.collection | uppercase }}</span>
+                                            <div class="text-lg font-bolder text-900 mt-2">{{ item.name }}</div>
+                                            <p class="text-sm mt-1">{{ item.description | truncate:65 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-column align-items-start md:align-items-end gap-5">
+                                        <div class="surface-100 p-1" style="border-radius: 30px">
+                                            <div class="surface-0 flex align-items-center gap-2 justify-content-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
+                                                <span class="text-900 font-medium text-sm">5</span>
+                                                <i class="pi pi-star-fill text-yellow-500"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
                 
         </div>
     </div>
