@@ -17,7 +17,7 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
         <div class="grid mt-2">
             <div class="col-12 md:col-4 flex flex-column gap-2">
-                <label class="font-bold">Collection</label>
+                <label class="font-semibold">Collection</label>
                 <p-dropdown 
                     formControlName="collection"
                     [options]="collections" 
@@ -33,7 +33,7 @@
             </div>
 
             <div class="col-12 md:col-8 flex flex-column gap-2">
-                <label class="font-bold">Name</label>
+                <label class="font-semibold">Name</label>
                 <input type="text" pInputText formControlName="name" />
                 @if (recipeForm.controls['name'].invalid && recipeForm.controls['name'].dirty) {
                     <small id="username-help" class="ng-dirty ng-invalid">
@@ -45,7 +45,7 @@
 
         <div class="grid mt-2">
             <div class="col-12 flex flex-column gap-2">
-                <label class="font-bold">Description</label>
+                <label class="font-semibold">Description</label>
                 <textarea
                     id="description"
                     rows="5"
@@ -65,7 +65,7 @@
 
          <div class="grid mt-2">
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Servings</label>
+                <label class="font-semibold">Servings</label>
                 <p-inputNumber 
                     formControlName="servings"
                     inputId="minmax" 
@@ -80,7 +80,7 @@
             </div>
 
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Prep Time</label>
+                <label class="font-semibold">Prep Time</label>
                 <p-inputNumber 
                     formControlName="prepTime"
                     inputId="mins"
@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Cook Time</label>
+                <label class="font-semibold">Cook Time</label>
                 <p-inputNumber 
                     formControlName="cookTime"
                     inputId="mins"
@@ -109,7 +109,7 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="my-5 flex flex-column gap-2">
-            <label class="font-bold">Ingredients</label>
+            <label class="font-semibold">Ingredients</label>
             <app-editor
                 [editorName]="'ingredients'"
                 [placeholder]="'Write some ingredients...'"
@@ -120,7 +120,7 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="my-5 flex flex-column gap-2">
-            <label class="font-bold">Instructions</label>
+            <label class="font-semibold">Instructions</label>
             <app-editor
                 [editorName]="'instructions'"
                 [placeholder]="'Write some instructions...'"
@@ -133,7 +133,7 @@
 
          <div class="grid mt-2">
             <div class="col-12 pb-0">
-                <span class="font-bold">Nutritional Information</span>
+                <span class="font-semibold">Nutritional Information</span>
             </div>
 
             <div class="col-4 md:col-3">
@@ -200,7 +200,7 @@
                 accept="image/*" 
                 maxFileSize="1000000" 
                 (onUpload)="onUpload($event)" /> -->
-            <span class="font-bold mb-2">Add a cover image</span>
+            <span class="font-semibold mb-2">Add a cover image</span>
             <input
                 type="text"
                 pInputText

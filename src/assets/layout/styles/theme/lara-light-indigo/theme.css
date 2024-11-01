@@ -75,7 +75,7 @@
   --green-800:#136c34;
   --green-900:#0e4f26;
   --yellow-50:#fefbf3;
-  --yellow-100:#faedc4;
+  --yellow-100:#faedc6;
   --yellow-200:#f6de95;
   --yellow-300:#f2d066;
   --yellow-400:#eec137;
@@ -1669,7 +1669,7 @@
     border-color: #6366F1;
   }
   .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
-    color: #6366F1;
+    color: var(--yellow-200);
   }
   .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-item:hover .p-rating-icon {
     color: #6366F1;
@@ -4364,7 +4364,7 @@
     border-top-left-radius: 6px;
   }
   .p-dialog .p-dialog-header .p-dialog-title {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.25rem;
   }
   .p-dialog .p-dialog-header .p-dialog-header-icon {

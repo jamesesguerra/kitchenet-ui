@@ -101,7 +101,7 @@
                         <i class="pi" [class]="category.icon" style="font-size: 1.8rem"></i>
 
                         <div>
-                            <span class="font-bold">{{ category.name }}</span>
+                            <span class="font-semibold">{{ category.name }}</span>
                             <p class="text-sm">{{ category.description }}</p>
                         </div>
                     </label>
@@ -117,7 +117,7 @@
         }
     
         <div class="flex justify-content-end gap-2 mt-4">
-            <p-button label="Cancel" severity="secondary" (onClick)="isAddModalVisible = false" />
+            <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="isAddModalVisible = false" />
             <p-button label="Save" type="submit" [disabled]="collectionForm.invalid" />
         </div>
     </form>
