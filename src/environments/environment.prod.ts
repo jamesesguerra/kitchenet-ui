@@ -4,7 +4,7 @@ export const environment = {
     domain: 'dev-qz3wlm2o81hgtfzp.us.auth0.com',
     clientId: '8y0CzWN4MoP7BAmqPrnvm8teIjQOUpwW',
     authorizationParams: {
-      redirect_uri: 'https://kitchenette-ui.vercel.app/callback',
+      redirect_uri: 'https://kitchenet.vercel.app/callback',
     },
     errorPath: '/callback',
   },
