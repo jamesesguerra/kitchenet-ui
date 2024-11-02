@@ -13,17 +13,17 @@
     </p>
     <p-divider class="w-full bg-surface-200"></p-divider>
 
-    <form>
+    <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()">
         <div class="flex w-full">
             <p-fieldset legend="Suggestion Details" class="flex-grow-1">
                 <div class="col-12 flex flex-column p-0 gap-2 mb-4">
                     <label class="">Title</label>
-                    <input type="text" pInputText />
+                    <input type="text" pInputText formControlName="title" />
                 </div>
 
                 <div class="col-12 flex flex-column p-0 gap-2">
                     <label class="">Description</label>
-                    <textarea rows="4" cols="30" pInputTextarea></textarea>
+                    <textarea rows="4" cols="30" pInputTextarea formControlName="description"></textarea>
                 </div>
             </p-fieldset>
         </div>
@@ -34,18 +34,21 @@
 
         <div class="grid mt-2">
             <div class="col-12 flex flex-column gap-2">
-                <label class="font-bold">Recipe Name</label>
-                <input type="text" pInputText />
+                <label class="font-semibold">Recipe Name</label>
+                <input type="text" pInputText formControlName="recipeName" />
             </div>
         </div>
 
         <div class="grid mt-2">
             <div class="col-12 flex flex-column gap-2">
-                <label class="font-bold">Description</label>
-                <app-editor
-                    [editorName]="'description'"
-                    [placeholder]="'Write a description of your recipe'"
-                />
+                <label class="font-semibold">Recipe Description</label>
+                <textarea
+                        id="description"
+                        rows="5"
+                        cols="45"
+                        pInputTextarea
+                        formControlName="recipeDescription"
+                ></textarea>
             </div>
         </div>
 
@@ -53,8 +56,9 @@
 
         <div class="grid mt-2">
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Servings</label>
+                <label class="font-semibold">Servings</label>
                 <p-inputNumber 
+                    formControlName="servings"
                     inputId="minmax" 
                     mode="decimal" 
                     [min]="0" 
@@ -62,15 +66,17 @@
             </div>
 
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Prep Time</label>
+                <label class="font-semibold">Prep Time</label>
                 <p-inputNumber 
+                    formControlName="prepTime"
                     inputId="mins"
                     suffix=" mins" /> 
             </div>
 
             <div class="col-4 md:col-2 flex flex-column gap-2">
-                <label class="font-bold">Cook Time</label>
+                <label class="font-semibold">Cook Time</label>
                 <p-inputNumber 
+                    formControlName="cookTime"
                     inputId="mins"
                     suffix=" mins" /> 
             </div>
@@ -79,9 +85,10 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="my-5 flex flex-column gap-2">
-            <label class="font-bold">Ingredients</label>
+            <label class="font-semibold">Ingredients</label>
             <app-editor
-                [editorName]="'ingredients'"
+                [initialContent]="ingredients"
+                [editorName]="'ingredientsSuggest'"
                 [placeholder]="'Write some ingredients...'"
             />
          </div>
@@ -89,11 +96,11 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="my-5 flex flex-column gap-2">
-            <label class="font-bold">Instructions</label>
+            <label class="font-semibold">Instructions</label>
             <app-editor
-                [editorName]="'instructions'"
+                [editorName]="'instructionsSuggest'"
                 [placeholder]="'Write some instructions...'"
-                [initialContent]="'<ol><li></li></ol>'"
+                [initialContent]="instructions"
             />
          </div>
 
@@ -101,13 +108,14 @@
 
          <div class="grid mt-2">
             <div class="col-12 pb-0">
-                <span class="font-bold">Nutritional Information</span>
+                <span class="font-semibold">Nutritional Information</span>
             </div>
 
             <div class="col-4 md:col-3">
                 <div class="flex flex-column gap-2">
                     <label>Calories</label>
                     <p-inputNumber 
+                        formControlName="calories"
                         inputId="kcal"
                         suffix=" kcal" /> 
                 </div>
@@ -117,6 +125,7 @@
                 <div class="flex flex-column gap-2">
                     <label>Protein</label>
                     <p-inputNumber 
+                        formControlName="protein"
                         inputId="g"
                         suffix=" g" /> 
                 </div>
@@ -126,6 +135,7 @@
                 <div class="flex flex-column gap-2">
                     <label>Fat</label>
                     <p-inputNumber 
+                        formControlName="fat"
                         inputId="g"
                         suffix=" g" /> 
                 </div>
@@ -135,6 +145,7 @@
                 <div class="flex flex-column gap-2">
                     <label>Fiber</label>
                     <p-inputNumber 
+                        formControlName="fiber"
                         inputId="g"
                         suffix=" g" /> 
                 </div>
@@ -144,6 +155,7 @@
                 <div class="flex flex-column gap-2">
                     <label>Carbohydrates</label>
                     <p-inputNumber 
+                        formControlName="carbohydrates"
                         inputId="g"
                         suffix=" g" /> 
                 </div>
@@ -153,7 +165,7 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="flex justify-content-end mb-8">
-            <p-button label="Submit Suggestion" />
+            <p-button label="Submit Suggestion" type="submit" [disabled]="suggestionForm.invalid" />
          </div>
 
     </form>

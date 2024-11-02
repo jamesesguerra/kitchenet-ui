@@ -123,11 +123,14 @@ export class EditRecipeComponent implements OnInit {
 
     const recipe: Recipe = {
       id: this.recipe.id,
+      collectionId: formValues.collection.id,
       name: formValues.name,
       description: formValues.description,
       coverPicture: formValues.coverPicture,
       prepTime: formValues.prepTime,
       cookTime: formValues.cookTime,
+      ingredients: editorValues[0],
+      instructions: editorValues[1],
       servings: formValues.servings,
       calories: formValues.calories,
       protein: formValues.protein,
@@ -135,10 +138,6 @@ export class EditRecipeComponent implements OnInit {
       fat: formValues.fat,
       carbohydrates: formValues.carbohydrates,
     }
-
-    recipe.collectionId = formValues.collection.id;
-    recipe.ingredients = editorValues[0];
-    recipe.instructions = editorValues[1];
 
     this.recipeService.updateRecipe(this.recipe.id, recipe).subscribe({
       next: () => {
