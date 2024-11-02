@@ -26,40 +26,59 @@
                     <p-button icon="pi pi-plus" routerLink="add" label="Add" />
                 </div>
             </div>
-            
-            <p-dataView #dv [value]="filteredRecipes" [rows]="10" [paginator]="true">
-                    <ng-template pTemplate="list" let-recipes>
-                    <div class="grid grid-nogutter">
-                        <div class="col-12" *ngFor="let item of recipes; let first = first" class="col-12">
-                            <div class="flex flex-column md:flex-row align-items-start py-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
-                                <div class="md:w-10rem relative image-container">
-                                    <img class="block xl:block mx-auto border-round w-full responsive-image" [src]="item.coverPicture" [alt]="item.name" />
-                                </div>
-                                <div class="flex flex-column md:flex-row justify-content-between align-items-start flex-1 gap-3">
-                                    <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
-                                        <div>
-                                            <span class="font-medium text-secondary text-xs font-lighter text-400">{{ item.collection | uppercase }}</span>
-                                            <div class="text-lg font-bolder text-900 mt-2">
-                                                <a [routerLink]="item.id">{{ item.name }}</a>
-                                            </div>
-                                            <p class="text-sm mt-1 md:max-w-25rem">{{ item.description | truncate:100 }}</p>
-                                        </div>
+
+            @if (!(isLoading$ | async)) {
+                <p-dataView #dv [value]="filteredRecipes" [rows]="10" [paginator]="true">
+                        <ng-template pTemplate="list" let-recipes>
+                        <div class="grid grid-nogutter">
+                            <div class="col-12" *ngFor="let item of recipes; let first = first" class="col-12">
+                                <div class="flex flex-column md:flex-row align-items-start py-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                                    <div class="md:w-10rem relative image-container">
+                                        <img class="block xl:block mx-auto border-round w-full responsive-image" [src]="item.coverPicture" [alt]="item.name" />
                                     </div>
-                                    <div class="flex flex-column align-items-start md:align-items-end gap-5">
-                                        <div class="surface-100 p-1" style="border-radius: 30px">
-                                            <div class="surface-0 flex align-items-center gap-2 justify-content-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
-                                                <span class="text-900 font-medium text-sm">5</span>
-                                                <i class="pi pi-star-fill text-yellow-500"></i>
+                                    <div class="flex flex-column md:flex-row justify-content-between align-items-start flex-1 gap-3">
+                                        <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                                            <div>
+                                                <span class="font-medium text-secondary text-xs font-lighter text-400">{{ item.collection | uppercase }}</span>
+                                                <div class="text-lg font-bolder text-900 mt-2">
+                                                    <a [routerLink]="item.id">{{ item.name }}</a>
+                                                </div>
+                                                <p class="text-sm mt-1 md:max-w-25rem">{{ item.description | truncate:100 }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-column align-items-start md:align-items-end gap-5">
+                                            <div class="surface-100 p-1" style="border-radius: 30px">
+                                                <div class="surface-0 flex align-items-center gap-2 justify-content-center py-1 px-2" style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
+                                                    <span class="text-900 font-medium text-sm">5</span>
+                                                    <i class="pi pi-star-fill text-yellow-200"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </ng-template>
+                </p-dataView>
+            } @else {
+                <div class="grid grid-nogutter">
+                    <div class="col-12" *ngFor="let i of counterArray(6); let first = first" class="col-12">
+                        <div class="flex flex-column md:flex-row xl:align-items-start py-4 px-0 gap-4" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                            <p-skeleton styleClass="w-full md:w-10rem h-10rem md:h-6rem block xl:block border-round" />
+                            <div class="flex flex-column md:flex-row justify-content-between align-items-start flex-1 gap-4">
+                                <div class="flex flex-column align-items-start gap-2">
+                                    <p-skeleton styleClass="w-6rem border-round h-1rem" />
+                                    <p-skeleton styleClass="w-8rem border-round h-1rem" />
+                                    <p-skeleton styleClass="w-10rem border-round h-1rem" />
+                                </div>
+                                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                                    <p-skeleton styleClass="w-2rem border-round h-1rem" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </ng-template>
-            </p-dataView>
-                
+                </div>
+            }
         </div>
     </div>
 </div>

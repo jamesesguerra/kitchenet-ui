@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RecipeSummaryDto } from 'src/app/dtos/recipe-summary.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -22,14 +23,22 @@ export class RecipeListComponent {
     recipes: RecipeSummaryDto[] = [];
     filteredRecipes: RecipeSummaryDto[] = [];
 
+    private isLoadingSubject: BehaviorSubject<boolean>;
+    isLoading$: Observable<boolean>;
+
     constructor(
         private recipeService: RecipeService,
         private toastService: ToastService)
-    { }
+    {
+        this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+        this.isLoading$ = this.isLoadingSubject.asObservable();
+    }
 
     ngOnInit() {
+        this.isLoadingSubject.next(true);
         this.recipeService.getRecipeSummariesByUserId().subscribe({
             next: (recipes) => {
+                this.isLoadingSubject.next(false);
                 this.recipes = recipes;
                 this.filteredRecipes = recipes;
             },
@@ -53,5 +62,9 @@ export class RecipeListComponent {
                 return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
             });
         }
+    }
+
+    counterArray(n: number): any[] {
+        return Array(n);
     }
 }
