@@ -7,7 +7,7 @@
         <button 
             pButton 
             pRipple 
-            label="New suggestion"
+            label="New"
             routerLink="suggest"
         >
         </button>
@@ -17,8 +17,22 @@
 <div>
     @for(suggestion of suggestions; track suggestion.id) {
         <div class="px-1">
-            <a class="text-base" [routerLink]="'suggestions/3'">{{ suggestion.title }}</a>
-            <p class="font-light text-base mt-2">opened last week by james</p>
+            <div class="flex gap-2">
+                <div class="flex gap-3">
+                    @if (suggestion.status == 'Open') {
+                        <i class="pi pi-sort-alt mt-1" style="color: #22c55e"></i>
+                    } @else if (suggestion.status === 'Merged') {
+                        <i class="pi pi-sync mt-1" style="color: #fc701c"></i>
+                    } @else {
+                        <i class="pi pi-sort-alt-slash mt-1" style="color: red"></i>
+                    }
+                </div>
+
+                <div class="flex flex-column">
+                    <a class="text-base" [routerLink]="['suggestions', suggestion.id]">{{ suggestion.title }}</a>
+                    <p class="font-light text-base mt-2">opened last week by {{ suggestion.createdBy }}</p>
+                </div>
+            </div>
         </div>
         <p-divider />
     }

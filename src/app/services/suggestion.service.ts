@@ -23,4 +23,12 @@ export class SuggestionService {
   getSuggestionByIdWithChanges(id: number) {
     return this.http.get<SuggestionDto>(`${this.apiUrl}/${id}`);
   }
+
+  getSuggestionsByRecipeId(id: number) {
+    return this.http.get<SuggestionDto[]>(`${this.apiUrl}?recipeId=${id}`);
+  }
+
+  patchSuggestion(id: number, suggestion: Partial<SuggestionDto>) {
+    return this.http.patch(`${this.apiUrl}/${id}`, suggestion);
+  }
 }

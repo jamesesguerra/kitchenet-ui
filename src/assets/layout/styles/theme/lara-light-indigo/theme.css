@@ -4143,7 +4143,7 @@
     border-top-left-radius: 6px;
   }
   .p-panel .p-panel-header .p-panel-title {
-    font-weight: 700;
+    font-weight: 600;
   }
   .p-panel .p-panel-header .p-panel-header-icon {
     width: 2rem;
@@ -4969,7 +4969,7 @@
     padding: 0.75rem 1.25rem;
     color: #374151;
     background: #ffffff;
-    font-weight: 700;
+    font-weight: 500;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }

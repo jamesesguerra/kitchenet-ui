@@ -32,6 +32,10 @@ export class RecipeService {
     return this.http.put(`${this.apiUrl}/${id}`, recipe);
   }
 
+  patchRecipe(id: number, recipe: Partial<Recipe>) {
+    return this.http.patch(`${this.apiUrl}/${id}`, recipe);
+  }
+
   deleteRecipeByIds(ids: number[]) {
     const params = ids.join(',');
     return this.http.delete(`${this.apiUrl}?ids=${params}`);

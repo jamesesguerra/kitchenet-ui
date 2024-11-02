@@ -3,7 +3,7 @@
         @if (isLoading$ | async) {
             <p-skeleton height="1rem" width="15rem" styleClass="mb-2" />
         } @else {
-            <span>Lunch Recipes / <span class="font-bold">{{ recipe.name }}</span> </span>
+            <span>Lunch Recipes / <span class="font-semibold">{{ recipe.name }}</span> </span>
         }
     </div>
 
@@ -23,7 +23,9 @@
             }
         </p-tabPanel>
         <p-tabPanel header="Suggestions">
-            <app-suggestion-list />
+            @if (!(isLoading$ | async)) {
+                <app-suggestion-list [recipeId]="recipe.id" />
+            }
         </p-tabPanel>
     </p-tabView>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Delta } from 'quill/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { SuggestionDto } from 'src/app/dtos/suggestion.dto';
+import { ToastService } from 'src/app/layout/service/toast.service';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { SuggestionService } from 'src/app/services/suggestion.service';
@@ -17,12 +18,38 @@ export class SuggestionDetailComponent implements OnInit {
   currentRecipe: Recipe;
   modifiedFields = [];
 
+  items = [
+    {
+        label: 'Actions',
+        items: [
+            {
+                label: 'Accept',
+                icon: 'pi pi-sort-alt',
+                command: () => {
+                  this.acceptSuggestion();
+                }
+            },
+            {
+                label: 'Close',
+                icon: 'pi pi-sort-alt-slash'
+            },
+            { separator: true },
+            {
+              label: 'Delete',
+              icon: 'pi pi-trash'
+            },
+        ]
+    }
+];
+
   private isLoadingSubject: BehaviorSubject<boolean>;
   isLoading$: Observable<boolean>;
 
   constructor(
     private suggestionService: SuggestionService,
+    private toastService: ToastService,
     private recipeService: RecipeService,
+    private router: Router,
     private activatedRoute: ActivatedRoute)
   {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
@@ -70,5 +97,21 @@ export class SuggestionDetailComponent implements OnInit {
     } else {
       return recipe[field].toString();
     }
+  }
+
+  private acceptSuggestion() {
+    forkJoin({
+      suggestion: this.suggestionService.patchSuggestion(this.suggestion.id, { status: 'Merged' }),
+      recipe: this.recipeService.patchRecipe(this.currentRecipe.id, this.suggestion.recipeChanges)
+    }).subscribe({
+      next: () => {
+        this.router.navigate(['/recipes', this.currentRecipe.id])
+        this.toastService.showSuccess("Success!", "Accepted suggestion changes");
+      },
+      error: ({ error }) => {
+        this.isLoadingSubject.next(false);
+        this.toastService.showError("Error", error.title);
+      }
+    });
   }
 }

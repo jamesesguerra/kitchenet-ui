@@ -1,6 +1,7 @@
 export interface Recipe {
     id?: number;
     collectionId?: number;
+    suggestionId?: number;
     name: string;
     description: string;
     coverPicture: string;

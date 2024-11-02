@@ -34,6 +34,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { DataViewModule } from 'primeng/dataview';
     SharedModule,
     ProgressSpinnerModule,
     ConfirmDialogModule,
-    DataViewModule
+    DataViewModule,
+    MenuModule
   ],
   providers: [ConfirmationService]
 })
