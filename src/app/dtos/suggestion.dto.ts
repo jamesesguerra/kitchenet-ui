@@ -5,6 +5,8 @@ export interface SuggestionDto {
     recipeId: number;
     title: string;
     description: string;
+    status?: string;
     createdBy?: string;
+    createdAt?: Date,
     recipeChanges: Partial<Recipe>;
 }

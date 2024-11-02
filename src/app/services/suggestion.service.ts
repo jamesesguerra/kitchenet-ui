@@ -19,4 +19,8 @@ export class SuggestionService {
     suggestion.createdBy = this.currentUserId;
     return this.http.post<SuggestionDto>(`${this.apiUrl}`, suggestion);
   }
+
+  getSuggestionByIdWithChanges(id: number) {
+    return this.http.get<SuggestionDto>(`${this.apiUrl}/${id}`);
+  }
 }

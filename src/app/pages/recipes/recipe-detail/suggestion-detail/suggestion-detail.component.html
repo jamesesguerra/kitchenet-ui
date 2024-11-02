@@ -1,18 +1,20 @@
 <div class="max-w-65rem mx-auto">
-    <div class="mb-3">
-        <h1 class="text-3xl">Suggestion Title Here <span class="font-light">#1</span></h1>
-        <div class="flex gap-2">
-            <p-tag
-                value="Open"
-                [rounded]="true"
-                severity="success"
-                icon="pi pi-sort-alt"
-            />
-            <p>
-                Someone suggested changes on date
-            </p>
+    @if (!(isLoading$ | async)) {
+        <div class="mb-3">
+            <h1 class="text-3xl">{{ suggestion.title }} <span class="font-light">#{{ suggestion.id }}</span></h1>
+            <div class="flex gap-2">
+                <p-tag
+                    [value]="suggestion.status"
+                    [rounded]="true"
+                    severity="success"
+                    icon="pi pi-sort-alt"
+                />
+                <p>
+                    {{ suggestion.createdBy }} suggested changes on {{ suggestion.createdAt | date: 'MMM d, y' }}
+                </p>
+            </div>
         </div>
-    </div>
+    }
 
     <p-tabView>
         <p-tabPanel header="Discussion">
@@ -39,16 +41,15 @@
             </div>
         </p-tabPanel>
         <p-tabPanel header="Changes">
-            <app-field-change
-                [fieldName]="'Recipe Name'"
-                [oldContent]="'Creamy Garlic Chicken'"
-                [newContent]="'Creamy Garlic Chicken with Peanut Sauce'"
-            />
-            <app-field-change
-                [fieldName]="'Instructions'"
-                [oldContent]="'Yes'"
-                [newContent]="'No'"
-            />
+            @if (!(isLoading$ | async)) {
+                @for (field of modifiedFields; track field) {
+                    <app-field-change
+                        [fieldName]="field.charAt(0).toUpperCase() + field.slice(1)"
+                        [oldContent]="getRecipeFieldContent(currentRecipe, field)"
+                        [newContent]="getRecipeFieldContent(suggestion.recipeChanges, field)"
+                    />
+                }
+            }
         </p-tabPanel>
     </p-tabView>
 </div>

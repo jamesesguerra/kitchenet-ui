@@ -14,7 +14,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
         { path: ':id', component: RecipeDetailComponent },
         { path: ':id/suggest', component: AddSuggestionComponent },
         { path: ':id/edit', component: EditRecipeComponent },
-        { path: ':id/suggestions/:id', component: SuggestionDetailComponent },
+        { path: ':recipeId/suggestions/:suggestionId', component: SuggestionDetailComponent },
     ])],
     exports: [RouterModule]
 })
