@@ -136,6 +136,11 @@
     <form action="" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
         <div class="flex flex-column gap-3">
             <p-rating formControlName="rating" [cancel]="false" name="value" />
+            @if (reviewForm.controls['rating'].invalid && reviewForm.controls['rating'].dirty) {
+                <small id="username-help" class="ng-dirty ng-invalid">
+                    Rating cannot be 0.
+                </small>
+            }
         </div>
 
         <div class="flex flex-column gap-2 my-4">
@@ -158,10 +163,9 @@
         <app-comment
             [content]="review.content"
             [rating]="review.rating"
-            [likeCount]="review.likeCount"
-            [dislikeCount]="review.dislikeCount"
             [createdBy]="review.createdBy"
             [userPicture]="review.userPicture"
+            [createdAt]="review.createdAt"
         />
     }
 

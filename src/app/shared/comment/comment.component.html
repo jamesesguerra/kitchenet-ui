@@ -9,19 +9,11 @@
     <div class="comment-content">
         <div class="comment-author">
             <span class="author-name">{{ createdBy }}</span>
-            @if (rating !== null) {
-                <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" />
-            } @else {
-                <span class="comment-date">June 5, 2000</span>
-            }
+            <span class="comment-date">{{ createdAt | date }}</span>
         </div>
 
-        <p>{{ content }}</p>
-
-        <div class="comment-actions mt-3">
-            <span class="pi pi-thumbs-up cursor-pointer" style="font-size: 0.8rem"></span> <span class="pl-2">{{ likeCount }}</span>
-            <span class="pi pi-thumbs-down cursor-pointer pl-3" style="font-size: 0.8rem"></span> <span class="pl-2">{{ dislikeCount }}</span>
-        </div>
+        <p class="mb-1">{{ content }}</p>
+        <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false" />
     </div>
 
 </div>

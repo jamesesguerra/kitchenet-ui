@@ -47,7 +47,7 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.reviewForm = new FormGroup({
-      rating: new FormControl(0, Validators.required),
+      rating: new FormControl(0, [Validators.required, Validators.min(1)]),
       review: new FormControl('', Validators.required)
     })
   }
