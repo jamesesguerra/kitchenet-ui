@@ -31,4 +31,8 @@ export class SuggestionService {
   patchSuggestion(id: number, suggestion: Partial<SuggestionDto>) {
     return this.http.patch(`${this.apiUrl}/${id}`, suggestion);
   }
+
+  deleteSuggestion(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }

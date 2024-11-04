@@ -15,6 +15,11 @@
 </div>
 
 <div>
+    @if (suggestions.length == 0) {
+        <div class="flex justify-content-center col-12 mt-2">
+            No suggestions to show.
+        </div>
+    }
     @for(suggestion of suggestions; track suggestion.id) {
         <div class="px-1">
             <div class="flex gap-2">

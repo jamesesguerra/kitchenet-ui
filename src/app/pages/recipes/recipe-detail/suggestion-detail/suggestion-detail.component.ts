@@ -17,30 +17,8 @@ export class SuggestionDetailComponent implements OnInit {
   suggestion: SuggestionDto;
   currentRecipe: Recipe;
   modifiedFields = [];
-
-  items = [
-    {
-        label: 'Actions',
-        items: [
-            {
-                label: 'Accept',
-                icon: 'pi pi-sort-alt',
-                command: () => {
-                  this.acceptSuggestion();
-                }
-            },
-            {
-                label: 'Close',
-                icon: 'pi pi-sort-alt-slash'
-            },
-            { separator: true },
-            {
-              label: 'Delete',
-              icon: 'pi pi-trash'
-            },
-        ]
-    }
-];
+ 
+  items = [];
 
   private isLoadingSubject: BehaviorSubject<boolean>;
   isLoading$: Observable<boolean>;
@@ -73,6 +51,7 @@ export class SuggestionDetailComponent implements OnInit {
             this.currentRecipe = recipe;
   
             this.modifiedFields = this.getModifiedFields(suggestion.recipeChanges);
+            this.setSuggestionActions();
             this.isLoadingSubject.next(false);
           },
           error: ({ error }) => {
@@ -99,6 +78,48 @@ export class SuggestionDetailComponent implements OnInit {
     }
   }
 
+  private setSuggestionActions() {
+    let actions = [];
+
+    const extraActions = [
+      {
+        label: 'Accept',
+        icon: 'pi pi-sort-alt',
+        command: () => {
+          this.acceptSuggestion();
+        }
+      },
+      {
+        label: 'Close',
+        icon: 'pi pi-sort-alt-slash'
+      },
+      { separator: true }
+    ];
+
+    const defaultActions = [
+      {
+        label: 'Delete',
+        icon: 'pi pi-trash',
+        command: () => {
+          this.deleteSuggestion();
+        }
+      }
+    ]
+
+    if (this.suggestion.status === "Open") {
+      actions = [...extraActions]
+    }
+
+    actions = [...actions, ...defaultActions];
+
+    console.log(actions);
+
+    this.items = [{
+      label: 'Actions',
+      items: actions
+    }]
+  }
+
   private acceptSuggestion() {
     forkJoin({
       suggestion: this.suggestionService.patchSuggestion(this.suggestion.id, { status: 'Merged' }),
@@ -113,5 +134,17 @@ export class SuggestionDetailComponent implements OnInit {
         this.toastService.showError("Error", error.title);
       }
     });
+  }
+
+  private deleteSuggestion() {
+    this.suggestionService.deleteSuggestion(this.suggestion.id).subscribe({
+      next: () => {
+        this.toastService.showSuccess("Success!", "Suggestion was deleted");
+        this.router.navigate(['/recipes', this.currentRecipe.id]);
+      },
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
+      }
+    })
   }
 }
