@@ -2092,16 +2092,16 @@
   .p-button.p-button-secondary,
 .p-buttonset.p-button-secondary > .p-button,
 .p-splitbutton.p-button-secondary > .p-button {
-    color: #ffffff;
-    background: #64748b;
-    border: 1px solid #64748b;
+    color: #475569;
+    background: #f1f5f9;
+    border: 1px solid #f1f5f9;
   }
   .p-button.p-button-secondary:not(:disabled):hover,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):hover,
 .p-splitbutton.p-button-secondary > .p-button:not(:disabled):hover {
-    background: #475569;
-    color: #ffffff;
-    border-color: #475569;
+    background: #e2e8f0;
+    color: #334155;
+    border-color: #e2e8f0;
   }
   .p-button.p-button-secondary:not(:disabled):focus,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):focus,
