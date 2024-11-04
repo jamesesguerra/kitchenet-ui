@@ -1,6 +1,7 @@
 export interface Recipe {
     id?: number;
     collectionId?: number;
+    collectionName?: string;
     suggestionId?: number;
     name: string;
     description: string;
@@ -15,5 +16,6 @@ export interface Recipe {
     fat: number;
     carbohydrates: number;
     fiber: number;
+    createdBy?: string;
     createdAt?: Date;
 }

@@ -3,7 +3,7 @@
         @if (isLoading$ | async) {
             <p-skeleton height="1rem" width="15rem" styleClass="mb-2" />
         } @else {
-            <span>Lunch Recipes / <span class="font-semibold">{{ recipe.name }}</span> </span>
+            <span>{{ recipe.collectionName }} / <span class="font-semibold">{{ recipe.name }}</span> </span>
         }
     </div>
 
