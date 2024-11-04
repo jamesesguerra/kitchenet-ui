@@ -112,8 +112,6 @@ export class SuggestionDetailComponent implements OnInit {
 
     actions = [...actions, ...defaultActions];
 
-    console.log(actions);
-
     this.items = [{
       label: 'Actions',
       items: actions

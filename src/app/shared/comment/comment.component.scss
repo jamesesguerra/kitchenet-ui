@@ -36,3 +36,12 @@
         }
     }
 }
+
+:host ::ng-deep .p-rating .p-rating-item .p-rating-icon.p-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+:host ::ng-deep p-rating div.p-rating > div:not(.p-rating-item-active) {
+    display: none;
+}

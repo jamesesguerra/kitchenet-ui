@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-comment',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './comment.component.scss'
 })
 export class CommentComponent {
-
+  @Input({ required: true }) content!: string;
+  @Input() rating: number;
+  @Input() likeCount: number;
+  @Input() dislikeCount: number;
+  @Input({ required: true }) createdBy!: string;
+  @Input({ required: true }) userPicture!: string;
+  @Input() createdAt: Date;
+  
 }

@@ -132,7 +132,7 @@
 <p-divider class="w-full bg-surface-200"></p-divider>
 
 <section class="mt-7 p-4 card shadow-1">
-    <h3 class="text-2xl">Leave a review</h3>
+    <h3 class="text-xl">Leave a review</h3>
     <form action="" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
         <div class="flex flex-column gap-3">
             <p-rating formControlName="rating" [cancel]="false" name="value" />
@@ -153,9 +153,16 @@
 
 <section class="my-7">
     <h3 class="text-2xl">Reviews</h3>
-    <app-comment />
-    <app-comment />
-
-    <app-comment />
+    
+    @for (review of reviews; track review.id) {
+        <app-comment
+            [content]="review.content"
+            [rating]="review.rating"
+            [likeCount]="review.likeCount"
+            [dislikeCount]="review.dislikeCount"
+            [createdBy]="review.createdBy"
+            [userPicture]="review.userPicture"
+        />
+    }
 
 </section>

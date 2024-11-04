@@ -11,6 +11,7 @@ import { ModalComponent } from './modal/modal.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditorComponent } from './editor/editor.component';
 import { TruncatePipe } from '../pipes/truncate.pipe';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
         InputTextModule,
         StyleClassModule,
         AvatarModule,
+        RatingModule
     ],
     declarations: [
         ModalComponent,

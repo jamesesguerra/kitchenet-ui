@@ -6,5 +6,6 @@ export interface RecipeReview {
     likeCount?: number;
     dislikeCount?: number;
     createdBy?: string;
+    userPicture?: string;
     createdAt?: Date;
 }

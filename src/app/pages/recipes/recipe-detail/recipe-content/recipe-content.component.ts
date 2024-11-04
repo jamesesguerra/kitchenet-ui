@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fromEvent, Subscription } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
+import { RecipeReview } from 'src/app/models/recipe-review.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeReviewService } from 'src/app/services/recipe-review.service';
 
@@ -24,6 +25,7 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
   value = 0;
 
   reviewForm: FormGroup;
+  reviews: RecipeReview[] = [];
 
   constructor(private reviewService: RecipeReviewService, private toastService: ToastService) { }
 
@@ -39,6 +41,8 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
 
     this.ingredients = JSON.parse(this.recipe.ingredients).htmlContent;
     this.instructions = JSON.parse(this.recipe.instructions).htmlContent;
+
+    this.refreshReviews();
   }
 
   initForm() {
@@ -58,8 +62,8 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
     }
 
     this.reviewService.addRecipeReview(review).subscribe({
-      next: (review) => {
-        console.log(review);
+      next: () => {
+        this.refreshReviews();
         this.toastService.showSuccess("Success!", "Your review has been added");
       },
       error: ({ error }) => {
@@ -68,6 +72,17 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
     })
 
     this.reviewForm.reset();
+  }
+
+  private refreshReviews() {
+    this.reviewService.getRecipeReviewsByUserId(this.recipe.id).subscribe({
+      next: (reviews) => {
+        this.reviews = reviews;
+      },
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
+      }
+    })
   }
 
   ngOnDestroy(): void {
