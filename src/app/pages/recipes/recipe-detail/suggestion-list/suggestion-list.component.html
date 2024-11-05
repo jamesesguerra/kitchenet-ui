@@ -1,6 +1,12 @@
 <div class="flex mb-4 gap-2">
     <div class="flex-grow-1">
-        <input type="text" pInputText class="min-w-full" />
+        <input
+            type="text"
+            pInputText
+            class="min-w-full"
+            [(ngModel)]="searchTerm"
+            (input)="filterCollections()"
+        />
     </div>
 
     <div class="flex">
@@ -20,7 +26,7 @@
             No suggestions to show.
         </div>
     }
-    @for(suggestion of suggestions; track suggestion.id) {
+    @for(suggestion of filteredSuggestions; track suggestion.id) {
         <div class="px-1">
             <div class="flex gap-2">
                 <div class="flex gap-3">
