@@ -15,7 +15,7 @@ export class RecipeReviewService {
     this.currentUserId = this.userService.getUserId();
   }
 
-  getRecipeReviewsByUserId(id: number) {
+  getRecipeReviewsByRecipeId(id: number) {
     return this.http.get<RecipeReview[]>(`${this.apiUrl}?recipeId=${id}`);
   }
 

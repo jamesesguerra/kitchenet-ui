@@ -5,7 +5,9 @@ import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { SuggestionDto } from 'src/app/dtos/suggestion.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Recipe } from 'src/app/models/recipe.model';
+import { SuggestionComment } from 'src/app/models/suggestion-comment.model';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { SuggestionCommentService } from 'src/app/services/suggestion-comment.service';
 import { SuggestionService } from 'src/app/services/suggestion.service';
 
 @Component({
@@ -17,6 +19,8 @@ export class SuggestionDetailComponent implements OnInit {
   suggestion: SuggestionDto;
   currentRecipe: Recipe;
   modifiedFields = [];
+  comments: SuggestionComment[] = [];
+  newComment = '';
  
   items = [];
 
@@ -27,6 +31,7 @@ export class SuggestionDetailComponent implements OnInit {
     private suggestionService: SuggestionService,
     private toastService: ToastService,
     private recipeService: RecipeService,
+    private commentService: SuggestionCommentService,
     private router: Router,
     private activatedRoute: ActivatedRoute)
   {
@@ -49,10 +54,10 @@ export class SuggestionDetailComponent implements OnInit {
           next: ({ suggestion, recipe }) => {
             this.suggestion = suggestion;
             this.currentRecipe = recipe;
-  
+
+            this.refreshComments();
             this.modifiedFields = this.getModifiedFields(suggestion.recipeChanges);
             this.setSuggestionActions();
-            this.isLoadingSubject.next(false);
           },
           error: ({ error }) => {
             this.isLoadingSubject.next(false);
@@ -76,6 +81,20 @@ export class SuggestionDetailComponent implements OnInit {
     } else {
       return recipe[field].toString();
     }
+  }
+
+  onSubmit() {
+    const comment = { suggestionId: this.suggestion.id, content: this.newComment };
+    this.commentService.addRecipeReview(comment).subscribe({
+      next: () => {
+        this.newComment = '';
+        this.refreshComments();
+        this.toastService.showSuccess("Success!", "Your comment has been added");
+      },
+      error: ({ error }) => {
+        this.toastService.showError("Error", error.title);
+      }
+    })
   }
 
   private setSuggestionActions() {
@@ -142,6 +161,15 @@ export class SuggestionDetailComponent implements OnInit {
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
+      }
+    })
+  }
+
+  private refreshComments() {
+    this.commentService.getRecipeReviewsByUserId(this.suggestion.id).subscribe({
+      next: (comments) => {
+        this.comments = comments;
+        this.isLoadingSubject.next(false);
       }
     })
   }

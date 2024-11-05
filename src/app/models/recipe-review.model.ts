@@ -1,9 +1,6 @@
-export interface RecipeReview {
-    id?: number;
+import { Comment } from "./comment.model";
+
+export interface RecipeReview extends Comment {
     recipeId: number;
     rating: number;
-    content: string;
-    createdBy?: string;
-    userPicture?: string;
-    createdAt?: Date;
 }

@@ -25,6 +25,15 @@
                     [createdBy]="suggestion.createdBy"
                     [createdAt]="suggestion.createdAt"
                 />
+
+                @for (comment of comments; track comment.id) {
+                    <app-comment
+                        [content]="comment.content"
+                        [userPicture]="comment.userPicture"
+                        [createdBy]="comment.createdBy"
+                        [createdAt]="comment.createdAt"
+                    />
+                }
             }
 
             <div class="entry-container">
@@ -37,7 +46,7 @@
                 </div>
                 <div class="entry-content">
                     <span class="font-bold block mb-3">Add a comment</span>
-                    <textarea class="w-full" rows="6" pInputTextarea></textarea>
+                    <textarea class="w-full" rows="6" pInputTextarea [(ngModel)]="newComment"></textarea>
                 </div>
             </div>
             <div class="flex justify-content-end mt-3 gap-2 pb-8">
@@ -51,7 +60,7 @@
                         size="small"
                     />
                 </div>
-                <p-button label="Comment" size="small" />
+                <p-button label="Comment" size="small" (click)="onSubmit()" />
             </div>
         </p-tabPanel>
         <p-tabPanel header="Changes">

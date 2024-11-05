@@ -16,6 +16,10 @@
     }
 }
 
+::ng-deep .comment-container {
+    padding-bottom: 0 !important;
+}
+
 .font-light {
     color: rgb(89, 99, 110);
 }

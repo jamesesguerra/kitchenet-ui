@@ -80,7 +80,7 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
   }
 
   private refreshReviews() {
-    this.reviewService.getRecipeReviewsByUserId(this.recipe.id).subscribe({
+    this.reviewService.getRecipeReviewsByRecipeId(this.recipe.id).subscribe({
       next: (reviews) => {
         this.reviews = reviews;
       },
