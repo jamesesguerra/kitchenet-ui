@@ -18,7 +18,16 @@
 
     <p-tabView>
         <p-tabPanel header="Discussion">
-            <div class="mt-2 entry-container">
+            @if (!(isLoading$ | async)) {
+                <app-comment
+                    [content]="suggestion.description"
+                    [userPicture]="suggestion.userPicture"
+                    [createdBy]="suggestion.createdBy"
+                    [createdAt]="suggestion.createdAt"
+                />
+            }
+
+            <div class="entry-container">
                 <div class="entry-avatar pt-1">
                     <p-avatar 
                         image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" 
