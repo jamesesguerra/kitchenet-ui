@@ -23,9 +23,13 @@ export class UserService {
             })
         })
     }
-
+    
     getUserById(id: string) {
         return this.http.get<User>(`${this.apiUrl}/${id}`);
+    }
+
+    getUser() {
+        return this.user.asObservable();
     }
 
     getUserId() {
@@ -38,5 +42,9 @@ export class UserService {
         return this.user.asObservable().pipe(
             map(user => user ? user.picture : null)
         );
+    }
+
+    patchUser(id: string, user: User) {
+        return this.http.patch(`${this.apiUrl}/${id}`, user);
     }
 }

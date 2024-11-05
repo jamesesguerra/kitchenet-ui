@@ -14,11 +14,13 @@ export class CollectionService {
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
-  getCollections() {
+  getCollections(isVisible?: boolean) {
     return this.userService.getUserId().pipe(
       filter(id => !!id),
       switchMap(id => {
-        return this.http.get<Collection[]>(`${this.apiUrl}?UserId=${id}`);
+        let url = `${this.apiUrl}?UserId=${id}`;
+        if (isVisible) url += `&isVisible=${isVisible}`;
+        return this.http.get<Collection[]>(url);
       })
     );
   }

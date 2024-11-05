@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
@@ -28,7 +28,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ButtonModule,
     TabViewModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
 ],
     declarations: [ProfileComponent]
 })
