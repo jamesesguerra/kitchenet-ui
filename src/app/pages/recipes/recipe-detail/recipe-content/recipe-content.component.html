@@ -22,7 +22,7 @@
                     routerLink="edit">
                 </button>
             </div>
-            <p class="mb-2">by <a href="">{{ recipe.createdBy }}</a></p>
+            <p class="mb-2">published by <a href="">{{ recipe.createdBy }}</a> on {{ recipe.createdAt | date }}</p>
             <p-rating [(ngModel)]="averageRating" [readonly]="true" [cancel]="false" class="mt-2" />
         </div>
         <div class="flex gap-2 mt-3 md:mt-0">
