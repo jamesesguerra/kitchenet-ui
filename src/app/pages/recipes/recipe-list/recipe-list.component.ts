@@ -61,6 +61,15 @@ export class RecipeListComponent {
             this.filteredRecipes.sort((a, b) => {
                 return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
             });
+        } else if (this.sortOption.name === 'Rating') {
+            this.filteredRecipes.sort((a, b) => {
+                if (a.averageRating !== undefined && b.averageRating !== undefined) {
+                    return b.averageRating - a.averageRating;
+                  }
+                  if (a.averageRating === undefined) return 1;
+                  if (b.averageRating === undefined) return -1;
+                  return 0;
+            })
         }
     }
 
