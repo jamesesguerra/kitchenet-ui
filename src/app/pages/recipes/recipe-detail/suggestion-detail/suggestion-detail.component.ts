@@ -9,6 +9,7 @@ import { SuggestionComment } from 'src/app/models/suggestion-comment.model';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { SuggestionCommentService } from 'src/app/services/suggestion-comment.service';
 import { SuggestionService } from 'src/app/services/suggestion.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-suggestion-detail',
@@ -21,6 +22,7 @@ export class SuggestionDetailComponent implements OnInit {
   modifiedFields = [];
   comments: SuggestionComment[] = [];
   newComment = '';
+  userPicture = '';
  
   items = [];
 
@@ -28,6 +30,7 @@ export class SuggestionDetailComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
   constructor(
+    private userService: UserService,
     private suggestionService: SuggestionService,
     private toastService: ToastService,
     private recipeService: RecipeService,
@@ -37,6 +40,9 @@ export class SuggestionDetailComponent implements OnInit {
   {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
+
+    this.userPicture = this.userService.getUserPicture();
+    console.log(this.userService.getUserPicture());
   }
 
   ngOnInit(): void {

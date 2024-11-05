@@ -12,7 +12,11 @@ export class SuggestionCommentService {
   currentUserId: string;
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.currentUserId = this.userService.getUserId();
+    this.userService.getUserId().subscribe({
+      next: (id) => {
+        this.currentUserId = id;
+      }
+    })
   }
 
   getRecipeReviewsByUserId(id: number) {
