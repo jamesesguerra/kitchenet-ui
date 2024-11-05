@@ -3,6 +3,7 @@ export interface RecipeSummaryDto {
     collection: string;
     name: string;
     description: string;
+    averageRating: number;
     coverPicture: string;
     createdAt: Date;
 }
