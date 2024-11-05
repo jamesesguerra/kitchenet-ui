@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 import { CollectionDto } from 'src/app/dtos/collection.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { CollectionService } from 'src/app/services/collection.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-edit-collection',
@@ -19,9 +21,12 @@ export class EditCollectionComponent implements OnInit {
 
   allRecipes: Recipe[];
   collectionForm!: FormGroup;
+  deletedRecipeIds = [];
 
-  constructor(private collectionService: CollectionService,
-    private toastService: ToastService) { }
+  constructor(
+    private collectionService: CollectionService,
+    private toastService: ToastService,
+    private recipeService: RecipeService){ }
     
   ngOnInit(): void {
     this.collectionForm = new FormGroup({
@@ -33,21 +38,26 @@ export class EditCollectionComponent implements OnInit {
   }
 
   deleteRecipe(id: number) {
+    this.deletedRecipeIds.push(id);
     this.items = this.items.filter(i => i.id !== id);
   }
     
   onSubmit() {
     const { name, description } = this.collectionForm.value as Collection;
 
-    this.collectionService.updateCollection(this.collection.id, name, description).subscribe({
+    forkJoin({
+      collection: this.collectionService.updateCollection(this.collection.id, name, description),
+      recipe: this.recipeService.deleteRecipeByIds(this.deletedRecipeIds)
+    }).subscribe({
       next: () => {
         this.toastService.showSuccess("Success!", "Your collection has been updated");
         this.save.emit({ name, description, recipes: this.items })
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
+
       }
-    })
+    });
   }
 
   onCancel() {
