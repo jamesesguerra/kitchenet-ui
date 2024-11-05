@@ -21,8 +21,7 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
 
   resizeSubscription!: Subscription;
   screenSize: 'sm' | 'md' = window.innerWidth < 645 ? 'sm' : 'md';
-  rating = 5;
-  value = 0;
+  averageRating: number;
 
   reviewForm: FormGroup;
   reviews: RecipeReview[] = [];
@@ -49,6 +48,12 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
     this.reviewForm = new FormGroup({
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
       review: new FormControl('', Validators.required)
+    })
+
+    this.reviewService.getAverageRecipeRating(this.recipe.id).subscribe({
+      next: (average) => {
+        this.averageRating = average;
+      }
     })
   }
 

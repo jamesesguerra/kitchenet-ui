@@ -23,4 +23,8 @@ export class RecipeReviewService {
     recipeReview.createdBy = this.currentUserId;
     return this.http.post<RecipeReview>(this.apiUrl, recipeReview);
   }
+
+  getAverageRecipeRating(id: number) {
+    return this.http.get<number>(`${this.apiUrl}/${id}/average-rating`);
+  }
 }
