@@ -3,25 +3,24 @@ import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { SuggestionDto } from '../dtos/suggestion.dto';
+import { filter, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuggestionService {
   private apiUrl = `${env.baseApiUrl}/api/suggestions`;
-  currentUserId: string;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.userService.getUserId().subscribe({
-      next: (id) => {
-        this.currentUserId = id;
-      }
-    })
-  }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   addSuggestion(suggestion: SuggestionDto) {
-    suggestion.createdBy = this.currentUserId;
-    return this.http.post<SuggestionDto>(`${this.apiUrl}`, suggestion);
+    return this.userService.getUserId().pipe(
+      filter(id => !!id),
+      switchMap(id => {
+        suggestion.createdBy = id;
+        return this.http.post<SuggestionDto>(this.apiUrl, suggestion);
+      })
+    );
   }
 
   getSuggestionByIdWithChanges(id: number) {

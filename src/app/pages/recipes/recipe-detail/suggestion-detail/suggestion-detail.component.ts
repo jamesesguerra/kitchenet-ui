@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Delta } from 'quill/core';
-import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { BehaviorSubject, filter, forkJoin, Observable, switchMap } from 'rxjs';
 import { SuggestionDto } from 'src/app/dtos/suggestion.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -22,7 +22,7 @@ export class SuggestionDetailComponent implements OnInit {
   modifiedFields = [];
   comments: SuggestionComment[] = [];
   newComment = '';
-  userPicture = '';
+  userPicture: any;
  
   items = [];
 
@@ -30,7 +30,7 @@ export class SuggestionDetailComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private suggestionService: SuggestionService,
     private toastService: ToastService,
     private recipeService: RecipeService,
@@ -40,9 +40,6 @@ export class SuggestionDetailComponent implements OnInit {
   {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
-
-    this.userPicture = this.userService.getUserPicture();
-    console.log(this.userService.getUserPicture());
   }
 
   ngOnInit(): void {

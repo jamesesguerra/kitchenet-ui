@@ -4,29 +4,33 @@ import { Collection } from '../models/collection.model';
 import { UserService } from './user.service';
 import { environment as env } from 'src/environments/environment';
 import { CollectionDto } from '../dtos/collection.dto';
+import { filter, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
   private apiUrl = `${env.baseApiUrl}/api/collections`;
-  currentUserId: string;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.userService.getUserId().subscribe({
-      next: (id) => {
-        this.currentUserId = id;
-      }
-    })
-  }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getCollections() {
-    return this.http.get<Collection[]>(`${this.apiUrl}?UserId=${this.currentUserId}`);
+    return this.userService.getUserId().pipe(
+      filter(id => !!id),
+      switchMap(id => {
+        return this.http.get<Collection[]>(`${this.apiUrl}?UserId=${id}`);
+      })
+    );
   }
 
   addCollection(collection: Collection) {
-    collection.userId = this.currentUserId;
-    return this.http.post<Collection>(`${this.apiUrl}`, collection);
+    return this.userService.getUserId().pipe(
+      filter(id => !!id),
+      switchMap(id => {
+        collection.userId = id;
+        return this.http.post<Collection>(`${this.apiUrl}`, collection);
+      })
+    );
   }
 
   deleteCollection(collectionId) {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
     selector: 'app-layout',
     templateUrl: './app.layout.component.html'
 })
-export class AppLayoutComponent implements OnDestroy {
+export class AppLayoutComponent implements OnDestroy, OnInit {
 
     overlayMenuOpenSubscription: Subscription;
 
@@ -28,7 +28,6 @@ export class AppLayoutComponent implements OnDestroy {
         public router: Router,
         private userService: UserService
     ) {
-        this.userService.initUser();
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
@@ -62,6 +61,10 @@ export class AppLayoutComponent implements OnDestroy {
                 this.hideMenu();
                 this.hideProfileMenu();
             });
+    }
+
+    ngOnInit(): void {
+        this.userService.initUser();
     }
 
     hideMenu() {

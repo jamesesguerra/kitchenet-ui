@@ -4,21 +4,15 @@ import { environment as env } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { Recipe } from '../models/recipe.model';
 import { RecipeSummaryDto } from '../dtos/recipe-summary.dto';
+import { filter, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   private apiUrl = `${env.baseApiUrl}/api/recipes`;
-  currentUserId: string;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.userService.getUserId().subscribe({
-      next: (id) => {
-        this.currentUserId = id;
-      }
-    })
-  }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   addRecipe(recipe: Recipe) {
     return this.http.post<Recipe>(`${this.apiUrl}`, recipe);
@@ -29,7 +23,12 @@ export class RecipeService {
   }
 
   getRecipeSummariesByUserId() {
-    return this.http.get<RecipeSummaryDto[]>(`${this.apiUrl}?userId=${this.currentUserId}`);
+    return this.userService.getUserId().pipe(
+      filter(id => !!id),
+      switchMap(id => {
+        return this.http.get<RecipeSummaryDto[]>(`${this.apiUrl}?userId=${id}`);
+      })
+    );
   }
 
   updateRecipe(id: number, recipe: Recipe) {

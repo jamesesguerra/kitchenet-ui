@@ -39,13 +39,13 @@
             <div class="entry-container">
                 <div class="entry-avatar pt-1">
                     <p-avatar 
-                        [image]="userPicture" 
+                        [image]="userService.getUserPicture() | async" 
                         styleClass="mr-2" 
                         shape="circle"
                     />
                 </div>
                 <div class="entry-content">
-                    <span class="font-bold block mb-3">Add a comment</span>
+                    <span class="font-semibold block mb-3">Add a comment</span>
                     <textarea class="w-full" rows="6" pInputTextarea [(ngModel)]="newComment"></textarea>
                 </div>
             </div>

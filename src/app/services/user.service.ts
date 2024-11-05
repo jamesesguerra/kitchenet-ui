@@ -35,7 +35,8 @@ export class UserService {
     }
 
     getUserPicture() {
-        const user = this.user.getValue();
-        return user ? user.picture : null;
+        return this.user.asObservable().pipe(
+            map(user => user ? user.picture : null)
+        );
     }
 }
