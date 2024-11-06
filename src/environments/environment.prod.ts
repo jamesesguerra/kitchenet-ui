@@ -8,5 +8,5 @@ export const environment = {
     },
     errorPath: '/callback',
   },
-  baseApiUrl: 'https://kitchenette-server.fly.dev'
+  baseApiUrl: 'https://kitchenet.azurewebsites.net'
 };
