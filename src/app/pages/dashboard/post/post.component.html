@@ -1,27 +1,21 @@
-<li>
-    <div class="mb-3">
+<li class="py-1 md:py-0">
+    <div class="mb-3 flex align-items-center">
         <p-avatar 
-            label="U" 
             styleClass="mr-2" 
-            [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }" 
+            [image]="userPicture"
             shape="circle"
         />
-        <span class="text-900 font-medium mr-2 mb-1 md:mb-0 fs-accent">James Esg</span>
+        <span class="text-900 font-medium mr-2 pb-2 md:mb-0 fs-accent">{{ createdBy }}</span>
     </div>
-    <div class="flex flex-column md:flex-row md:justify-content-between mb-4 gap-6">
+    <div class="flex flex-column md:flex-row md:justify-content-between mb-4 gap-2 md:gap-6">
         <div>
-            <h3 class="text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptatum exercitationem odit dolorem aliquam dolor cupiditate ex, porro iusto aspernatur</p>
-            
+            <h3 class="text-2xl"><a [routerLink]="['/recipes', idLink]">{{ title }}</a></h3>
+            <p>{{ description | truncate:180 }}</p>
         </div>
 
         <div class="mt-2 md:mt-0 flex align-items-center">
-            <div class="surface-300 border-round overflow-hidden w-12rem">
-                <p-image
-                    src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" 
-                    alt="Image" 
-                    height="100%"
-                    width="100%"></p-image>
+            <div class="surface-300 border-round w-full md:w-14rem image-container">
+                <img class="responsive-image" [src]="photo" />
             </div>
         </div>
     </div>

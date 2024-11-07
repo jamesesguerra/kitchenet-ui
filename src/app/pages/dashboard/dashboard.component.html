@@ -2,18 +2,21 @@
         <div class="col-12 xl:col-8">
             <div class="card">
                 
-                <ul class="list-none p-0 m-0">
-                    <app-post />
-                    <p-divider />
-                    <app-post />
-                    <p-divider />
-                    <app-post />
-                    <p-divider />
-                    <app-post />
-                    <p-divider />
-                    <app-post />
-                    <p-divider />
-                </ul>
+                @if (!(isLoading$ | async)) {
+                    @for (recipe of recipes; track recipe.id) {
+                        <ul class="list-none p-0 m-0">
+                            <app-post
+                                [createdBy]="recipe.createdBy"
+                                [userPicture]="recipe.userPicture"
+                                [title]="recipe.name"
+                                [description]="recipe.description"
+                                [photo]="recipe.coverPicture"
+                                [idLink]="recipe.id"
+                            />
+                            <p-divider />
+                        </ul>
+                    }
+                }
             </div>
         </div>
 

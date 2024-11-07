@@ -13,6 +13,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ImageModule } from 'primeng/image';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
         PanelMenuModule,
         ImageModule,
         ButtonModule,
-        DashboardsRoutingModule
+        DashboardsRoutingModule,
+        SharedModule
     ],
     declarations: [DashboardComponent, PostComponent]
 })

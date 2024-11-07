@@ -43,4 +43,8 @@ export class RecipeService {
     const params = ids.join(',');
     return this.http.delete(`${this.apiUrl}?ids=${params}`);
   }
+
+  getRandomRecipes() {
+    return this.http.get(`${this.apiUrl}/random`);
+  }
 }
