@@ -8,5 +8,5 @@ export const environment = {
     },
     errorPath: '/callback',
   },
-  baseApiUrl: 'http://localhost:5280'
+  baseApiUrl: 'http://localhost:8000'
 };
