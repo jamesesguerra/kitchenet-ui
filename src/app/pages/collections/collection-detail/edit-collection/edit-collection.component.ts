@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { CollectionDto } from 'src/app/dtos/collection.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
@@ -47,11 +47,13 @@ export class EditCollectionComponent implements OnInit {
 
     forkJoin({
       collection: this.collectionService.updateCollection(this.collection.id, name, description),
-      recipe: this.recipeService.deleteRecipeByIds(this.deletedRecipeIds)
+      recipe: this.deletedRecipeIds.length > 0 ?
+              this.recipeService.deleteRecipeByIds(this.deletedRecipeIds) :
+              of(null)
     }).subscribe({
       next: () => {
         this.toastService.showSuccess("Success!", "Your collection has been updated");
-        this.save.emit({ name, description, recipes: this.items })
+        this.save.emit({ id: this.collection.id, name, description, recipes: this.items })
       },
       error: ({ error }) => {
         this.toastService.showError("Error", error.title);
