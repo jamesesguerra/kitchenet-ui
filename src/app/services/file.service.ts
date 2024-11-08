@@ -13,6 +13,6 @@ export class FileService {
   uploadFile(file: any) {
     const formData = new FormData();
     formData.append('blob', file);
-    return this.http.post(`${this.apiUrl}/upload`, formData);
+    return this.http.post(this.apiUrl, formData);
   }
 }
