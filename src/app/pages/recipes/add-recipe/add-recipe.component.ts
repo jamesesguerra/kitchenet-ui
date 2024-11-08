@@ -2,6 +2,7 @@ import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileUpload } from 'primeng/fileupload';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -25,6 +26,9 @@ export class AddRecipeComponent implements OnInit {
 
   backLink = ['../'];
 
+  private isLoadingSubject: BehaviorSubject<boolean>;
+  isLoading$: Observable<boolean>;
+
   constructor(
     private toastService: ToastService,
     private collectionService: CollectionService,
@@ -33,6 +37,9 @@ export class AddRecipeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
+    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+    this.isLoading$ = this.isLoadingSubject.asObservable();
+
     this.collectionService.getCollections().subscribe({
       next: (collections) => {
         this.collections = collections;
@@ -96,6 +103,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoadingSubject.next(true);
     this.fileUpload.upload();
 
     this.fileService.uploadFile(this.fileToUpload).subscribe({
@@ -132,11 +140,13 @@ export class AddRecipeComponent implements OnInit {
 
     this.recipeService.addRecipe(recipe).subscribe({
       next: ({ id }) => {
+        this.isLoadingSubject.next(false);
         this.toastService.showSuccess("Success!", "New recipe has been created");
         this.router.navigate(['/recipes', id]);
         this.recipeForm.reset();
       },
       error: ({ error }) => {
+        this.isLoadingSubject.next(false);
         this.toastService.showError("Error", error.title);
       }
     })

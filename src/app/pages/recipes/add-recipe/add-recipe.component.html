@@ -206,7 +206,21 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="flex justify-content-end mb-8">
-            <p-button label="Create Recipe" type="submit" [disabled]="recipeForm.invalid" />
+            @if (!(isLoading$ | async)) {
+                <p-button
+                    icon="pi pi-plus"
+                    label="Create Recipe"
+                    type="submit"
+                    [disabled]="recipeForm.invalid"
+                />
+            } @else {
+                <p-button
+                    icon="pi pi-spin pi-spinner"
+                    label="Create Recipe"
+                    type="submit"
+                    [disabled]="true"
+                />
+            }
          </div>
     </form>
 </div>
