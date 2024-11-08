@@ -1,10 +1,12 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FileUpload } from 'primeng/fileupload';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { CollectionService } from 'src/app/services/collection.service';
+import { FileService } from 'src/app/services/file.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { EditorComponent } from 'src/app/shared/editor/editor.component';
 
@@ -15,10 +17,11 @@ import { EditorComponent } from 'src/app/shared/editor/editor.component';
 })
 export class AddRecipeComponent implements OnInit {
   @ViewChildren(EditorComponent) editors!: QueryList<EditorComponent>;
+  @ViewChild('fileUpload') fileUpload!: FileUpload;
 
-  value1 = 20;
   recipeForm: FormGroup;
   collections: Collection[];
+  fileToUpload: any;
 
   backLink = ['../'];
 
@@ -26,6 +29,7 @@ export class AddRecipeComponent implements OnInit {
     private toastService: ToastService,
     private collectionService: CollectionService,
     private recipeService: RecipeService,
+    private fileService: FileService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -51,7 +55,6 @@ export class AddRecipeComponent implements OnInit {
       fat: new FormControl(0),
       fiber: new FormControl(0),
       carbohydrates: new FormControl(0),
-      coverPicture: new FormControl('', Validators.required)
     })
   }
 
@@ -87,17 +90,32 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onUpload(e: any) {
-    // TODO: do something
+    const uploadedFiles = e.files;
+    const file = uploadedFiles[0];
+    this.fileToUpload = file;
   }
 
   onSubmit() {
+    this.fileUpload.upload();
+
+    this.fileService.uploadFile(this.fileToUpload).subscribe({
+      next: (result: any) => {
+        this.addRecipe(result.uri);
+      },
+      error: (error) => {
+        this.toastService.showError("Error", error);
+      }
+    })
+  }
+
+  private addRecipe(coverPictureUri: string) {
     const formValues = this.recipeForm.value;
     const editorValues = this.getEditorValues();
 
     const recipe: Recipe = {
       name: formValues.name,
       description: formValues.description,
-      coverPicture: formValues.coverPicture,
+      coverPicture: coverPictureUri,
       prepTime: formValues.prepTime,
       cookTime: formValues.cookTime,
       servings: formValues.servings,
@@ -123,5 +141,4 @@ export class AddRecipeComponent implements OnInit {
       }
     })
   }
-
 }

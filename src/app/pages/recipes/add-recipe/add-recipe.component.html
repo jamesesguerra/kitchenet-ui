@@ -190,22 +190,16 @@
          <p-divider class="w-full bg-surface-200"></p-divider>
 
          <div class="flex flex-column gap-2">
-            <!-- <span class="font-bold mb-2">Upload a cover image</span> -->
-             <!-- <p-fileUpload 
+            <span class="font-bold mb-2">Upload a cover image</span>
+            <p-fileUpload 
+                #fileUpload
                 mode="basic" 
                 chooseLabel="Choose" 
                 chooseIcon="pi pi-upload"
-                name="demo[]" 
-                url="https://www.primefaces.org/cdn/api/upload.php" 
+                customUpload="true"
                 accept="image/*" 
-                maxFileSize="1000000" 
-                (onUpload)="onUpload($event)" /> -->
-            <span class="font-semibold mb-2">Add a cover image</span>
-            <input
-                type="text"
-                pInputText
-                formControlName="coverPicture"
-                placeholder="Paste image URL here (e.g., https://example.com/image.jpg)"
+                maxFileSize="2000000" 
+                (uploadHandler)="onUpload($event)"
             />
          </div>
 
