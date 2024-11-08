@@ -2,11 +2,12 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, switchMap, tap } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { CollectionService } from 'src/app/services/collection.service';
+import { FileService } from 'src/app/services/file.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { EditorComponent } from 'src/app/shared/editor/editor.component';
 
@@ -34,6 +35,7 @@ export class EditRecipeComponent implements OnInit {
     private recipeService: RecipeService,
     private toastService: ToastService,
     private confirmationService: ConfirmationService,
+    private fileService: FileService,
     private router: Router)
   {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
@@ -164,15 +166,29 @@ export class EditRecipeComponent implements OnInit {
       defaultFocus: "none",
 
       accept: () => {
-        this.recipeService.deleteRecipeByIds([this.recipe.id]).subscribe({
+        forkJoin({
+          image: this.fileService.deleteFile(this.fileService.getBlobName(this.recipe.coverPicture)),
+          recipe: this.recipeService.deleteRecipeByIds([this.recipe.id])
+        }).subscribe({
           next: () => {
-              this.router.navigate(['/recipes'], { replaceUrl: true });
+            this.router.navigate(['/recipes'], { replaceUrl: true });
               this.toastService.showInfo('Confirmed', 'Recipe deleted');
-            },
-            error: ({ error }) => {
-              this.toastService.showError("Error", error.title);
-            }
-          });
+          },
+          error: ({ error }) => {
+            this.toastService.showError("Error", error.title);
+    
+          }
+        });
+
+        // this.recipeService.deleteRecipeByIds([this.recipe.id]).subscribe({
+        //   next: () => {
+        //       this.router.navigate(['/recipes'], { replaceUrl: true });
+        //       this.toastService.showInfo('Confirmed', 'Recipe deleted');
+        //     },
+        //     error: ({ error }) => {
+        //       this.toastService.showError("Error", error.title);
+        //     }
+        //   });
       }
     });
   }

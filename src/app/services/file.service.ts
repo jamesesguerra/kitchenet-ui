@@ -15,4 +15,14 @@ export class FileService {
     formData.append('blob', file);
     return this.http.post(this.apiUrl, formData);
   }
+
+  deleteFile(blob: string) {
+    return this.http.delete(`${this.apiUrl}?blobName=${blob}`);
+  }
+
+  getBlobName(uri) {
+    const url = new URL(uri);
+    const pathSegments = url.pathname.split('/');
+    return decodeURIComponent(pathSegments[pathSegments.length - 1]);
+  }
 }
