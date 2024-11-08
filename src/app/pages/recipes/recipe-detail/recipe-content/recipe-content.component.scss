@@ -50,6 +50,7 @@ table {
 :host ::ng-deep .ql-snow .ql-editor h4,
 :host ::ng-deep .ql-snow .ql-editor p {
     margin-left: -16px;
+    margin-right: -16px;
 }
 
 .image-container {
@@ -68,5 +69,13 @@ table {
 @media screen and (min-width: 768px) {
     .image-container {
         height: 500px;
+    }
+
+    :host ::ng-deep .ql-snow .ql-editor h1,
+    :host ::ng-deep .ql-snow .ql-editor h2,
+    :host ::ng-deep .ql-snow .ql-editor h3,
+    :host ::ng-deep .ql-snow .ql-editor h4,
+    :host ::ng-deep .ql-snow .ql-editor p {
+        margin-right: 0px;
     }
 }
