@@ -23,9 +23,11 @@ export class DashboardComponent implements OnInit {
             next: (recipes) => {
                 this.isLoadingSubject.next(false);
                 this.recipes = recipes;
-                console.log(this.recipes);
             }
         })
     }
 
+    counterArray(n: number): any[] {
+        return Array(n);
+    }
 }

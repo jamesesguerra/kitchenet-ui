@@ -16,6 +16,22 @@
                             <p-divider />
                         </ul>
                     }
+                } @else {
+                    <div class="grid grid-nogutter">
+                        <div class="col-12" *ngFor="let i of counterArray(5); let first = first" class="col-12">
+                            <div class="flex flex-column md:flex-row xl:align-items-start py-4 px-0 gap-4" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                                <div class="flex flex-column md:flex-row justify-content-between align-items-start flex-1 gap-4">
+                                    <div class="flex flex-column align-items-start gap-2">
+                                        <p-skeleton styleClass="w-6rem border-round h-1rem" />
+                                        <p-skeleton styleClass="w-12rem border-round h-1rem" />
+                                        <p-skeleton styleClass="w-14rem border-round h-1rem" />
+                                        <p-skeleton styleClass="w-18rem border-round h-1rem" />
+                                    </div>
+                                </div>
+                                <p-skeleton styleClass="w-full md:w-14rem h-10rem md:h-10rem block xl:block border-round" />
+                            </div>
+                        </div>
+                    </div>
                 }
             </div>
         </div>

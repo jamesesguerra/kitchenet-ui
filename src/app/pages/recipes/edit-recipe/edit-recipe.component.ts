@@ -179,16 +179,6 @@ export class EditRecipeComponent implements OnInit {
     
           }
         });
-
-        // this.recipeService.deleteRecipeByIds([this.recipe.id]).subscribe({
-        //   next: () => {
-        //       this.router.navigate(['/recipes'], { replaceUrl: true });
-        //       this.toastService.showInfo('Confirmed', 'Recipe deleted');
-        //     },
-        //     error: ({ error }) => {
-        //       this.toastService.showError("Error", error.title);
-        //     }
-        //   });
       }
     });
   }

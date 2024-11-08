@@ -14,6 +14,7 @@ import { ImageModule } from 'primeng/image';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
         ImageModule,
         ButtonModule,
         DashboardsRoutingModule,
+        SkeletonModule,
         SharedModule
     ],
     declarations: [DashboardComponent, PostComponent]
