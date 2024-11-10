@@ -2,3 +2,10 @@
     min-height: 90px;
     color: #6b6b6b;
 }
+
+::ng-deep .p-fileupload-choose {
+    font-size: 0.875rem;
+    padding: 0.65625rem 1.09375rem;
+    background-color: #0ea5e9;
+    border: 1px solid #0ea5e9;
+}

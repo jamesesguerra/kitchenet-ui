@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     TabViewModule,
     ProfileRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule
 ],
     declarations: [ProfileComponent]
 })

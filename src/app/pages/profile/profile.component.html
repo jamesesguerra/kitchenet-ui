@@ -10,24 +10,26 @@
             </div>
 
             <div class="p-5">
-                <div class="flex justify-content-between align-items-center mb-2">
-                    <div class="flex align-items-center gap-3">
-                        <p-avatar 
-                            [image]="user?.picture" 
-                            styleClass="mr-2" 
-                            size="xlarge" 
-                            shape="circle"
-                        />
-                        <h3 class="text-3xl md:text-4xl">{{ user?.nickname }}</h3>
-                    </div>
-                    
-                    @if ((userService.user | async).id === user?.id) {
-                        <div>
-                            <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-                            <p-menu #menu [popup]="true" [model]="items" (click)="showModal()"></p-menu>
+                @if (!(isLoading$ | async)) {
+                    <div class="flex justify-content-between align-items-center mb-2">
+                        <div class="flex align-items-center gap-3">
+                            <p-avatar 
+                                [image]="user?.picture" 
+                                styleClass="mr-2" 
+                                size="xlarge" 
+                                shape="circle"
+                            />
+                            <h3 class="text-3xl md:text-4xl">{{ user?.nickname }}</h3>
                         </div>
-                    }
-                </div>
+                        
+                        @if ((userService.user | async)?.id === user?.id) {
+                            <div>
+                                <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+                                <p-menu #menu [popup]="true" [model]="items" (click)="showModal()"></p-menu>
+                            </div>
+                        }
+                    </div>
+                }
     
                 <p-tabView>
                     <p-tabPanel header="Collections">
@@ -67,14 +69,25 @@
             <label for="" class="font-semibold w-6rem">Photo</label>
             <div class="flex gap-3 align-items-center">
                 <p-avatar 
-                    [image]="user?.picture" 
+                    [image]="userPictureForUpdate" 
                     styleClass="mr-2" 
                     size="xlarge" 
                     shape="circle"
                 />
 
-                <p-button label="Update" [outlined]="true" size="small" severity="info" />
-                <p-button label="Remove" [outlined]="true" size="small" severity="danger" />
+                <p-fileUpload 
+                    #fileUpload
+                    mode="basic" 
+                    chooseLabel="Update" 
+                    chooseIcon="pi pi-upload"
+                    customUpload="true"
+                    accept="image/*" 
+                    maxFileSize="2000000" 
+                    class="p-button-sm"
+                    (uploadHandler)="onUpload($event)"
+                />
+
+                <p-button label="Remove" size="small" severity="danger" (click)="onRemovePicture()" />
             </div>
         </div>
 
@@ -92,8 +105,13 @@
                 formControlName="bio"></textarea>
         </div>
         <div class="flex justify-content-end gap-2">
-            <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="isModalVisible = false" />
-            <p-button type="submit" label="Save" />
+            <p-button label="Cancel" severity="secondary" [text]="true" (onClick)="onCancel()" />
+
+            @if (!(isLoading$ | async)) {
+                <p-button type="submit" label="Save" icon="pi pi-check" />
+            } @else {
+                <p-button type="submit" label="Save" icon="pi pi-spin pi-spinner" [disabled]="true" />
+            }
         </div>
     </form>
 </app-modal>
