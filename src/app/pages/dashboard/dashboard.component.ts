@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
         this.recipeService.getRandomRecipes().subscribe({
             next: (recipes) => {
                 this.isLoadingSubject.next(false);
+                console.log(recipes);
                 this.recipes = recipes;
             }
         })

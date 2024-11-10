@@ -12,5 +12,5 @@ export class PostComponent {
   @Input({ required: true }) description: string;
   @Input({ required: true }) photo: string;
   @Input({ required: true }) idLink: number;
-
+  @Input({ required: true }) userId: string;
 }
