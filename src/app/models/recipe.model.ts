@@ -18,4 +18,5 @@ export interface Recipe {
     fiber: number;
     createdBy?: string;
     createdAt?: Date;
+    userId?: string;
 }

@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/layout/service/toast.service';
 import { RecipeReview } from 'src/app/models/recipe-review.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeReviewService } from 'src/app/services/recipe-review.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-recipe-content',
@@ -26,7 +27,10 @@ export class RecipeContentComponent implements OnInit, OnDestroy {
   reviewForm: FormGroup;
   reviews: RecipeReview[] = [];
 
-  constructor(private reviewService: RecipeReviewService, private toastService: ToastService) { }
+  constructor(
+    private reviewService: RecipeReviewService,
+    private toastService: ToastService,
+    public userService: UserService) { }
 
   ngOnInit(): void {
     this.initForm();

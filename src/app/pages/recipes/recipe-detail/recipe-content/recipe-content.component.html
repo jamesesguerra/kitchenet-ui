@@ -13,16 +13,18 @@
             <div class="flex align-items-baseline gap-2">
                 <h1 class="text-3xl mb-0">{{ recipe.name }}</h1>
 
-                <button
-                    pButton
-                    type="button"
-                    icon="pi pi-pencil"
-                    class="p-button-text p-button-plain p-2 px-1"
-                    [label]="screenSize === 'sm' ? '' : 'Edit'"
-                    routerLink="edit">
-                </button>
+                @if ((userService.user | async)?.id === recipe.userId) {
+                    <button
+                        pButton
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="p-button-text p-button-plain p-2 px-1"
+                        [label]="screenSize === 'sm' ? '' : 'Edit'"
+                        routerLink="edit">
+                    </button>
+                }
             </div>
-            <p class="mb-2">published by <a href="">{{ recipe.createdBy }}</a> on {{ recipe.createdAt | date }}</p>
+            <p class="mb-2">published by <a [routerLink]="['/profile', recipe.userId]">{{ recipe.createdBy }}</a> on {{ recipe.createdAt | date }}</p>
             <p-rating [(ngModel)]="averageRating" [readonly]="true" [cancel]="false" class="mt-2" />
         </div>
         <div class="flex gap-2 mt-3 md:mt-0">

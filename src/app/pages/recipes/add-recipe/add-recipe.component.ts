@@ -103,17 +103,21 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.isLoadingSubject.next(true);
     this.fileUpload.upload();
-
-    this.fileService.uploadFile(this.fileToUpload).subscribe({
-      next: (result: any) => {
-        this.addRecipe(result.uri);
-      },
-      error: (error) => {
-        this.toastService.showError("Error", error);
-      }
-    })
+    
+    if (this.fileToUpload != null) {
+      this.isLoadingSubject.next(true);
+      this.fileService.uploadFile(this.fileToUpload).subscribe({
+        next: (result: any) => {
+          this.addRecipe(result.uri);
+        },
+        error: (error) => {
+          this.toastService.showError("Error", error);
+        }
+      })
+    } else {
+      this.toastService.showError("Error", "You must upload a cover image for your recipe.");
+    }
   }
 
   private addRecipe(coverPictureUri: string) {
