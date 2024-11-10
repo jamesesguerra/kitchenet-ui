@@ -12,6 +12,7 @@ import { CommentComponent } from './comment/comment.component';
 import { EditorComponent } from './editor/editor.component';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { RatingModule } from 'primeng/rating';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { RatingModule } from 'primeng/rating';
         InputTextModule,
         StyleClassModule,
         AvatarModule,
-        RatingModule
+        RatingModule,
+        RouterModule
     ],
     declarations: [
         ModalComponent,

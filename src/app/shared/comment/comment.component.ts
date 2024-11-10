@@ -11,4 +11,5 @@ export class CommentComponent {
   @Input({ required: true }) createdBy!: string;
   @Input({ required: true }) userPicture!: string;
   @Input() createdAt: Date;
+  @Input({ required: true }) userId: string;
 }

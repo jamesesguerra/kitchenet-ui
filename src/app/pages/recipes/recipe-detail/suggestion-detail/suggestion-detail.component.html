@@ -10,7 +10,8 @@
                     icon="pi pi-sort-alt"
                 />
                 <p>
-                    {{ suggestion.createdBy }} suggested changes on {{ suggestion.createdAt | date: 'MMM d, y' }}
+                    <a [routerLink]="['/profile', suggestion.userId]"><span>{{ suggestion.createdBy }}</span></a>
+                     suggested changes on {{ suggestion.createdAt | date: 'MMM d, y' }}
                 </p>
             </div>
         </div>
@@ -24,6 +25,7 @@
                     [userPicture]="suggestion.userPicture"
                     [createdBy]="suggestion.createdBy"
                     [createdAt]="suggestion.createdAt"
+                    [userId]="suggestion.userId"
                 />
 
                 @for (comment of comments; track comment.id) {
@@ -32,6 +34,7 @@
                         [userPicture]="comment.userPicture"
                         [createdBy]="comment.createdBy"
                         [createdAt]="comment.createdAt"
+                        [userId]="comment.userId"
                     />
                 }
             }

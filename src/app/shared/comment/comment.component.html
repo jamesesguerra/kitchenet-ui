@@ -8,7 +8,9 @@
 
     <div class="comment-content">
         <div class="comment-author">
-            <span class="author-name">{{ createdBy }}</span>
+            <a [routerLink]="['/profile', userId]">
+                <span class="author-name">{{ createdBy }}</span>
+            </a>
             <span class="comment-date">{{ createdAt | date }}</span>
         </div>
 

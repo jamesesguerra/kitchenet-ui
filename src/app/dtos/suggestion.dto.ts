@@ -8,6 +8,7 @@ export interface SuggestionDto {
     status?: string;
     createdBy?: string;
     userPicture?: string;
+    userId?: string;
     createdAt?: Date,
     recipeChanges: Partial<Recipe>;
 }
