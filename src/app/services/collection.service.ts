@@ -14,7 +14,7 @@ export class CollectionService {
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
-  getCollections(isVisible?: boolean) {
+  getLoggedInUserCollections(isVisible?: boolean) {
     return this.userService.getUserId().pipe(
       filter(id => !!id),
       switchMap(id => {
@@ -23,6 +23,12 @@ export class CollectionService {
         return this.http.get<Collection[]>(url);
       })
     );
+  }
+
+  getCollectionsByUserId(userId: string, isVisible?: boolean) {
+    let url = `${this.apiUrl}?UserId=${userId}`;
+    if (isVisible) url += `&isVisible=${isVisible}`;
+    return this.http.get<Collection[]>(url);
   }
 
   addCollection(collection: Collection) {

@@ -13,18 +13,20 @@
                 <div class="flex justify-content-between align-items-center mb-2">
                     <div class="flex align-items-center gap-3">
                         <p-avatar 
-                            [image]="(userService.user | async)?.picture" 
+                            [image]="user?.picture" 
                             styleClass="mr-2" 
                             size="xlarge" 
                             shape="circle"
                         />
-                        <h3 class="text-3xl md:text-4xl">{{ (userService.user | async)?.nickname }}</h3>
+                        <h3 class="text-3xl md:text-4xl">{{ user?.nickname }}</h3>
                     </div>
-    
-                    <div>
-                         <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-                        <p-menu #menu [popup]="true" [model]="items" (click)="showModal()"></p-menu>
-                    </div>
+                    
+                    @if ((userService.user | async).id === user?.id) {
+                        <div>
+                            <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+                            <p-menu #menu [popup]="true" [model]="items" (click)="showModal()"></p-menu>
+                        </div>
+                    }
                 </div>
     
                 <p-tabView>
@@ -46,7 +48,7 @@
                         }
                     </p-tabPanel>
                     <p-tabPanel header="About">
-                        <p>{{ (userService.user | async)?.bio }}</p>
+                        <p>{{ user?.bio }}</p>
                     </p-tabPanel>
                 </p-tabView>
             </div>
@@ -65,7 +67,7 @@
             <label for="" class="font-semibold w-6rem">Photo</label>
             <div class="flex gap-3 align-items-center">
                 <p-avatar 
-                    [image]="(userService.user | async)?.picture" 
+                    [image]="user?.picture" 
                     styleClass="mr-2" 
                     size="xlarge" 
                     shape="circle"

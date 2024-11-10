@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Delta } from 'quill/core';
-import { BehaviorSubject, filter, forkJoin, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { SuggestionDto } from 'src/app/dtos/suggestion.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Recipe } from 'src/app/models/recipe.model';

@@ -55,7 +55,7 @@ export class EditRecipeComponent implements OnInit {
           tap(() => this.isLoadingSubject.next(false)),
           switchMap(recipe => {
             this.recipe = recipe;
-            return this.collectionService.getCollections();
+            return this.collectionService.getLoggedInUserCollections();
           })
         );
       })

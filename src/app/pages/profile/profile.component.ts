@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { Collection } from 'src/app/models/collection.model';
 import { User } from 'src/app/models/user.model';
@@ -25,27 +27,35 @@ export class ProfileComponent implements OnInit {
     bio: new FormControl('')
   });
 
+  private isLoadingSubject: BehaviorSubject<boolean>;
+  isLoading$: Observable<boolean>;
+
   constructor(
     private toastService: ToastService,
     private collectionService: CollectionService,
-    public userService: UserService) { }
+    private activatedRoute: ActivatedRoute,
+    public userService: UserService)
+  {
+    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
+    this.isLoading$ = this.isLoadingSubject.asObservable();
+  }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(user => {
-      if (user) {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const userId = paramMap.get("userId");
+    
+      this.userService.getUserById(userId).subscribe(user => {
         this.user = user;
         this.profileForm.setValue({
           name: user.nickname,
           bio: user.bio
         });
-      }
+    
+        this.collectionService.getCollectionsByUserId(user.id, true).subscribe(collections => {
+          this.collections = collections;
+        });
+      });
     });
-
-    this.collectionService.getCollections(true).subscribe({
-      next: (collections) => {
-        this.collections = collections;
-      }
-    })
   }
 
   showModal() {

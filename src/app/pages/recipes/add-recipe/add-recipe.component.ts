@@ -40,7 +40,7 @@ export class AddRecipeComponent implements OnInit {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
 
-    this.collectionService.getCollections().subscribe({
+    this.collectionService.getLoggedInUserCollections().subscribe({
       next: (collections) => {
         this.collections = collections;
       }
@@ -66,7 +66,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.collectionService.getCollections().subscribe({
+    this.collectionService.getLoggedInUserCollections().subscribe({
       next: (collections) => {
         this.collections = collections;
 

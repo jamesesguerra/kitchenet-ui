@@ -71,7 +71,7 @@ export class CollectionListComponent implements OnInit {
   ngOnInit(): void {
     this.isLoadingSubject.next(true);
 
-    this.collectionService.getCollections().subscribe({
+    this.collectionService.getLoggedInUserCollections().subscribe({
       next: (result) => {
         this.collections = result;
         this.filteredCollections = result;
