@@ -54,3 +54,10 @@ h1, h2, h3, h4, h5 {
 .max-w-65rem {
     max-width: 65rem;
 }
+
+.link {
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

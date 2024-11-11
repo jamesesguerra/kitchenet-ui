@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="flex flex-column">
-                    <a class="text-base" [routerLink]="['suggestions', suggestion.id]">{{ suggestion.title }}</a>
+                    <a class="text-base link" [routerLink]="['suggestions', suggestion.id]">{{ suggestion.title }}</a>
                     <p class="font-light text-base mt-2">opened {{ suggestion.createdAt | date }} by {{ suggestion.createdBy }}</p>
                 </div>
             </div>

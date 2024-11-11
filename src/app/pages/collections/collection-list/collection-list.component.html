@@ -40,7 +40,7 @@
                 <div class="mt-5 px-1" #collections>
                     <div>
                         <div class="flex align-items-baseline">
-                            <a class="text-base mb-2" [routerLink]="collection.id">{{ collection.name }}</a>
+                            <a class="text-base mb-2 link" [routerLink]="collection.id">{{ collection.name }}</a>
                             
                             @if (!collection.isVisible) {
                                 <i class="pi pi-lock ml-2" style="font-size: 0.8rem"></i>
