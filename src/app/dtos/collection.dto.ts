@@ -5,6 +5,8 @@ export interface CollectionDto {
     name: string;
     description: string;
     isVisible?: string;
+    createdBy?: string;
+    userPicture?: string;
     createdAt?: Date;
     recipes?: Recipe[]
 }

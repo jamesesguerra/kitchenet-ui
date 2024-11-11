@@ -52,4 +52,8 @@ export class CollectionService {
   updateCollection(id: number, name: string, description: string) {
     return this.http.patch(`${this.apiUrl}/${id}`, { name, description });
   }
+  
+  getRecentCollections() {
+    return this.http.get<CollectionDto[]>(`${this.apiUrl}/recent`);
+  }
 }

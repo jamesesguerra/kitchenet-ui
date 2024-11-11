@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { CollectionDto } from 'src/app/dtos/collection.dto';
+import { CollectionService } from 'src/app/services/collection.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -8,11 +10,12 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class DashboardComponent implements OnInit {
     recipes: any = [];
+    collections: CollectionDto[] = [];
 
     private isLoadingSubject: BehaviorSubject<boolean>;
     isLoading$: Observable<boolean>;
 
-    constructor(private recipeService: RecipeService) {
+    constructor(private recipeService: RecipeService, private collectionService: CollectionService) {
         this.isLoadingSubject = new BehaviorSubject<boolean>(false);
         this.isLoading$ = this.isLoadingSubject.asObservable();
     }
@@ -23,6 +26,12 @@ export class DashboardComponent implements OnInit {
             next: (recipes) => {
                 this.isLoadingSubject.next(false);
                 this.recipes = recipes;
+            }
+        });
+
+        this.collectionService.getRecentCollections().subscribe({
+            next: (collections) => {
+                this.collections = collections;
             }
         })
     }
