@@ -17,12 +17,12 @@
             </div>
         }
 
-        <div>
-            <div class="flex gap-2">
-                <button pButton type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-                <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
-           </div>
+        @if ((userService.user | async)?.id === collection.userId) {
+        <div class="flex gap-2">
+            <button pButton type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+            <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
         </div>
+        }
     </div>
 
     <p-divider class="w-full bg-surface-200"></p-divider>

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { CollectionDto } from 'src/app/dtos/collection.dto';
 import { ToastService } from 'src/app/layout/service/toast.service';
 import { CollectionService } from 'src/app/services/collection.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-collection-detail',
@@ -47,6 +48,7 @@ export class CollectionDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    public userService: UserService,
     private collectionService: CollectionService,
     private confirmationService: ConfirmationService,
     private toastService: ToastService,
