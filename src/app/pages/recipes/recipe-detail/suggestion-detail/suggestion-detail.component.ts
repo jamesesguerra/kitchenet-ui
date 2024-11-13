@@ -128,16 +128,18 @@ export class SuggestionDetailComponent implements OnInit {
       }
     ]
 
-    if (this.suggestion.status === "Open") {
-      actions = [...extraActions]
-    }
-
-    actions = [...actions, ...defaultActions];
-
-    this.items = [{
-      label: 'Actions',
-      items: actions
-    }]
+    this.userService.user.subscribe((user) => {
+      if (this.suggestion.status === "Open" && (this.suggestion.userId == user.id)) {
+        actions = [...extraActions]
+      }
+  
+      actions = [...actions, ...defaultActions];
+  
+      this.items = [{
+        label: 'Actions',
+        items: actions
+      }]
+    })
   }
 
   private acceptSuggestion() {
