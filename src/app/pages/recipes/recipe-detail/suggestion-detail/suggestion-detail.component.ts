@@ -103,7 +103,7 @@ export class SuggestionDetailComponent implements OnInit {
   private setSuggestionActions() {
     let actions = [];
 
-    const extraActions = [
+    const recipeOwnerActions = [
       {
         label: 'Accept',
         icon: 'pi pi-sort-alt',
@@ -118,7 +118,7 @@ export class SuggestionDetailComponent implements OnInit {
       { separator: true }
     ];
 
-    const defaultActions = [
+    const ownerActions = [
       {
         label: 'Delete',
         icon: 'pi pi-trash',
@@ -129,11 +129,13 @@ export class SuggestionDetailComponent implements OnInit {
     ]
 
     this.userService.user.subscribe((user) => {
-      if (this.suggestion.status === "Open" && (this.suggestion.userId == user.id)) {
-        actions = [...extraActions]
+      if (this.suggestion.status === "Open" && (this.currentRecipe.userId == user.id)) {
+        actions = [...recipeOwnerActions]
       }
-  
-      actions = [...actions, ...defaultActions];
+
+      if (this.suggestion.userId === (user.id)) {
+        actions = [...actions, ...ownerActions]
+      }
   
       this.items = [{
         label: 'Actions',
