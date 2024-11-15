@@ -64,7 +64,7 @@ export class SuggestionDetailComponent implements OnInit {
           },
           error: ({ error }) => {
             this.isLoadingSubject.next(false);
-            console.error(error.title);
+            this.toastService.showError("Error", error.title);
           }
         });
       }
