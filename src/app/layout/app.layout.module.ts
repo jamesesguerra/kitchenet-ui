@@ -17,7 +17,6 @@ import { AppTopBarComponent } from './components/app-topbar/app.topbar.component
 import { AppFooterComponent } from './components/app-footer/app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from './components/app-sidebar/app.sidebar.component';
-import { AppTitleComponent } from './components/app-title/app-title.component';
 import { AppLayoutComponent } from "./app.layout.component";
 import { ToastComponent } from './components/toast/toast.component';
 import { MessageService } from 'primeng/api';
@@ -31,7 +30,6 @@ import { MessageService } from 'primeng/api';
         AppSidebarComponent,
         AppLayoutComponent,
         ToastComponent,
-        AppTitleComponent
     ],
     imports: [
         BrowserModule,
