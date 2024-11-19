@@ -1,13 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-$gutter: 1rem; //for primeflex grid system
+$gutter: 1rem;
 @import "assets/layout/styles/layout/layout.scss";
 
-/* PrimeNG */
 @import "../node_modules/primeng/resources/primeng.min.css";
 @import "../node_modules/primeflex/primeflex.scss";
 @import "../node_modules/primeicons/primeicons.css";
 
-/* variables */
 @import '../src/assets/layout/styles/layout/variables';
 
 .p-dialog,
@@ -35,7 +32,7 @@ body {
 .p-toast-detail,
 .p-message-detail
 .p-inputtextarea {
-    font-family: inherit !important; // Inherit font from the parent
+    font-family: inherit !important;
 }
 
 
